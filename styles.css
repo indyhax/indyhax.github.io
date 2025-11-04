@@ -18,7 +18,7 @@
 }
 
 body {
-    font-family: 'Fira Code', 'Space Mono', 'Courier New', monospace;
+    font-family: 'JetBrains Mono', 'Courier New', monospace;
     line-height: 1.6;
     color: var(--text-primary);
     background: var(--bg-dark);
@@ -380,7 +380,7 @@ h3 {
 .code-block {
     padding: 20px;
     color: var(--primary-green);
-    font-family: 'Fira Code', monospace;
+    font-family: 'JetBrains Mono', monospace;
     font-size: 0.95em;
     line-height: 1.8;
     overflow-x: auto;
