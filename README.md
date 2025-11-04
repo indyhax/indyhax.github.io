@@ -2,21 +2,21 @@
 
 ## About IndyHAX
 
-Welcome to **IndyHAX**, an innovative hackathon hosted at **Independence High School**! This event brings together creative minds to build cutting-edge solutions that leverage the power of Artificial Intelligence to improve student life.
+**IndyHAX** is an innovative hackathon hosted in our school of Independence High School! This event brings together minds to build cutting-edge solutions that leverage the exopentially rising power of Artificial Intelligence to improve student life.
 
 ## Event Details
 
 - **Location:** Independence High School
-- **Date:** To Be Determined (TBD)
-- **Focus:** AI-Powered Student Tools
+- **Date:** (TBD)
+- **Theme:** Building Smarter Systems for Smarter Students.
 
 ## The Challenge
 
-### Build an AI-Powered Student Assignment & To-Do Tracker
+### An Academic management website integrated with Ai with the student in mind.
 
-Students are challenged to create a **web-based platform** that helps their peers manage their academic life more effectively. The platform should include:
+Students are challenged to create a **web-based platform** that helps fellow students manage their academic life more effectively. The platform should have but not be limted to:
 
-- **To-Do List Management:** An intuitive interface for students to track their tasks
+- **To-Do List Management:** An simple and inovative interface for students to track their tasks
 - **Assignment Tracking:** Easy-to-use tools for monitoring homework, projects, and deadlines
 - **AI Integration:** The core feature - an AI Agent that enhances the user experience
 
@@ -69,7 +69,7 @@ We envision a future where AI assists students in managing their academic respon
 - Develop better organizational habits through intelligent assistance
 - Reduce academic stress through proactive planning
 
-**IndyHAX** is more than a competition - it's an opportunity to be at the forefront of AI innovation in education, to solve real problems that you and your peers face every day, and to demonstrate how technology can empower students to succeed.
+**IndyHAX** is more than a competition - it's an opportunity to be at the forefront of AI innovation in education, to solve real problems that you and your friends face every day, and to demonstrate how technology can empower students to succeed.
 
 ## Get Ready to Innovate!
 
