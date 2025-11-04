@@ -1,213 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+<!-- This is a singlsadasdae-line comment -->
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="IndyHAX - AI-Powered Student Solutions Hackathon at Independence High School">
     <title>IndyHAX - AI-Powered Student Solutions Hackathon</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        
-        header {
-            text-align: center;
-            color: white;
-            padding: 60px 20px 40px;
-        }
-        
-        header h1 {
-            font-size: 3em;
-            margin-bottom: 10px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-        }
-        
-        header .tagline {
-            font-size: 1.3em;
-            opacity: 0.95;
-        }
-        
-        .content-card {
-            background: white;
-            border-radius: 12px;
-            padding: 40px;
-            margin: 30px auto;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            max-width: 900px;
-        }
-        
-        h2 {
-            color: #667eea;
-            font-size: 2em;
-            margin-bottom: 20px;
-            border-bottom: 3px solid #667eea;
-            padding-bottom: 10px;
-        }
-        
-        h3 {
-            color: #764ba2;
-            font-size: 1.5em;
-            margin-top: 30px;
-            margin-bottom: 15px;
-        }
-        
-        .event-details {
-            background: #f7f9fc;
-            padding: 25px;
-            border-radius: 8px;
-            margin: 20px 0;
-            border-left: 4px solid #667eea;
-        }
-        
-        .event-details p {
-            font-size: 1.1em;
-            margin: 10px 0;
-        }
-        
-        .event-details strong {
-            color: #667eea;
-        }
-        
-        .challenge-box {
-            background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%);
-            padding: 30px;
-            border-radius: 8px;
-            margin: 25px 0;
-            border: 2px solid #667eea;
-        }
-        
-        ul {
-            margin: 15px 0 15px 30px;
-        }
-        
-        li {
-            margin: 10px 0;
-            line-height: 1.7;
-        }
-        
-        .highlight {
-            background: #fff3cd;
-            padding: 3px 8px;
-            border-radius: 4px;
-            font-weight: 600;
-        }
-        
-        .vision-section {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 50px 40px;
-            border-radius: 12px;
-            margin: 40px auto;
-            text-align: center;
-            max-width: 900px;
-        }
-        
-        .vision-section h2 {
-            color: white;
-            border-bottom: 3px solid white;
-        }
-        
-        .benefits-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            margin: 30px 0;
-        }
-        
-        .benefit-card {
-            background: white;
-            padding: 25px;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease;
-        }
-        
-        .benefit-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
-        }
-        
-        .benefit-card h3 {
-            color: #667eea;
-            margin-top: 0;
-            font-size: 1.3em;
-        }
-        
-        .cta-section {
-            text-align: center;
-            background: white;
-            padding: 40px;
-            border-radius: 12px;
-            margin: 30px auto;
-            max-width: 900px;
-        }
-        
-        .cta-section h2 {
-            color: #667eea;
-            margin-bottom: 20px;
-        }
-        
-        .cta-section p {
-            font-size: 1.2em;
-            margin: 15px 0;
-        }
-        
-        footer {
-            text-align: center;
-            color: white;
-            padding: 30px 20px;
-            margin-top: 40px;
-        }
-        
-        footer a {
-            color: white;
-            text-decoration: underline;
-        }
-        
-        .ai-icon {
-            font-size: 3em;
-            margin-bottom: 15px;
-        }
-        
-        @media (max-width: 768px) {
-            header h1 {
-                font-size: 2em;
-            }
-            
-            .content-card, .vision-section, .cta-section {
-                padding: 25px;
-            }
-            
-            h2 {
-                font-size: 1.5em;
-            }
-            
-            .benefits-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="container">
         <header>
-            <div class="ai-icon">🤖</div>
+            <div class="ai-icon"></div>
             <h1>IndyHAX</h1>
             <p class="tagline">AI-Powered Student Solutions Hackathon</p>
         </header>
@@ -218,9 +22,9 @@
             
             <div class="event-details">
                 <h3>Event Details</h3>
-                <p><strong>📍 Location:</strong> Independence High School</p>
-                <p><strong>📅 Date:</strong> To Be Determined (TBD)</p>
-                <p><strong>🎯 Focus:</strong> AI-Powered Student Tools</p>
+                <p><strong>Location:</strong> Independence High School</p>
+                <p><strong>Date:</strong> To Be Determined (TBD)</p>
+                <p><strong>Focus:</strong> AI-Powered Student Tools</p>
             </div>
         </div>
 
@@ -274,22 +78,22 @@
             
             <div class="benefits-grid">
                 <div class="benefit-card">
-                    <h3>🎓 Transform Student Life</h3>
+                    <h3>Transform Student Life</h3>
                     <p>Your project could genuinely help students manage their workload better, reduce stress, and improve academic performance.</p>
                 </div>
                 
                 <div class="benefit-card">
-                    <h3>🤖 Learn AI Technology</h3>
+                    <h3>Learn AI Technology</h3>
                     <p>Gain hands-on experience with the same AI tools used by professional developers at top tech companies.</p>
                 </div>
                 
                 <div class="benefit-card">
-                    <h3>💼 Real-World Skills</h3>
+                    <h3>Real-World Skills</h3>
                     <p>Work with modern web development, integrate AI APIs, and present technical solutions professionally.</p>
                 </div>
                 
                 <div class="benefit-card">
-                    <h3>🌟 Make an Impact</h3>
+                    <h3>Make an Impact</h3>
                     <p>Create a solution that could be adopted by students across your school and beyond.</p>
                 </div>
             </div>
