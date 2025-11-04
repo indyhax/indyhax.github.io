@@ -1,98 +1,135 @@
 <!DOCTYPE html>
 <html lang="en">
-<!-- This is a singlsadasdae-line comment -->
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="IndyHAX - AI-Powered Student Solutions Hackathon at Independence High School">
     <title>IndyHAX - AI-Powered Student Solutions Hackathon</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
+    <div class="matrix-bg"></div>
+    <div class="scanline"></div>
     <div class="container">
         <header>
-            <div class="ai-icon"></div>
-            <h1>IndyHAX</h1>
-            <p class="tagline">AI-Powered Student Solutions Hackathon</p>
+            <div class="terminal-prompt">
+                <span class="prompt-symbol">$</span> <span class="typing-text">./indyhax --init</span>
+            </div>
+            <h1 class="glitch" data-text="IndyHAX">IndyHAX</h1>
+            <p class="tagline">> AI-Powered Student Solutions Hackathon_</p>
+            <div class="header-stats">
+                <span class="stat"><span class="label">Location:</span> Independence HS</span>
+                <span class="stat"><span class="label">Status:</span> <span class="status-active">TBD</span></span>
+                <span class="stat"><span class="label">Focus:</span> AI Innovation</span>
+            </div>
         </header>
 
-        <div class="content-card">
-            <h2>About IndyHAX</h2>
-            <p>Welcome to <strong>IndyHAX</strong>, an innovative hackathon hosted at <strong>Independence High School</strong>! This event brings together creative minds to build cutting-edge solutions that leverage the power of Artificial Intelligence to improve student life.</p>
+        <div class="content-card terminal-card">
+            <div class="card-header">
+                <span class="card-icon">📡</span>
+                <h2><span class="hash">#</span> About IndyHAX</h2>
+            </div>
+            <p>Welcome to <strong class="highlight-text">IndyHAX</strong>, an innovative hackathon hosted at <strong class="highlight-text">Independence High School</strong>! This event brings together creative minds to build cutting-edge solutions that leverage the power of Artificial Intelligence to improve student life.</p>
             
-            <div class="event-details">
-                <h3>Event Details</h3>
-                <p><strong>Location:</strong> Independence High School</p>
-                <p><strong>Date:</strong> To Be Determined (TBD)</p>
-                <p><strong>Focus:</strong> AI-Powered Student Tools</p>
+            <div class="event-details terminal-box">
+                <div class="terminal-header">
+                    <span class="terminal-btn red"></span>
+                    <span class="terminal-btn yellow"></span>
+                    <span class="terminal-btn green"></span>
+                    <span class="terminal-title">event_details.json</span>
+                </div>
+                <pre class="code-block">{
+  "location": "Independence High School",
+  "date": "TBD",
+  "focus": "AI-Powered Student Tools",
+  "participants": "creative_minds[]",
+  "objective": "build_future()"
+}</pre>
             </div>
         </div>
 
-        <div class="content-card">
-            <h2>The Challenge</h2>
+        <div class="content-card terminal-card">
+            <div class="card-header">
+                <span class="card-icon">⚡</span>
+                <h2><span class="hash">#</span> The Challenge</h2>
+            </div>
             
             <div class="challenge-box">
+                <div class="challenge-label">[MISSION BRIEF]</div>
                 <h3>Build an AI-Powered Student Assignment & To-Do Tracker</h3>
                 <p>Students are challenged to create a <span class="highlight">web-based platform</span> that helps their peers manage their academic life more effectively.</p>
             </div>
             
-            <h3>Platform Requirements</h3>
-            <ul>
-                <li><strong>To-Do List Management:</strong> An intuitive interface for students to track their tasks</li>
-                <li><strong>Assignment Tracking:</strong> Easy-to-use tools for monitoring homework, projects, and deadlines</li>
-                <li><strong>AI Integration:</strong> The core feature - an AI Agent that enhances the user experience</li>
+            <h3><span class="bracket">{'{'}</span> Platform Requirements <span class="bracket">{'}'}</span></h3>
+            <ul class="feature-list">
+                <li><span class="bullet">►</span> <strong>To-Do List Management:</strong> An intuitive interface for students to track their tasks</li>
+                <li><span class="bullet">►</span> <strong>Assignment Tracking:</strong> Easy-to-use tools for monitoring homework, projects, and deadlines</li>
+                <li><span class="bullet">►</span> <strong>AI Integration:</strong> The core feature - an AI Agent that enhances the user experience</li>
             </ul>
             
-            <h3>AI Agent Requirements</h3>
-            <p>Participants must build an <strong>AI Agent</strong> using resources from industry-leading providers:</p>
-            <ul>
-                <li><strong>Google AI Resources</strong> (such as Gemini API, Google Cloud AI)</li>
-                <li><strong>Microsoft AI Resources</strong> (such as Azure AI, Copilot API)</li>
+            <h3><span class="bracket">{'{'}</span> AI Agent Requirements <span class="bracket">{'}'}</span></h3>
+            <p>Participants must build an <strong class="highlight-text">AI Agent</strong> using resources from industry-leading providers:</p>
+            <ul class="feature-list">
+                <li><span class="bullet">►</span> <strong>Google AI Resources</strong> (such as Gemini API, Google Cloud AI)</li>
+                <li><span class="bullet">►</span> <strong>Microsoft AI Resources</strong> (such as Azure AI, Copilot API)</li>
             </ul>
             
-            <h3>AI Features to Consider</h3>
-            <ul>
-                <li>Smart task prioritization</li>
-                <li>Deadline reminders and intelligent scheduling</li>
-                <li>Assignment difficulty assessment</li>
-                <li>Study time recommendations</li>
-                <li>Natural language interaction for adding tasks</li>
-                <li>Personalized productivity insights</li>
+            <h3><span class="bracket">{'{'}</span> AI Features to Consider <span class="bracket">{'}'}</span></h3>
+            <ul class="feature-list">
+                <li><span class="bullet">►</span> Smart task prioritization</li>
+                <li><span class="bullet">►</span> Deadline reminders and intelligent scheduling</li>
+                <li><span class="bullet">►</span> Assignment difficulty assessment</li>
+                <li><span class="bullet">►</span> Study time recommendations</li>
+                <li><span class="bullet">►</span> Natural language interaction for adding tasks</li>
+                <li><span class="bullet">►</span> Personalized productivity insights</li>
             </ul>
         </div>
 
-        <div class="content-card">
-            <h2>Presentation & Judging</h2>
+        <div class="content-card terminal-card">
+            <div class="card-header">
+                <span class="card-icon">🎯</span>
+                <h2><span class="hash">#</span> Presentation & Judging</h2>
+            </div>
             <p>Teams will present their projects to a panel of judges, demonstrating:</p>
-            <ul>
-                <li><strong>Functionality:</strong> How the AI-powered platform works</li>
-                <li><strong>Innovation:</strong> Creative use of AI technology</li>
-                <li><strong>Impact:</strong> How this solution would change student life</li>
-                <li><strong>Technical Excellence:</strong> Quality of implementation and AI integration</li>
-                <li><strong>User Experience:</strong> Ease of use and design</li>
+            <ul class="feature-list">
+                <li><span class="bullet">►</span> <strong>Functionality:</strong> How the AI-powered platform works</li>
+                <li><span class="bullet">►</span> <strong>Innovation:</strong> Creative use of AI technology</li>
+                <li><span class="bullet">►</span> <strong>Impact:</strong> How this solution would change student life</li>
+                <li><span class="bullet">►</span> <strong>Technical Excellence:</strong> Quality of implementation and AI integration</li>
+                <li><span class="bullet">►</span> <strong>User Experience:</strong> Ease of use and design</li>
             </ul>
         </div>
 
-        <div class="content-card">
-            <h2>Why Participate in IndyHAX?</h2>
+        <div class="content-card terminal-card">
+            <div class="card-header">
+                <span class="card-icon">💡</span>
+                <h2><span class="hash">#</span> Why Participate in IndyHAX?</h2>
+            </div>
             
             <div class="benefits-grid">
                 <div class="benefit-card">
+                    <div class="benefit-icon">🚀</div>
                     <h3>Transform Student Life</h3>
                     <p>Your project could genuinely help students manage their workload better, reduce stress, and improve academic performance.</p>
                 </div>
                 
                 <div class="benefit-card">
+                    <div class="benefit-icon">🤖</div>
                     <h3>Learn AI Technology</h3>
                     <p>Gain hands-on experience with the same AI tools used by professional developers at top tech companies.</p>
                 </div>
                 
                 <div class="benefit-card">
+                    <div class="benefit-icon">⚙️</div>
                     <h3>Real-World Skills</h3>
                     <p>Work with modern web development, integrate AI APIs, and present technical solutions professionally.</p>
                 </div>
                 
                 <div class="benefit-card">
+                    <div class="benefit-icon">🌟</div>
                     <h3>Make an Impact</h3>
                     <p>Create a solution that could be adopted by students across your school and beyond.</p>
                 </div>
@@ -100,30 +137,93 @@
         </div>
 
         <div class="vision-section">
-            <h2>Our Vision</h2>
+            <div class="vision-header">
+                <span class="vision-prompt">root@indyhax:~$</span> <span class="vision-command">cat vision.txt</span>
+            </div>
+            <h2><span class="hash">#</span> Our Vision</h2>
             <p>We envision a future where AI assists students in managing their academic responsibilities more effectively, allowing them to:</p>
-            <ul style="text-align: left; max-width: 700px; margin: 20px auto;">
-                <li>Spend less time worrying about deadlines and more time learning</li>
-                <li>Receive personalized support that adapts to their unique needs</li>
-                <li>Develop better organizational habits through intelligent assistance</li>
-                <li>Reduce academic stress through proactive planning</li>
+            <ul class="vision-list">
+                <li><span class="bullet">►</span> Spend less time worrying about deadlines and more time learning</li>
+                <li><span class="bullet">►</span> Receive personalized support that adapts to their unique needs</li>
+                <li><span class="bullet">►</span> Develop better organizational habits through intelligent assistance</li>
+                <li><span class="bullet">►</span> Reduce academic stress through proactive planning</li>
             </ul>
-            <p style="margin-top: 30px; font-size: 1.2em;"><strong>IndyHAX</strong> is more than a competition - it's an opportunity to be at the forefront of AI innovation in education, to solve real problems that you and your peers face every day, and to demonstrate how technology can empower students to succeed.</p>
+            <p class="vision-footer"><strong class="highlight-text">IndyHAX</strong> is more than a competition - it's an opportunity to be at the forefront of AI innovation in education, to solve real problems that you and your peers face every day, and to demonstrate how technology can empower students to succeed.</p>
         </div>
 
         <div class="cta-section">
-            <h2>Get Ready to Innovate!</h2>
-            <p>Start thinking about how you would design an AI-powered platform that you and your classmates would actually want to use.</p>
-            <p><strong>What features would be most helpful?</strong></p>
-            <p><strong>How can AI make managing schoolwork feel less overwhelming and more manageable?</strong></p>
-            <p style="margin-top: 30px; font-size: 1.1em; color: #667eea; font-weight: 600;">Stay tuned for the official event date announcement. Get ready to code, create, and change the way students work!</p>
+            <div class="cta-box">
+                <div class="cta-header">[SYSTEM READY]</div>
+                <h2>Get Ready to Innovate!</h2>
+                <p>Start thinking about how you would design an AI-powered platform that you and your classmates would actually want to use.</p>
+                <div class="cta-questions">
+                    <p><span class="prompt-symbol">?</span> <strong>What features would be most helpful?</strong></p>
+                    <p><span class="prompt-symbol">?</span> <strong>How can AI make managing schoolwork feel less overwhelming and more manageable?</strong></p>
+                </div>
+                <div class="cta-status">
+                    <span class="status-blink">●</span> Stay tuned for the official event date announcement. Get ready to code, create, and change the way students work!
+                </div>
+            </div>
         </div>
 
         <footer>
-            <p><strong>Contact:</strong> For more information about IndyHAX, please check back for updates.</p>
-            <p><strong>Website:</strong> <a href="http://indyhax.tarushv.com">indyhax.tarushv.com</a></p>
-            <p style="margin-top: 20px; opacity: 0.8;">© 2025 IndyHAX - Independence High School</p>
+            <div class="footer-terminal">
+                <p><span class="prompt-symbol">$</span> <strong>Contact:</strong> For more information about IndyHAX, please check back for updates.</p>
+                <p><span class="prompt-symbol">$</span> <strong>Website:</strong> <a href="http://indyhax.tarushv.com">indyhax.tarushv.com</a></p>
+                <div class="footer-divider">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</div>
+                <p class="copyright">© 2025 IndyHAX - Independence High School</p>
+            </div>
         </footer>
     </div>
+
+    <script>
+        // Glitch effect
+        const glitchText = document.querySelector('.glitch');
+        setInterval(() => {
+            if (Math.random() > 0.95) {
+                glitchText.classList.add('glitch-active');
+                setTimeout(() => glitchText.classList.remove('glitch-active'), 100);
+            }
+        }, 200);
+
+        // Matrix background effect
+        const canvas = document.createElement('canvas');
+        const matrixBg = document.querySelector('.matrix-bg');
+        matrixBg.appendChild(canvas);
+        const ctx = canvas.getContext('2d');
+        
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        
+        const chars = '01アイウエオカキクケコサシスセソタチツテト';
+        const fontSize = 14;
+        const columns = canvas.width / fontSize;
+        const drops = Array(Math.floor(columns)).fill(1);
+        
+        function drawMatrix() {
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            ctx.fillStyle = '#0f0';
+            ctx.font = fontSize + 'px monospace';
+            
+            for (let i = 0; i < drops.length; i++) {
+                const text = chars[Math.floor(Math.random() * chars.length)];
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+                
+                if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                    drops[i] = 0;
+                }
+                drops[i]++;
+            }
+        }
+        
+        setInterval(drawMatrix, 50);
+        
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+    </script>
 </body>
 </html>
