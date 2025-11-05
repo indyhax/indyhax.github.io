@@ -94,31 +94,6 @@ header::before {
     background: linear-gradient(90deg, transparent, var(--primary-cyan), transparent);
 }
 
-.terminal-prompt {
-    font-size: 0.9em;
-    color: var(--primary-green);
-    margin-bottom: 20px;
-    text-align: left;
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.prompt-symbol {
-    color: var(--primary-cyan);
-    font-weight: bold;
-    margin-right: 5px;
-}
-
-.typing-text {
-    animation: typing 2s steps(20) infinite;
-}
-
-@keyframes typing {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.5; }
-}
-
 header h1 {
     font-size: 4em;
     margin-bottom: 15px;
@@ -319,22 +294,12 @@ h2 {
     letter-spacing: 2px;
 }
 
-.hash {
-    color: var(--primary-green);
-    margin-right: 5px;
-}
-
 h3 {
     color: var(--primary-pink);
     font-size: 1.3em;
     margin-top: 30px;
     margin-bottom: 15px;
     font-weight: 500;
-}
-
-.bracket {
-    color: var(--primary-cyan);
-    font-weight: bold;
 }
 
 /* Terminal Box Styling */
@@ -452,7 +417,7 @@ li {
 .vision-section {
     background: var(--bg-darker);
     border: 2px solid var(--primary-green);
-    padding: 0;
+    padding: 40px;
     border-radius: 8px;
     margin: 40px auto;
     text-align: center;
@@ -463,32 +428,12 @@ li {
     overflow: hidden;
 }
 
-.vision-header {
-    background: #0d0d0d;
-    padding: 12px 20px;
-    text-align: left;
-    border-bottom: 1px solid var(--primary-green);
-    font-size: 0.9em;
-}
-
-.vision-prompt {
-    color: var(--primary-green);
-    font-weight: bold;
-}
-
-.vision-command {
-    color: var(--primary-cyan);
-    margin-left: 5px;
-}
-
 .vision-section h2 {
     color: var(--primary-green);
-    padding: 30px 40px 20px;
-    margin: 0;
+    margin: 0 0 20px 0;
 }
 
 .vision-section p {
-    padding: 0 40px;
     color: var(--text-primary);
 }
 
@@ -496,14 +441,12 @@ li {
     text-align: left;
     max-width: 700px;
     margin: 20px auto;
-    padding: 0 40px;
     list-style: none;
 }
 
 .vision-footer {
     margin-top: 30px;
     font-size: 1.1em;
-    padding-bottom: 40px !important;
 }
 
 .benefits-grid {
