@@ -19,7 +19,7 @@
 <!-- Description -->
 ## About IndyHAX
 
-**IndyHAX** is an innovative hackathon hosted in our school of Independence High School! This event brings together minds to build cutting-edge solutions that leverage the exopentially rising power of Artificial Intelligence to improve student life.
+**IndyHAX** is an innovative hackathon hosted in Independence High School. This event brings together minds to build cutting-edge solutions that leverage the exponentially rising power of Artificial Intelligence to improve student life.
 
 <!-- Details -->
 ## Event Details
