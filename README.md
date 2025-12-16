@@ -81,4 +81,4 @@ Stay tuned for the official event date announcement. Get ready to code, create, 
 
 **Contact:** For more information about IndyHAX, please check back for updates.
 
-**Website:** [indyhax.tarushv.com](http://indyhax.tarushv.com)
+**Website:** [indyhax.com](http://indyhax.com)
