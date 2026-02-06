@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="IndyHAX - AI Hackathon at Independence High School. April 18, 2026.">
+    <title>IndyHAX | Aurora</title>
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&display=swap"
+        rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --deep-navy: #0a0e1a;
+            --aurora-teal: #00d4aa;
+            --aurora-purple: #7b2cbf;
+            --aurora-pink: #e91e8c;
+            --aurora-blue: #2196f3;
+            --soft-white: rgba(255, 255, 255, 0.95);
+            --glass-bg: rgba(255, 255, 255, 0.08);
+            --glass-border: rgba(255, 255, 255, 0.15);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--deep-navy);
+            color: var(--soft-white);
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        /* Aurora Background */
+        .aurora-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .aurora-gradient {
+            position: absolute;
+            width: 150%;
+            height: 150%;
+            top: -25%;
+            left: -25%;
+            background:
+                radial-gradient(ellipse 80% 50% at 20% 20%, rgba(0, 212, 170, 0.3) 0%, transparent 50%),
+                radial-gradient(ellipse 60% 40% at 80% 30%, rgba(123, 44, 191, 0.4) 0%, transparent 50%),
+                radial-gradient(ellipse 70% 60% at 40% 80%, rgba(233, 30, 140, 0.25) 0%, transparent 50%),
+                radial-gradient(ellipse 50% 50% at 70% 70%, rgba(33, 150, 243, 0.3) 0%, transparent 50%);
+            animation: auroraMove 20s ease-in-out infinite;
+        }
+
+        @keyframes auroraMove {
+
+            0%,
+            100% {
+                transform: translateX(0) translateY(0) rotate(0deg);
+            }
+
+            25% {
+                transform: translateX(5%) translateY(-3%) rotate(2deg);
+            }
+
+            50% {
+                transform: translateX(-3%) translateY(5%) rotate(-1deg);
+            }
+
+            75% {
+                transform: translateX(-5%) translateY(-2%) rotate(1deg);
+            }
+        }
+
+        /* Floating Orbs */
+        .orbs {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(60px);
+            opacity: 0.4;
+            animation: float 15s ease-in-out infinite;
+        }
+
+        .orb-1 {
+            width: 400px;
+            height: 400px;
+            background: linear-gradient(135deg, var(--aurora-teal), var(--aurora-blue));
+            top: 10%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .orb-2 {
+            width: 300px;
+            height: 300px;
+            background: linear-gradient(135deg, var(--aurora-purple), var(--aurora-pink));
+            top: 60%;
+            right: 10%;
+            animation-delay: -5s;
+        }
+
+        .orb-3 {
+            width: 250px;
+            height: 250px;
+            background: linear-gradient(135deg, var(--aurora-pink), var(--aurora-teal));
+            bottom: 10%;
+            left: 30%;
+            animation-delay: -10s;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0) scale(1);
+            }
+
+            50% {
+                transform: translateY(-50px) scale(1.05);
+            }
+        }
+
+        /* Main Container */
+        .container {
+            position: relative;
+            z-index: 10;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* Navigation */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 30px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            margin-bottom: 80px;
+        }
+
+        .nav-logo {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.6rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--aurora-teal), var(--aurora-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+        }
+
+        .nav-links a {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--aurora-teal);
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 80px 20px 120px;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 28px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-bottom: 40px;
+            color: var(--aurora-teal);
+        }
+
+        .hero-badge::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: var(--aurora-teal);
+            border-radius: 50%;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+
+            50% {
+                opacity: 0.5;
+                transform: scale(1.2);
+            }
+        }
+
+        .hero h1 {
+            font-family: 'Outfit', sans-serif;
+            font-size: clamp(4rem, 12vw, 8rem);
+            font-weight: 800;
+            line-height: 1;
+            margin-bottom: 30px;
+            background: linear-gradient(180deg, #fff 0%, rgba(255, 255, 255, 0.6) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-tagline {
+            font-size: 1.4rem;
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.7);
+            max-width: 600px;
+            margin: 0 auto 50px;
+            line-height: 1.7;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            padding: 18px 40px;
+            font-family: 'Outfit', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            color: var(--deep-navy);
+            background: linear-gradient(135deg, var(--aurora-teal), var(--aurora-blue));
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 40px rgba(0, 212, 170, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 20px 60px rgba(0, 212, 170, 0.4);
+        }
+
+        .btn-secondary {
+            padding: 18px 40px;
+            font-family: 'Outfit', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            color: var(--soft-white);
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            border-radius: 50px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        /* Event Info Cards */
+        .event-cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            margin: 100px 0;
+        }
+
+        .event-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 40px 30px;
+            text-align: center;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .event-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--aurora-teal), var(--aurora-purple), var(--aurora-pink));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .event-card:hover::before {
+            opacity: 1;
+        }
+
+        .event-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .event-card .icon {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .event-card .label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--aurora-teal);
+            margin-bottom: 10px;
+        }
+
+        .event-card .value {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 600;
+        }
+
+        /* Features Section */
+        .features {
+            padding: 100px 0;
+        }
+
+        .section-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 3rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 1.1rem;
+            max-width: 500px;
+            margin: 0 auto 60px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+        }
+
+        .feature-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 40px;
+            transition: all 0.4s ease;
+        }
+
+        .feature-card:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: scale(1.02);
+        }
+
+        .feature-card h3 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .feature-card h3 span {
+            font-size: 1.5rem;
+        }
+
+        .feature-card p {
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.8;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            text-align: center;
+            padding: 100px 40px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(30px);
+            border: 1px solid var(--glass-border);
+            border-radius: 40px;
+            margin: 80px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(ellipse at center, rgba(0, 212, 170, 0.1) 0%, transparent 70%);
+            animation: rotate 30s linear infinite;
+        }
+
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .cta-section h2 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-section p {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1.1rem;
+            max-width: 500px;
+            margin: 0 auto 40px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-section .btn-primary {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 60px 20px;
+            border-top: 1px solid var(--glass-border);
+        }
+
+        footer p {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.9rem;
+            line-height: 2;
+        }
+
+        footer a {
+            color: var(--aurora-teal);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        footer a:hover {
+            color: var(--aurora-purple);
+        }
+
+        /* Version Switcher */
+        .version-switcher {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: flex;
+            gap: 8px;
+            z-index: 9999;
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            padding: 10px 15px;
+            border-radius: 50px;
+            border: 1px solid var(--glass-border);
+        }
+
+        .version-switcher a {
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            text-decoration: none;
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.7);
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            transition: all 0.3s ease;
+        }
+
+        .version-switcher a:hover {
+            background: var(--aurora-teal);
+            color: var(--deep-navy);
+            transform: scale(1.1);
+        }
+
+        .version-switcher a.active {
+            background: linear-gradient(135deg, var(--aurora-teal), var(--aurora-purple));
+            color: #fff;
+            border-color: transparent;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+                gap: 20px;
+                padding: 20px;
+            }
+
+            .nav-links {
+                gap: 25px;
+            }
+
+            .event-cards {
+                grid-template-columns: 1fr;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-section {
+                padding: 60px 30px;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Aurora Background -->
+    <div class="aurora-bg">
+        <div class="aurora-gradient"></div>
+    </div>
+
+    <!-- Floating Orbs -->
+    <div class="orbs">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
+    </div>
+
+    <div class="container">
+        <!-- Navigation -->
+        <nav>
+            <div class="nav-logo">IndyHAX</div>
+            <div class="nav-links">
+                <a href="../index.html">Home</a>
+                <a href="../registration.html">Register</a>
+                <a href="../sponsors.html">Sponsors</a>
+            </div>
+        </nav>
+
+        <!-- Hero Section -->
+        <section class="hero" id="home">
+            <img src="../logo.PNG" alt="IndyHAX Logo" class="hero-logo"
+                style="max-width: 180px; margin-bottom: 30px; filter: drop-shadow(0 0 30px rgba(0, 212, 170, 0.4));">
+            <div class="hero-badge">AI Hackathon 2026</div>
+            <h1>IndyHAX</h1>
+            <p class="hero-tagline">Build AI-powered solutions that transform student life. Join us for a day of
+                innovation and creativity at Independence High School.</p>
+            <div class="hero-buttons">
+                <a href="../registration.html" class="btn-primary">Register Now</a>
+            </div>
+        </section>
+
+        <!-- Event Info Cards -->
+        <section class="event-cards">
+            <div class="event-card">
+                <span class="icon">📍</span>
+                <div class="label">Location</div>
+                <div class="value">Independence High School</div>
+            </div>
+            <div class="event-card">
+                <span class="icon">📅</span>
+                <div class="label">Date</div>
+                <div class="value">April 18, 2026</div>
+            </div>
+            <div class="event-card">
+                <span class="icon">⏰</span>
+                <div class="label">Time</div>
+                <div class="value">8:00 AM – 4:00 PM</div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="features" id="features">
+            <h2 class="section-title">Why IndyHAX?</h2>
+            <p class="section-subtitle">Discover what makes our hackathon an unforgettable experience for students of
+                all skill levels.</p>
+
+            <div class="features-grid">
+                <div class="feature-card">
+                    <h3><span>🤖</span> AI Innovation</h3>
+                    <p>Harness the exponential power of artificial intelligence. Build solutions using machine learning,
+                        natural language processing, and cutting-edge AI technologies.</p>
+                </div>
+                <div class="feature-card">
+                    <h3><span>👥</span> Collaborate</h3>
+                    <p>Team up with brilliant minds from Independence High School. Form teams, brainstorm ideas, and
+                        create something incredible together.</p>
+                </div>
+                <div class="feature-card">
+                    <h3><span>🎓</span> Learn & Grow</h3>
+                    <p>Perfect for all skill levels. Whether you're a beginner or experienced developer, expand your
+                        knowledge and build your portfolio.</p>
+                </div>
+                <div class="feature-card">
+                    <h3><span>🏆</span> Win Prizes</h3>
+                    <p>Compete for amazing prizes while solving real problems. Showcase your skills and gain recognition
+                        for your innovative solutions.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="cta-section">
+            <h2>Ready to Shape the Future?</h2>
+            <p>Join hundreds of students for an extraordinary day of innovation, learning, and breakthrough solutions.
+            </p>
+            <a href="../registration.html" class="btn-primary">Register for IndyHAX</a>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <p><strong>IndyHAX 2026</strong> — Independence High School</p>
+            <p>Organized by Abhinav Boora, Tarushv Kosgi, Lalith Dasa & Dheeraj Chennaboina</p>
+            <p><a href="https://indyhax.com">indyhax.com</a></p>
+        </footer>
+    </div>
+
+    <!-- Version Switcher -->
+    <div class="version-switcher">
+        <a href="/1/">1</a>
+        <a href="/2/">2</a>
+        <a href="/3/">3</a>
+        <a href="/4/" class="active">4</a>
+        <a href="/5/">5</a>
+    </div>
+</body>
+
+</html>
