@@ -138,13 +138,24 @@
         .hero-label {
             display: inline-block;
             background: var(--primary-yellow);
-            padding: 10px 25px;
+            padding: 12px 28px;
             font-size: 0.85rem;
             font-weight: 700;
             letter-spacing: 3px;
             text-transform: uppercase;
-            margin-bottom: 40px;
-            transform: rotate(-2deg);
+            margin-bottom: -25px;
+            margin-left: 10px;
+            transform: rotate(-3deg);
+            position: relative;
+            z-index: 2;
+            border: 3px solid var(--pure-black);
+            box-shadow: 4px 4px 0 var(--pure-black);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .hero-label:hover {
+            transform: rotate(-1deg) translateY(-2px);
+            box-shadow: 6px 6px 0 var(--pure-black);
         }
 
         .hero-logo {
@@ -568,7 +579,6 @@
 
         <section class="hero">
             <div class="hero-content">
-                <span class="hero-label">AI Hackathon 2026</span>
                 <h1>INDY<br>HAX</h1>
                 <p class="hero-tagline">Build the future. Shape student life with AI-powered solutions at Independence
                     High School.</p>
