@@ -1,375 +1,774 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="IndyHAX - Hackathon at Independence High School">
-    <title>IndyHAX - Hackathon</title>
-    <link rel="stylesheet" href="styles.css">
+    <meta name="description" content="IndyHAX - AI Hackathon at Independence High School. April 18, 2026.">
+    <title>IndyHAX | AI Hackathon</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Work+Sans:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-red: #e63946;
+            --primary-yellow: #f4d35e;
+            --primary-blue: #1d3557;
+            --pure-black: #0d0d0d;
+            --pure-white: #ffffff;
+            --off-white: #f8f8f8;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Work Sans', sans-serif;
+            background: var(--off-white);
+            color: var(--pure-black);
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        /* Geometric Background Shapes */
+        .geo-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .geo-shape {
+            position: absolute;
+            transition: transform 0.3s ease;
+        }
+
+        .geo-circle {
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
+            background: var(--primary-yellow);
+            top: -150px;
+            right: -100px;
+            animation: rotate 30s linear infinite;
+        }
+
+        .geo-square {
+            width: 200px;
+            height: 200px;
+            background: var(--primary-red);
+            bottom: 10%;
+            left: -50px;
+            animation: rotate 25s linear infinite reverse;
+        }
+
+        .geo-triangle {
+            width: 0;
+            height: 0;
+            border-left: 150px solid transparent;
+            border-right: 150px solid transparent;
+            border-bottom: 260px solid var(--primary-blue);
+            top: 40%;
+            right: 5%;
+            animation: float 8s ease-in-out infinite;
+        }
+
+        .geo-line {
+            height: 4px;
+            background: var(--pure-black);
+            position: absolute;
+        }
+
+        .geo-line-1 {
+            width: 60%;
+            top: 30%;
+            left: -10%;
+            transform: rotate(-15deg);
+        }
+
+        .geo-line-2 {
+            width: 40%;
+            bottom: 25%;
+            right: -5%;
+            transform: rotate(20deg);
+        }
+
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-30px);
+            }
+        }
+
+        /* Main Container */
+        .container {
+            position: relative;
+            z-index: 10;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* Navigation */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 25px 0;
+            border-bottom: 4px solid var(--pure-black);
+            margin-bottom: 60px;
+        }
+
+        .nav-logo {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2.5rem;
+            color: var(--pure-black);
+            letter-spacing: 4px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 50px;
+        }
+
+        .nav-links a {
+            font-family: 'Work Sans', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--pure-black);
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            position: relative;
+            padding: 10px 0;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--primary-red);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            transform: scaleX(1);
+        }
+
+        /* Hero Section */
+        .hero {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+            padding: 80px 0;
+            min-height: 70vh;
+        }
+
+        .hero-content {
+            position: relative;
+        }
+
+        .hero-label {
+            display: inline-block;
+            background: var(--primary-yellow);
+            padding: 10px 25px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 30px;
+            transform: rotate(-2deg);
+        }
+
+        .hero-logo {
+            max-width: 150px;
+            margin-bottom: 20px;
+            border: 4px solid var(--pure-black);
+        }
+
+        .hero h1 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(6rem, 15vw, 12rem);
+            line-height: 0.85;
+            letter-spacing: -2px;
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .hero h1::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 150px;
+            height: 8px;
+            background: var(--primary-red);
+        }
+
+        .hero-tagline {
+            font-size: 1.3rem;
+            font-weight: 400;
+            line-height: 1.8;
+            max-width: 450px;
+            color: var(--pure-black);
+            opacity: 0.8;
+        }
+
+        .hero-visual {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero-shapes {
+            position: relative;
+            width: 400px;
+            height: 400px;
+        }
+
+        .shape-main-circle {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: var(--primary-blue);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .shape-main-square {
+            position: absolute;
+            width: 180px;
+            height: 180px;
+            background: var(--primary-yellow);
+            top: 20px;
+            right: 20px;
+            animation: rotate 20s linear infinite;
+        }
+
+        .shape-main-triangle {
+            position: absolute;
+            width: 0;
+            height: 0;
+            border-left: 80px solid transparent;
+            border-right: 80px solid transparent;
+            border-bottom: 140px solid var(--primary-red);
+            bottom: 30px;
+            left: 30px;
+        }
+
+        /* Event Details Grid */
+        .details-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0;
+            margin: 100px 0;
+            border: 4px solid var(--pure-black);
+        }
+
+        .detail-block {
+            padding: 50px 40px;
+            border-right: 4px solid var(--pure-black);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .detail-block:last-child {
+            border-right: none;
+        }
+
+        .detail-block:nth-child(1) {
+            background: var(--primary-red);
+            color: var(--pure-white);
+        }
+
+        .detail-block:nth-child(2) {
+            background: var(--primary-yellow);
+            color: var(--pure-black);
+        }
+
+        .detail-block:nth-child(3) {
+            background: var(--primary-blue);
+            color: var(--pure-white);
+        }
+
+        .detail-block:hover {
+            transform: scale(1.02);
+            z-index: 2;
+        }
+
+        .detail-block .label {
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+            opacity: 0.8;
+        }
+
+        .detail-block .value {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2.2rem;
+            letter-spacing: 2px;
+        }
+
+        /* Features Section */
+        .features {
+            padding: 100px 0;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .section-header h2 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 4rem;
+            letter-spacing: 3px;
+        }
+
+        .section-header .line {
+            flex: 1;
+            height: 4px;
+            background: var(--pure-black);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0;
+            border: 4px solid var(--pure-black);
+        }
+
+        .feature-card {
+            padding: 50px 40px;
+            border-bottom: 4px solid var(--pure-black);
+            border-right: 4px solid var(--pure-black);
+            position: relative;
+            background: var(--pure-white);
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:nth-child(2n) {
+            border-right: none;
+        }
+
+        .feature-card:nth-child(n+3) {
+            border-bottom: none;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 8px;
+            height: 100%;
+            background: var(--primary-red);
+            transform: scaleY(0);
+            transition: transform 0.3s ease;
+            transform-origin: top;
+        }
+
+        .feature-card:nth-child(2)::before {
+            background: var(--primary-yellow);
+        }
+
+        .feature-card:nth-child(3)::before {
+            background: var(--primary-blue);
+        }
+
+        .feature-card:nth-child(4)::before {
+            background: var(--primary-red);
+        }
+
+        .feature-card:hover::before {
+            transform: scaleY(1);
+        }
+
+        .feature-card:hover {
+            background: var(--off-white);
+        }
+
+        .feature-card h3 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2rem;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+        }
+
+        .feature-card p {
+            font-size: 1rem;
+            line-height: 1.8;
+            opacity: 0.8;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 0;
+            margin: 100px 0;
+            border: 4px solid var(--pure-black);
+        }
+
+        .cta-content {
+            padding: 80px 60px;
+            background: var(--pure-white);
+        }
+
+        .cta-content h2 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 4rem;
+            letter-spacing: 3px;
+            margin-bottom: 20px;
+            line-height: 1;
+        }
+
+        .cta-content p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 40px;
+            max-width: 500px;
+            opacity: 0.8;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 20px 50px;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.5rem;
+            letter-spacing: 3px;
+            text-decoration: none;
+            color: var(--pure-white);
+            background: var(--pure-black);
+            border: none;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--primary-red);
+            transition: left 0.3s ease;
+            z-index: -1;
+        }
+
+        .cta-button:hover::before {
+            left: 0;
+        }
+
+        .cta-visual {
+            background: var(--primary-blue);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .cta-shape {
+            width: 150px;
+            height: 150px;
+            background: var(--primary-yellow);
+            animation: rotate 10s linear infinite;
+        }
+
+        /* Footer */
+        footer {
+            padding: 60px 0;
+            border-top: 4px solid var(--pure-black);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        footer p {
+            font-size: 0.9rem;
+            line-height: 1.8;
+        }
+
+        footer a {
+            color: var(--primary-red);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .footer-shapes {
+            display: flex;
+            gap: 20px;
+        }
+
+        .footer-shape {
+            width: 30px;
+            height: 30px;
+        }
+
+        .footer-shape.circle {
+            border-radius: 50%;
+            background: var(--primary-red);
+        }
+
+        .footer-shape.square {
+            background: var(--primary-yellow);
+        }
+
+        .footer-shape.triangle {
+            width: 0;
+            height: 0;
+            border-left: 15px solid transparent;
+            border-right: 15px solid transparent;
+            border-bottom: 26px solid var(--primary-blue);
+        }
+
+        /* Responsive */
+        @media (max-width: 968px) {
+            .hero {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                text-align: center;
+            }
+
+            .hero h1::after {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+
+            .hero-tagline {
+                margin: 0 auto;
+            }
+
+            .hero-visual {
+                order: -1;
+            }
+
+            .hero-shapes {
+                width: 280px;
+                height: 280px;
+            }
+
+            .shape-main-circle {
+                width: 200px;
+                height: 200px;
+            }
+
+            .shape-main-square {
+                width: 120px;
+                height: 120px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .nav-links {
+                gap: 30px;
+            }
+
+            .details-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .detail-block {
+                border-right: none;
+                border-bottom: 4px solid var(--pure-black);
+            }
+
+            .detail-block:last-child {
+                border-bottom: none;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .feature-card {
+                border-right: none;
+                border-bottom: 4px solid var(--pure-black);
+            }
+
+            .feature-card:last-child {
+                border-bottom: none;
+            }
+
+            .cta-section {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-visual {
+                padding: 60px;
+            }
+
+            footer {
+                flex-direction: column;
+                gap: 30px;
+                text-align: center;
+            }
+        }
+    </style>
 </head>
-<style>
-    /* Navigation */
-nav {
-    background: var(--bg-card);
-    border: 2px solid var(--border-color);
-    border-radius: 8px;
-    padding: 20px;
-    margin-bottom: 30px;
-    box-shadow: 0 0 20px var(--shadow-glow);
-}
 
-.nav-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 15px;
-}
-
-.nav-logo {
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: var(--primary-cyan);
-    text-shadow: 0 0 10px var(--primary-cyan);
-}
-
-.nav-links {
-    display: flex;
-    gap: 20px;
-    flex-wrap: wrap;
-}
-
-.nav-links a {
-    color: var(--primary-cyan);
-    text-decoration: none;
-    padding: 8px 20px;
-    border: 2px solid var(--primary-cyan);
-    border-radius: 4px;
-    transition: all 0.3s;
-    font-size: 0.9rem;
-}
-
-.nav-links a:hover,
-.nav-links a.active {
-    background: var(--primary-cyan);
-    color: var(--bg-dark);
-    box-shadow: 0 0 15px var(--primary-cyan);
-}
-</style>
 <body>
-    <div class="matrix-bg"></div>
-    <div class="scanline"></div>
+    <!-- Geometric Background -->
+    <div class="geo-bg">
+        <div class="geo-shape geo-circle"></div>
+        <div class="geo-shape geo-square"></div>
+        <div class="geo-shape geo-triangle"></div>
+        <div class="geo-shape geo-line geo-line-1"></div>
+        <div class="geo-shape geo-line geo-line-2"></div>
+    </div>
+
     <div class="container">
+        <!-- Navigation -->
         <nav>
-            <div class="nav-container">
-                <div class="nav-logo">IndyHAX</div>
-                <div class="nav-links">
-                    <a href="index.html" class="active">Home</a>                    
-                    <a href="registration.html" >Register</a>
-                    <a href="sponsors.html">Sponsors</a>
-                </div>
+            <div class="nav-logo">INDYHAX</div>
+            <div class="nav-links">
+                <a href="index.html" class="active">Home</a>
+                <a href="registration.html">Register</a>
+                <a href="sponsors.html">Sponsors</a>
             </div>
         </nav>
-        <header>
-            <h1 class="glitch" data-text="IndyHAX">IndyHAX</h1>
-            <p class="tagline">Hackathon</p>
-            <div class="header-stats">
-                <span class="stat"><span class="label">Location:</span> Independence HS</span>
-                <span class="stat"><span class="label">Status:</span> <span class="status-active">TBD</span></span>
-                <span class="stat"><span class="label">Date:</span> Coming Soon</span>
-            </div>
-        </header>
 
-        <div class="content-card terminal-card">
-            <div class="card-header">
-                <h2>About IndyHAX</h2>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <span class="hero-label">AI Hackathon 2026</span>
+                <img src="logo.PNG" alt="IndyHAX Logo" class="hero-logo">
+                <h1>INDY<br>HAX</h1>
+                <p class="hero-tagline">Build the future. Shape student life with AI-powered solutions at Independence
+                    High School.</p>
             </div>
-            <p>Welcome to <strong class="highlight-text">IndyHAX</strong>, a hackathon hosted at Independence High School! Whether you're new to coding or have experience, this event is an opportunity to learn, create, and collaborate with other students on an exciting challenge.</p>
-            
-            <div class="event-details terminal-box">
-                <div class="terminal-header">
-                    <span class="terminal-btn red"></span>
-                    <span class="terminal-btn yellow"></span>
-                    <span class="terminal-btn green"></span>
-                    <span class="terminal-title">event_details.json</span>
-                </div>
-                <pre class="code-block">{
-  "location": "Independence High School",
-  "date": "TBD",
-  "format": "Collaborative Hackathon",
-  "open_to": "All Skill Levels",
-  "challenge": "Revealed Day Of"
-}</pre>
-            </div>
-        </div>
-
-        <div class="content-card terminal-card">
-            <div class="card-header">
-                <h2>The Challenge</h2>
-            </div>
-            
-            <div class="challenge-box">
-                <div class="challenge-label">COMING SOON</div>
-                <h3>Challenge Details Will Be Revealed at the Event</h3>
-                <p>The specific project challenge and requirements will be announced on the day of the hackathon. Come ready to think creatively, collaborate with your team, and build something awesome!</p>
-            </div>
-            
-            <h3>What to Expect</h3>
-            <ul class="feature-list">
-                <li><span class="bullet">►</span> A clear challenge prompt will be provided at the start</li>
-                <li><span class="bullet">►</span> You'll work in teams to brainstorm and build a solution</li>
-                <li><span class="bullet">►</span> Use any programming languages, frameworks, or tools you prefer</li>
-                <li><span class="bullet">►</span> Mentors will be available to help throughout the event</li>
-            </ul>
-            
-            <h3>What to Prepare</h3>
-            <ul class="feature-list">
-                <li><span class="bullet">►</span> Bring your laptop with your preferred development tools installed</li>
-                <li><span class="bullet">►</span> Brush up on any programming skills you want to use</li>
-                <li><span class="bullet">►</span> Come with an open mind and ready to learn</li>
-                <li><span class="bullet">►</span> Think about what APIs or technologies you might want to explore</li>
-            </ul>
-            
-        </div>
-
-        <div class="content-card terminal-card">
-            <div class="card-header">
-                <h2>Presentation & Judging</h2>
-            </div>
-            <p>Teams will present their projects at the end of the hackathon. Projects will be evaluated on:</p>
-            <ul class="feature-list">
-                <li><span class="bullet">►</span> <strong>Functionality:</strong> How well your solution works and what it accomplishes</li>
-                <li><span class="bullet">►</span> <strong>Innovation:</strong> Creative approaches and unique features</li>
-                <li><span class="bullet">►</span> <strong>Impact:</strong> How effectively it addresses the challenge</li>
-                <li><span class="bullet">►</span> <strong>Technical Excellence:</strong> Quality of implementation and code</li>
-                <li><span class="bullet">►</span> <strong>User Experience:</strong> Ease of use and design</li>
-            </ul>
-        </div>
-
-        <div class="content-card terminal-card">
-            <div class="card-header">
-                <h2>Why Participate in IndyHAX?</h2>
-            </div>
-            
-            <div class="benefits-grid">
-                <div class="benefit-card">
-                    <h3>Make a Difference</h3>
-                    <p>Build something meaningful and create a project that could have real impact.</p>
-                </div>
-                
-                <div class="benefit-card">
-                    <h3>Learn New Skills</h3>
-                    <p>Gain hands-on experience with programming, development tools, and technologies in a supportive environment.</p>
-                </div>
-                
-                <div class="benefit-card">
-                    <h3>Build Your Portfolio</h3>
-                    <p>Work on real projects, develop technical skills, and create something you can showcase to colleges or future employers.</p>
-                </div>
-                
-                <div class="benefit-card">
-                    <h3>Collaborate & Network</h3>
-                    <p>Meet other students interested in technology, work in teams, and learn from mentors and peers.</p>
+            <div class="hero-visual">
+                <div class="hero-shapes">
+                    <div class="shape-main-circle"></div>
+                    <div class="shape-main-square"></div>
+                    <div class="shape-main-triangle"></div>
                 </div>
             </div>
-        </div>
+        </section>
 
-        <div class="vision-section">
-            <h2>Our Vision</h2>
-            <p>At IndyHAX, we believe in the power of students to create innovative solutions. This hackathon is a chance to:</p>
-            <ul class="vision-list">
-                <li><span class="bullet">►</span> Challenge yourself and push your technical skills</li>
-                <li><span class="bullet">►</span> Collaborate with peers and learn from each other</li>
-                <li><span class="bullet">►</span> Build something tangible in a short amount of time</li>
-                <li><span class="bullet">►</span> Experience what it's like to work on a real development project</li>
-            </ul>
-            <p class="vision-footer"><strong class="highlight-text">IndyHAX</strong> is an opportunity to explore your creativity, solve problems, and demonstrate what you can build when given a challenge.</p>
-        </div>
+        <!-- Event Details -->
+        <section class="details-grid">
+            <div class="detail-block">
+                <div class="label">Location</div>
+                <div class="value">Independence High School</div>
+            </div>
+            <div class="detail-block">
+                <div class="label">Date</div>
+                <div class="value">April 18, 2026</div>
+            </div>
+            <div class="detail-block">
+                <div class="label">Time</div>
+                <div class="value">8:00 AM – 4:00 PM</div>
+            </div>
+        </section>
 
-        <div class="cta-section">
-            <div class="cta-box">
-                <div class="cta-header">GET READY</div>
-                <h2>Join Us for IndyHAX!</h2>
-                <p>The challenge will be revealed at the event, so come ready to think on your feet and build something great!</p>
-                <div class="cta-questions">
-                    <p><strong>Are you ready to collaborate and create?</strong></p>
-                    <p><strong>What will you build when the challenge is revealed?</strong></p>
+        <!-- Features Section -->
+        <section class="features">
+            <div class="section-header">
+                <h2>WHY PARTICIPATE</h2>
+                <div class="line"></div>
+            </div>
+
+            <div class="features-grid">
+                <div class="feature-card">
+                    <h3>AI INNOVATION</h3>
+                    <p>Harness the exponential power of artificial intelligence. Build cutting-edge solutions using
+                        machine learning, NLP, and more.</p>
                 </div>
-                <div class="cta-status">
-                    <span class="status-blink">●</span> Stay tuned for the official event date announcement. Get ready to hack!
+                <div class="feature-card">
+                    <h3>TEAM UP</h3>
+                    <p>Collaborate with brilliant minds. Form teams, share ideas, and create something incredible
+                        together.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>LEARN & GROW</h3>
+                    <p>Perfect for all skill levels. Whether beginner or expert, expand your knowledge and build your
+                        portfolio.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>WIN PRIZES</h3>
+                    <p>Compete for amazing prizes while solving real problems and showcasing your skills to industry
+                        professionals.</p>
                 </div>
             </div>
-        </div>
+        </section>
 
-        <div class="content-card terminal-card faq-section">
-            <div class="card-header">
-                <h2>Frequently Asked Questions</h2>
+        <!-- CTA Section -->
+        <section class="cta-section">
+            <div class="cta-content">
+                <h2>JOIN THE<br>MOVEMENT</h2>
+                <p>Be part of something extraordinary. Register now and build solutions that will shape the future of
+                    student life.</p>
+                <a href="registration.html" class="cta-button">Register Now</a>
             </div>
-            
-            <div class="faq-container">
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <span class="faq-icon">►</span> What is a hackathon?
-                    </div>
-                    <div class="faq-answer">
-                        A hackathon is an event where people collaborate intensively on software projects over a short period of time. It's a mix of "hack" (meaning creative problem-solving, not breaking into systems) and "marathon." Participants form teams, brainstorm ideas, code solutions, and present their projects - all in a fun, fast-paced environment!
-                    </div>
-                </div>
-
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <span class="faq-icon">►</span> Is there a cost to participate?
-                    </div>
-                    <div class="faq-answer">
-                        No! IndyHAX is completely free to attend. There are no registration fees, admission costs, or hidden charges. Just bring yourself, your laptop, and your enthusiasm!
-                    </div>
-                </div>
-
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <span class="faq-icon">►</span> Who can participate?
-                    </div>
-                    <div class="faq-answer">
-                        IndyHAX is open to all ages! Whether you're in middle school, high school, or beyond, everyone is welcome to participate. Students, hobbyists, and anyone interested in learning and building are encouraged to join!
-                    </div>
-                </div>
-
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <span class="faq-icon">►</span> Do I need to be an expert programmer?
-                    </div>
-                    <div class="faq-answer">
-                        Not at all! IndyHAX welcomes participants of all skill levels. Whether you're a beginner just learning to code or have some experience, you'll find ways to contribute. You can work on design, project ideas, presentations, or learn from your teammates. The goal is to learn and build something together!
-                    </div>
-                </div>
-
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <span class="faq-icon">►</span> How do teams work at IndyHAX?
-                    </div>
-                    <div class="faq-answer">
-                        Teams typically have 2-5 members with diverse skills. You can form teams before the event or find teammates on the day of. Good teams include a mix of roles: coders, designers, idea generators, and presenters. Collaboration and communication are just as important as technical skills!
-                    </div>
-                </div>
-
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <span class="faq-icon">►</span> What should I bring to IndyHAX?
-                    </div>
-                    <div class="faq-answer">
-                        Bring your laptop (fully charged!), chargers, any necessary cables, and a positive attitude. Most importantly, bring your creativity and willingness to learn. Don't worry about having everything figured out in advance!
-                    </div>
-                </div>
-
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <span class="faq-icon">►</span> What if I've never been to a hackathon before?
-                    </div>
-                    <div class="faq-answer">
-                        First-timers are always welcome! IndyHAX is designed to be a beginner-friendly learning experience. Mentors and organizers will be there to help you. You'll meet other students, learn new technologies, and gain experience working on real projects. Everyone starts somewhere, and IndyHAX is perfect for beginners!
-                    </div>
-                </div>
-
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <span class="faq-icon">►</span> How long does IndyHAX last?
-                    </div>
-                    <div class="faq-answer">
-                        The event duration will be announced closer to the date. The timeline will typically include an opening ceremony where the challenge is revealed, hacking time to build your project, and then presentations and judging at the end. You'll have enough time to build something meaningful!
-                    </div>
-                </div>
-
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <span class="faq-icon">►</span> Can I use AI in my project?
-                    </div>
-                    <div class="faq-answer">
-                        Absolutely! AI is not only allowed but encouraged at IndyHAX. You can use AI tools, APIs, and technologies like ChatGPT, Google Gemini, Microsoft Azure AI, or any other AI resources to enhance your project. However, AI is completely optional - you can build amazing projects without it too!
-                    </div>
-                </div>
-
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <span class="faq-icon">►</span> What can I learn from participating?
-                    </div>
-                    <div class="faq-answer">
-                        IndyHAX will teach you practical skills like coding, using APIs, teamwork, time management, and presenting ideas. You'll also gain exposure to new technologies, meet fellow students interested in tech, build your portfolio, and discover what you're capable of creating in a short time. Plus, it's fun!
-                    </div>
-                </div>
-
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <span class="faq-icon">►</span> Are there prizes?
-                    </div>
-                    <div class="faq-answer">
-                        Yes! IndyHAX will offer prizes for winning teams. Beyond the prizes though, the real rewards are the experience, skills, and connections you'll gain from participating. Everyone who joins and learns something new is a winner!
-                    </div>
-                </div>
+            <div class="cta-visual">
+                <div class="cta-shape"></div>
             </div>
-        </div>
+        </section>
 
+        <!-- Footer -->
         <footer>
-            <div class="footer-terminal">
-                <p><strong>Contact:</strong> For more information about IndyHAX, please check back for updates.</p>
-                <p><strong>Website:</strong> <a href="http://indyhax.tarushv.com">indyhax.tarushv.com</a></p>
-                <p><strong>Organizers:</strong> Abhinav Boora, Tarushv Kosgi, Lalith Dasa, and Dheeraj Chennaboina</p>
-                <div class="footer-divider">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</div>
-                <p class="copyright">© 2025 IndyHAX - Independence High School</p>
+            <div>
+                <p><strong>IndyHAX 2026</strong> — Independence High School</p>
+                <p>Organized by Abhinav Boora, Tarushv Kosgi, Lalith Dasa & Dheeraj Chennaboina</p>
+                <p><a href="https://indyhax.com">indyhax.com</a></p>
+            </div>
+            <div class="footer-shapes">
+                <div class="footer-shape circle"></div>
+                <div class="footer-shape square"></div>
+                <div class="footer-shape triangle"></div>
             </div>
         </footer>
     </div>
-
-    <script>
-        // Glitch effect
-        const glitchText = document.querySelector('.glitch');
-        setInterval(() => {
-            if (Math.random() > 0.95) {
-                glitchText.classList.add('glitch-active');
-                setTimeout(() => glitchText.classList.remove('glitch-active'), 100);
-            }
-        }, 200);
-
-        // Matrix background effect
-        const canvas = document.createElement('canvas');
-        const matrixBg = document.querySelector('.matrix-bg');
-        matrixBg.appendChild(canvas);
-        const ctx = canvas.getContext('2d');
-        
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-        
-        const chars = '01アイウエオカキクケコサシスセソタチツテト';
-        const fontSize = 14;
-        const columns = canvas.width / fontSize;
-        const drops = Array(Math.floor(columns)).fill(1);
-        
-        function drawMatrix() {
-            ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
-            
-            ctx.fillStyle = '#0f0';
-            ctx.font = fontSize + 'px monospace';
-            
-            for (let i = 0; i < drops.length; i++) {
-                const text = chars[Math.floor(Math.random() * chars.length)];
-                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-                
-                if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
-                    drops[i] = 0;
-                }
-                drops[i]++;
-            }
-        }
-        
-        setInterval(drawMatrix, 50);
-        
-        window.addEventListener('resize', () => {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        });
-    </script>
 </body>
+
 </html>
