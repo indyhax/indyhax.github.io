@@ -13,7 +13,9 @@
         href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Work+Sans:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
     <style>
-        * {
+        *,
+        *::before,
+        *::after {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
@@ -24,7 +26,7 @@
             --primary-yellow: #f4d35e;
             --primary-blue: #1d3557;
             --pure-black: #0d0d0d;
-            --pure-white: #ffffff;
+            --pure-white: #fff;
             --off-white: #f8f8f8;
         }
 
@@ -40,15 +42,8 @@
             min-height: 100vh;
         }
 
-
-
-
-
-        @keyframes rotate {
-            from {
-                transform: rotate(0deg);
-            }
-
+        /* Animations */
+        @keyframes spin {
             to {
                 transform: rotate(360deg);
             }
@@ -66,7 +61,7 @@
             }
         }
 
-        /* Main Container */
+        /* Container */
         .container {
             position: relative;
             z-index: 10;
@@ -98,7 +93,6 @@
         }
 
         .nav-links a {
-            font-family: 'Work Sans', sans-serif;
             font-size: 0.9rem;
             font-weight: 600;
             color: var(--pure-black);
@@ -107,7 +101,7 @@
             letter-spacing: 2px;
             position: relative;
             padding: 10px 0;
-            transition: color 0.3s ease;
+            transition: color 0.3s;
         }
 
         .nav-links a:hover {
@@ -123,7 +117,7 @@
             height: 4px;
             background: var(--primary-red);
             transform: scaleX(0);
-            transition: transform 0.3s ease;
+            transition: transform 0.3s;
         }
 
         .nav-links a:hover::after,
@@ -131,7 +125,7 @@
             transform: scaleX(1);
         }
 
-        /* Hero Section */
+        /* Hero */
         .hero {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -139,10 +133,6 @@
             align-items: center;
             padding: 80px 0;
             min-height: 70vh;
-        }
-
-        .hero-content {
-            position: relative;
         }
 
         .hero-label {
@@ -184,15 +174,12 @@
 
         .hero-tagline {
             font-size: 1.3rem;
-            font-weight: 400;
             line-height: 1.8;
             max-width: 450px;
-            color: var(--pure-black);
             opacity: 0.8;
         }
 
         .hero-visual {
-            position: relative;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -202,45 +189,37 @@
             max-width: 450px;
             width: 100%;
             height: auto;
-            filter: drop-shadow(8px 8px 0 var(--primary-yellow)) drop-shadow(0 4px 20px rgba(0, 0, 0, 0.15));
-            transition: transform 0.3s ease, filter 0.3s ease;
+            filter: drop-shadow(8px 8px 0 var(--primary-yellow)) drop-shadow(0 4px 20px rgba(0, 0, 0, .15));
+            transition: transform 0.3s, filter 0.3s;
         }
 
         .hero-visual img:hover {
             transform: scale(1.05) rotate(2deg);
-            filter: drop-shadow(12px 12px 0 var(--primary-red)) drop-shadow(0 8px 30px rgba(0, 0, 0, 0.2));
+            filter: drop-shadow(12px 12px 0 var(--primary-red)) drop-shadow(0 8px 30px rgba(0, 0, 0, .2));
         }
 
-
-
-        /* Event Details Grid */
+        /* Details Grid */
         .details-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 0;
             margin: 100px 0;
             border: 4px solid var(--pure-black);
-            overflow: hidden;
         }
 
         .detail-block {
             padding: 60px 50px;
             border-right: 4px solid var(--pure-black);
-            position: relative;
-            overflow: hidden;
-            transition: all 0.3s ease;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
             min-height: 180px;
+            transition: filter 0.3s, box-shadow 0.3s;
         }
 
         .detail-block:last-child {
             border-right: none;
-            margin-right: -1px;
-            padding-right: 51px;
         }
 
         .detail-block:nth-child(1) {
@@ -260,7 +239,7 @@
 
         .detail-block:hover {
             filter: brightness(1.08);
-            box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.1);
+            box-shadow: inset 0 0 30px rgba(0, 0, 0, .1);
         }
 
         .detail-block .label {
@@ -279,7 +258,7 @@
             line-height: 1.1;
         }
 
-        /* Features Section */
+        /* Features */
         .features {
             padding: 100px 0;
         }
@@ -306,7 +285,6 @@
         .features-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 0;
             border: 4px solid var(--pure-black);
         }
 
@@ -316,7 +294,7 @@
             border-right: 4px solid var(--pure-black);
             position: relative;
             background: var(--pure-white);
-            transition: all 0.3s ease;
+            transition: background 0.3s;
         }
 
         .feature-card:nth-child(2n) {
@@ -336,8 +314,8 @@
             height: 100%;
             background: var(--primary-red);
             transform: scaleY(0);
-            transition: transform 0.3s ease;
             transform-origin: top;
+            transition: transform 0.3s;
         }
 
         .feature-card:nth-child(2)::before {
@@ -373,11 +351,10 @@
             opacity: 0.8;
         }
 
-        /* CTA Section */
+        /* CTA */
         .cta-section {
             display: grid;
             grid-template-columns: 2fr 1fr;
-            gap: 0;
             margin: 100px 0;
             border: 4px solid var(--pure-black);
             overflow: hidden;
@@ -413,11 +390,10 @@
             text-decoration: none;
             color: var(--pure-white);
             background: var(--pure-black);
-            border: none;
-            transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
             z-index: 1;
+            transition: transform 0.3s;
         }
 
         .cta-button::before {
@@ -428,7 +404,7 @@
             width: 100%;
             height: 100%;
             background: var(--primary-red);
-            transition: left 0.3s ease;
+            transition: left 0.3s;
             z-index: -1;
         }
 
@@ -446,8 +422,6 @@
             justify-content: center;
             align-items: center;
             min-height: 200px;
-            margin: -1px -1px -1px 0;
-            padding: 1px;
         }
 
         .cta-visual img {
@@ -456,17 +430,7 @@
             height: auto;
             animation: spin 15s linear infinite;
             opacity: 0.85;
-            filter: drop-shadow(0 4px 15px rgba(255, 255, 255, 0.2));
-        }
-
-        @keyframes spin {
-            from {
-                transform: rotate(0deg);
-            }
-
-            to {
-                transform: rotate(360deg);
-            }
+            filter: drop-shadow(0 4px 15px rgba(255, 255, 255, .2));
         }
 
         /* Footer */
@@ -536,21 +500,6 @@
             .hero-visual {
                 order: -1;
             }
-
-            .hero-shapes {
-                width: 280px;
-                height: 280px;
-            }
-
-            .shape-main-circle {
-                width: 200px;
-                height: 200px;
-            }
-
-            .shape-main-square {
-                width: 120px;
-                height: 120px;
-            }
         }
 
         @media (max-width: 768px) {
@@ -607,10 +556,7 @@
 </head>
 
 <body>
-
-
     <div class="container">
-        <!-- Navigation -->
         <nav>
             <div class="nav-logo">INDYHAX</div>
             <div class="nav-links">
@@ -620,7 +566,6 @@
             </div>
         </nav>
 
-        <!-- Hero Section -->
         <section class="hero">
             <div class="hero-content">
                 <span class="hero-label">AI Hackathon 2026</span>
@@ -633,7 +578,6 @@
             </div>
         </section>
 
-        <!-- Event Details -->
         <section class="details-grid">
             <div class="detail-block">
                 <div class="label">Location</div>
@@ -649,13 +593,11 @@
             </div>
         </section>
 
-        <!-- Features Section -->
         <section class="features">
             <div class="section-header">
                 <h2>WHY PARTICIPATE</h2>
                 <div class="line"></div>
             </div>
-
             <div class="features-grid">
                 <div class="feature-card">
                     <h3>AI INNOVATION</h3>
@@ -680,7 +622,6 @@
             </div>
         </section>
 
-        <!-- CTA Section -->
         <section class="cta-section">
             <div class="cta-content">
                 <h2>JOIN THE<br>MOVEMENT</h2>
@@ -693,7 +634,6 @@
             </div>
         </section>
 
-        <!-- Footer -->
         <footer>
             <div>
                 <p><strong>IndyHAX 2026</strong> — Independence High School</p>
@@ -710,63 +650,24 @@
     </div>
 
     <script>
-        // Parallax effect: elements move when mouse is directly over them
-        document.addEventListener('DOMContentLoaded', () => {
-            const parallaxElements = [
-                { selector: '.hero-visual img', factor: 0.15 },
-                { selector: '.geo-circle', factor: 0.1 },
-                { selector: '.geo-square', factor: 0.12 },
-                { selector: '.geo-triangle', factor: 0.1 },
-                { selector: '.cta-shape', factor: 0.2 }
-            ];
-
-            parallaxElements.forEach(({ selector, factor }) => {
-                const el = document.querySelector(selector);
-                if (!el) return;
-
-                let targetX = 0, targetY = 0;
-                let currentX = 0, currentY = 0;
-                let isHovering = false;
-                let animationId = null;
-
-                function animate() {
-                    // Smooth easing toward target
-                    currentX += (targetX - currentX) * 0.1;
-                    currentY += (targetY - currentY) * 0.1;
-
-                    el.style.transform = `translate(${currentX}px, ${currentY}px)`;
-
-                    // Continue animating if still moving
-                    if (Math.abs(targetX - currentX) > 0.1 || Math.abs(targetY - currentY) > 0.1 || isHovering) {
-                        animationId = requestAnimationFrame(animate);
-                    }
-                }
-
-                el.addEventListener('mousemove', (e) => {
-                    const rect = el.getBoundingClientRect();
-                    // Calculate position relative to element center (-1 to 1)
-                    const relX = ((e.clientX - rect.left) / rect.width - 0.5) * 2;
-                    const relY = ((e.clientY - rect.top) / rect.height - 0.5) * 2;
-
-                    // Apply factor for reduced movement speed
-                    targetX = relX * rect.width * factor;
-                    targetY = relY * rect.height * factor;
-
-                    if (!isHovering) {
-                        isHovering = true;
-                        animate();
-                    }
-                });
-
-                el.addEventListener('mouseleave', () => {
-                    isHovering = false;
-                    targetX = 0;
-                    targetY = 0;
-                    // Continue animation to ease back to center
-                    if (!animationId) animate();
-                });
+        // Parallax effect for hero image
+        const heroImg = document.querySelector('.hero-visual img');
+        if (heroImg) {
+            let tx = 0, ty = 0, cx = 0, cy = 0, hovering = false, raf = null;
+            const ease = () => {
+                cx += (tx - cx) * 0.1;
+                cy += (ty - cy) * 0.1;
+                heroImg.style.transform = `translate(${cx}px, ${cy}px)`;
+                if (Math.abs(tx - cx) > 0.1 || Math.abs(ty - cy) > 0.1 || hovering) raf = requestAnimationFrame(ease);
+            };
+            heroImg.addEventListener('mousemove', e => {
+                const r = heroImg.getBoundingClientRect();
+                tx = ((e.clientX - r.left) / r.width - 0.5) * r.width * 0.15;
+                ty = ((e.clientY - r.top) / r.height - 0.5) * r.height * 0.15;
+                if (!hovering) { hovering = true; ease(); }
             });
-        });
+            heroImg.addEventListener('mouseleave', () => { hovering = false; tx = ty = 0; if (!raf) ease(); });
+        }
     </script>
 </body>
 
