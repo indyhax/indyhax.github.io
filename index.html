@@ -40,72 +40,9 @@
             min-height: 100vh;
         }
 
-        /* Geometric Background Shapes */
-        .geo-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 0;
-            overflow: hidden;
-        }
 
-        .geo-shape {
-            position: absolute;
-            transition: transform 0.3s ease;
-        }
 
-        .geo-circle {
-            width: 400px;
-            height: 400px;
-            border-radius: 50%;
-            background: var(--primary-yellow);
-            top: -150px;
-            right: -100px;
-            animation: rotate 30s linear infinite;
-        }
 
-        .geo-square {
-            width: 200px;
-            height: 200px;
-            background: var(--primary-red);
-            bottom: 10%;
-            left: -50px;
-            animation: rotate 25s linear infinite reverse;
-        }
-
-        .geo-triangle {
-            width: 0;
-            height: 0;
-            border-left: 150px solid transparent;
-            border-right: 150px solid transparent;
-            border-bottom: 260px solid var(--primary-blue);
-            top: 40%;
-            right: 5%;
-            animation: float 8s ease-in-out infinite;
-        }
-
-        .geo-line {
-            height: 4px;
-            background: var(--pure-black);
-            position: absolute;
-        }
-
-        .geo-line-1 {
-            width: 60%;
-            top: 30%;
-            left: -10%;
-            transform: rotate(-15deg);
-        }
-
-        .geo-line-2 {
-            width: 40%;
-            bottom: 25%;
-            right: -5%;
-            transform: rotate(20deg);
-        }
 
         @keyframes rotate {
             from {
@@ -170,6 +107,11 @@
             letter-spacing: 2px;
             position: relative;
             padding: 10px 0;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-red);
         }
 
         .nav-links a::after {
@@ -211,7 +153,7 @@
             font-weight: 700;
             letter-spacing: 3px;
             text-transform: uppercase;
-            margin-bottom: 30px;
+            margin-bottom: 40px;
             transform: rotate(-2deg);
         }
 
@@ -256,43 +198,20 @@
             align-items: center;
         }
 
-        .hero-shapes {
-            position: relative;
-            width: 400px;
-            height: 400px;
+        .hero-visual img {
+            max-width: 450px;
+            width: 100%;
+            height: auto;
+            filter: drop-shadow(8px 8px 0 var(--primary-yellow)) drop-shadow(0 4px 20px rgba(0, 0, 0, 0.15));
+            transition: transform 0.3s ease, filter 0.3s ease;
         }
 
-        .shape-main-circle {
-            position: absolute;
-            width: 300px;
-            height: 300px;
-            border-radius: 50%;
-            background: var(--primary-blue);
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
+        .hero-visual img:hover {
+            transform: scale(1.05) rotate(2deg);
+            filter: drop-shadow(12px 12px 0 var(--primary-red)) drop-shadow(0 8px 30px rgba(0, 0, 0, 0.2));
         }
 
-        .shape-main-square {
-            position: absolute;
-            width: 180px;
-            height: 180px;
-            background: var(--primary-yellow);
-            top: 20px;
-            right: 20px;
-            animation: rotate 20s linear infinite;
-        }
 
-        .shape-main-triangle {
-            position: absolute;
-            width: 0;
-            height: 0;
-            border-left: 80px solid transparent;
-            border-right: 80px solid transparent;
-            border-bottom: 140px solid var(--primary-red);
-            bottom: 30px;
-            left: 30px;
-        }
 
         /* Event Details Grid */
         .details-grid {
@@ -301,18 +220,27 @@
             gap: 0;
             margin: 100px 0;
             border: 4px solid var(--pure-black);
+            overflow: hidden;
         }
 
         .detail-block {
-            padding: 50px 40px;
+            padding: 60px 50px;
             border-right: 4px solid var(--pure-black);
             position: relative;
             overflow: hidden;
             transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            min-height: 180px;
         }
 
         .detail-block:last-child {
             border-right: none;
+            margin-right: -1px;
+            padding-right: 51px;
         }
 
         .detail-block:nth-child(1) {
@@ -331,23 +259,24 @@
         }
 
         .detail-block:hover {
-            transform: scale(1.02);
-            z-index: 2;
+            filter: brightness(1.08);
+            box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.1);
         }
 
         .detail-block .label {
-            font-size: 0.8rem;
+            font-size: 0.85rem;
             font-weight: 700;
             letter-spacing: 3px;
             text-transform: uppercase;
-            margin-bottom: 15px;
-            opacity: 0.8;
+            margin-bottom: 12px;
+            opacity: 0.9;
         }
 
         .detail-block .value {
             font-family: 'Bebas Neue', sans-serif;
-            font-size: 2.2rem;
+            font-size: 2.5rem;
             letter-spacing: 2px;
+            line-height: 1.1;
         }
 
         /* Features Section */
@@ -451,6 +380,7 @@
             gap: 0;
             margin: 100px 0;
             border: 4px solid var(--pure-black);
+            overflow: hidden;
         }
 
         .cta-content {
@@ -487,6 +417,7 @@
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
+            z-index: 1;
         }
 
         .cta-button::before {
@@ -505,18 +436,37 @@
             left: 0;
         }
 
+        .cta-button:hover {
+            transform: translateY(-2px);
+        }
+
         .cta-visual {
             background: var(--primary-blue);
             display: flex;
             justify-content: center;
             align-items: center;
+            min-height: 200px;
+            margin: -1px -1px -1px 0;
+            padding: 1px;
         }
 
-        .cta-shape {
-            width: 150px;
-            height: 150px;
-            background: var(--primary-yellow);
-            animation: rotate 10s linear infinite;
+        .cta-visual img {
+            max-width: 200px;
+            width: 100%;
+            height: auto;
+            animation: spin 15s linear infinite;
+            opacity: 0.85;
+            filter: drop-shadow(0 4px 15px rgba(255, 255, 255, 0.2));
+        }
+
+        @keyframes spin {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
         }
 
         /* Footer */
@@ -657,14 +607,7 @@
 </head>
 
 <body>
-    <!-- Geometric Background -->
-    <div class="geo-bg">
-        <div class="geo-shape geo-circle"></div>
-        <div class="geo-shape geo-square"></div>
-        <div class="geo-shape geo-triangle"></div>
-        <div class="geo-shape geo-line geo-line-1"></div>
-        <div class="geo-shape geo-line geo-line-2"></div>
-    </div>
+
 
     <div class="container">
         <!-- Navigation -->
@@ -681,17 +624,12 @@
         <section class="hero">
             <div class="hero-content">
                 <span class="hero-label">AI Hackathon 2026</span>
-                <img src="logo.PNG" alt="IndyHAX Logo" class="hero-logo">
                 <h1>INDY<br>HAX</h1>
                 <p class="hero-tagline">Build the future. Shape student life with AI-powered solutions at Independence
                     High School.</p>
             </div>
             <div class="hero-visual">
-                <div class="hero-shapes">
-                    <div class="shape-main-circle"></div>
-                    <div class="shape-main-square"></div>
-                    <div class="shape-main-triangle"></div>
-                </div>
+                <img src="logo.PNG" alt="IndyHAX Logo - Gnome on a Duck">
             </div>
         </section>
 
@@ -751,7 +689,7 @@
                 <a href="registration.html" class="cta-button">Register Now</a>
             </div>
             <div class="cta-visual">
-                <div class="cta-shape"></div>
+                <img src="logo.PNG" alt="IndyHAX Logo">
             </div>
         </section>
 
@@ -759,7 +697,8 @@
         <footer>
             <div>
                 <p><strong>IndyHAX 2026</strong> — Independence High School</p>
-                <p>Organized by Abhinav Boora, Tarushv Kosgi, Lalith Dasa & Dheeraj Chennaboina</p>
+                <p>Organized by <a href="https://tarushv.com">Tarushv Kosgi</a>, <a href="https://abhiboora.com">Abhinav
+                        Boora</a>, Tanisha Singh, Lalith Dasa &amp; Dheeraj Chennaboina</p>
                 <p><a href="https://indyhax.com">indyhax.com</a></p>
             </div>
             <div class="footer-shapes">
@@ -769,6 +708,66 @@
             </div>
         </footer>
     </div>
+
+    <script>
+        // Parallax effect: elements move when mouse is directly over them
+        document.addEventListener('DOMContentLoaded', () => {
+            const parallaxElements = [
+                { selector: '.hero-visual img', factor: 0.15 },
+                { selector: '.geo-circle', factor: 0.1 },
+                { selector: '.geo-square', factor: 0.12 },
+                { selector: '.geo-triangle', factor: 0.1 },
+                { selector: '.cta-shape', factor: 0.2 }
+            ];
+
+            parallaxElements.forEach(({ selector, factor }) => {
+                const el = document.querySelector(selector);
+                if (!el) return;
+
+                let targetX = 0, targetY = 0;
+                let currentX = 0, currentY = 0;
+                let isHovering = false;
+                let animationId = null;
+
+                function animate() {
+                    // Smooth easing toward target
+                    currentX += (targetX - currentX) * 0.1;
+                    currentY += (targetY - currentY) * 0.1;
+
+                    el.style.transform = `translate(${currentX}px, ${currentY}px)`;
+
+                    // Continue animating if still moving
+                    if (Math.abs(targetX - currentX) > 0.1 || Math.abs(targetY - currentY) > 0.1 || isHovering) {
+                        animationId = requestAnimationFrame(animate);
+                    }
+                }
+
+                el.addEventListener('mousemove', (e) => {
+                    const rect = el.getBoundingClientRect();
+                    // Calculate position relative to element center (-1 to 1)
+                    const relX = ((e.clientX - rect.left) / rect.width - 0.5) * 2;
+                    const relY = ((e.clientY - rect.top) / rect.height - 0.5) * 2;
+
+                    // Apply factor for reduced movement speed
+                    targetX = relX * rect.width * factor;
+                    targetY = relY * rect.height * factor;
+
+                    if (!isHovering) {
+                        isHovering = true;
+                        animate();
+                    }
+                });
+
+                el.addEventListener('mouseleave', () => {
+                    isHovering = false;
+                    targetX = 0;
+                    targetY = 0;
+                    // Continue animation to ease back to center
+                    if (!animationId) animate();
+                });
+            });
+        });
+    </script>
 </body>
 
 </html>
