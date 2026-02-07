@@ -260,6 +260,22 @@
             box-shadow: inset 0 0 30px rgba(0, 0, 0, .1);
         }
 
+        .details-grid-link {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+            cursor: pointer;
+        }
+
+        .details-grid-link:hover .details-grid {
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+            transform: translateY(-2px);
+        }
+
+        .details-grid-link .details-grid {
+            transition: box-shadow 0.3s, transform 0.3s;
+        }
+
         .detail-block .label {
             font-size: 0.85rem;
             font-weight: 700;
@@ -604,20 +620,23 @@
             </div>
         </section>
 
-        <section class="details-grid">
-            <div class="detail-block">
-                <div class="label">Location</div>
-                <div class="value">Independence High School</div>
-            </div>
-            <div class="detail-block">
-                <div class="label">Date</div>
-                <div class="value">April 18, 2026</div>
-            </div>
-            <div class="detail-block">
-                <div class="label">Time</div>
-                <div class="value">8:00 AM – 4:00 PM</div>
-            </div>
-        </section>
+        <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=IndyHAX%20-%20Hybrid%20CTF%20%26%20Hackathon&dates=20260418T120000Z/20260418T200000Z&details=Independence%20High%20School%27s%20first-ever%20Hybrid%20CTF%20%26%20Hackathon.%20Capture%20flags%2C%20build%20projects%2C%20or%20do%20both!%0A%0ARegister%20at%3A%20https%3A%2F%2Findyhax.com&location=Independence%20High%20School%2C%20Ashburn%2C%20VA"
+            target="_blank" rel="noopener" class="details-grid-link" title="Add to Google Calendar">
+            <section class="details-grid">
+                <div class="detail-block">
+                    <div class="label">Location</div>
+                    <div class="value">Independence High School</div>
+                </div>
+                <div class="detail-block">
+                    <div class="label">Date</div>
+                    <div class="value">April 18, 2026</div>
+                </div>
+                <div class="detail-block">
+                    <div class="label">Time</div>
+                    <div class="value">8:00 AM – 4:00 PM</div>
+                </div>
+            </section>
+        </a>
 
         <section class="features">
             <div class="section-header">
