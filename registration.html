@@ -12,63 +12,15 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Work+Sans:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
     <style>
-        *,
-        *::before,
-        *::after {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        /* ==========================================================
+           Registration — Page-Specific Styles
+           ========================================================== */
 
-        :root {
-            --primary-red: #e63946;
-            --primary-yellow: #f4d35e;
-            --primary-blue: #1d3557;
-            --pure-black: #0d0d0d;
-            --pure-white: #ffffff;
-            --off-white: #f8f8f8;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: 'Work Sans', sans-serif;
-            background: var(--off-white);
-            color: var(--pure-black);
-            overflow-x: hidden;
-            min-height: 100vh;
-        }
-
-        /* Grain overlay */
-        body::after {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 9999;
-            opacity: 0.03;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
-        }
-
-        /* Grid pattern background */
-        .grid-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 0;
-            background-image:
-                linear-gradient(rgba(13, 13, 13, 0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(13, 13, 13, 0.03) 1px, transparent 1px);
-            background-size: 60px 60px;
+        /* Container override for narrower content */
+        .container {
+            max-width: 1200px;
         }
 
         /* Geometric Background */
@@ -113,151 +65,17 @@
             to { transform: rotate(360deg); }
         }
 
-        /* Animations */
-        @keyframes fadeUp {
-            from { opacity: 0; transform: translateY(40px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        @keyframes drawLine {
-            from { transform: scaleX(0); }
-            to { transform: scaleX(1); }
-        }
-
-        /* Scroll reveal */
-        .reveal {
-            opacity: 0;
-            transform: translateY(40px);
-            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .reveal.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .reveal-delay-1 { transition-delay: 0.1s; }
-        .reveal-delay-2 { transition-delay: 0.2s; }
-
-        /* Container */
-        .container {
-            position: relative;
-            z-index: 10;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 40px 20px;
-        }
-
-        /* Navigation */
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 25px 0;
-            border-bottom: 4px solid var(--pure-black);
-            margin-bottom: 60px;
-            animation: fadeIn 0.6s ease both;
-        }
-
-        .nav-logo {
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: 2.5rem;
-            color: var(--pure-black);
-            letter-spacing: 4px;
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-
-        .nav-logo:hover {
-            color: var(--primary-red);
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 50px;
-        }
-
-        .nav-links a {
-            font-family: 'Work Sans', sans-serif;
-            font-size: 0.9rem;
-            font-weight: 600;
-            color: var(--pure-black);
-            text-decoration: none;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            position: relative;
-            padding: 10px 0;
-            transition: color 0.3s ease;
-        }
-
-        .nav-links a:hover {
-            color: var(--primary-red);
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: var(--primary-red);
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .nav-links a:hover::after,
-        .nav-links a.active::after {
-            transform: scaleX(1);
-        }
-
-        /* Mobile Menu */
-        .menu-toggle {
-            display: none;
-            flex-direction: column;
-            gap: 6px;
-            cursor: pointer;
-            padding: 8px;
-            z-index: 100;
-        }
-
-        .menu-toggle span {
-            display: block;
-            width: 28px;
-            height: 3px;
-            background: var(--pure-black);
-            transition: transform 0.3s, opacity 0.3s;
-        }
-
-        .menu-toggle.open span:nth-child(1) {
-            transform: rotate(45deg) translate(6px, 6px);
-        }
-
-        .menu-toggle.open span:nth-child(2) {
-            opacity: 0;
-        }
-
-        .menu-toggle.open span:nth-child(3) {
-            transform: rotate(-45deg) translate(6px, -6px);
-        }
-
-        /* Page Header */
+        /* --- Page Header --- */
         .page-header {
             text-align: center;
             padding: 60px 0;
             position: relative;
-            animation: fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) both 0.1s;
+            animation: fadeUp 0.8s var(--ease-out-expo) both 0.1s;
             opacity: 0;
         }
 
         .page-header h1 {
-            font-family: 'Bebas Neue', sans-serif;
+            font-family: var(--font-display);
             font-size: clamp(4rem, 12vw, 8rem);
             letter-spacing: 4px;
             margin-bottom: 20px;
@@ -269,12 +87,11 @@
             content: '';
             position: absolute;
             bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100px;
+            left: 0;
+            width: 100%;
             height: 8px;
             background: var(--primary-red);
-            animation: drawLine 0.6s cubic-bezier(0.16, 1, 0.3, 1) both 0.6s;
+            animation: drawLine 0.6s var(--ease-out-expo) both 0.6s;
             transform-origin: center;
         }
 
@@ -285,9 +102,9 @@
             margin-top: 30px;
         }
 
-        /* Content Card */
+        /* --- Content Card --- */
         .content-card {
-            border: 4px solid var(--pure-black);
+            border: var(--border-thick);
             background: var(--pure-white);
             margin: 40px auto;
             max-width: 900px;
@@ -302,11 +119,11 @@
             background: var(--primary-blue);
             color: var(--pure-white);
             padding: 25px 40px;
-            border-bottom: 4px solid var(--pure-black);
+            border-bottom: var(--border-thick);
         }
 
         .card-header h2 {
-            font-family: 'Bebas Neue', sans-serif;
+            font-family: var(--font-display);
             font-size: 2rem;
             letter-spacing: 3px;
         }
@@ -321,7 +138,7 @@
             margin-bottom: 30px;
         }
 
-        /* Info Box */
+        /* --- Info Box --- */
         .info-box {
             border: 4px solid var(--primary-yellow);
             background: rgba(244, 211, 94, 0.08);
@@ -336,7 +153,7 @@
         }
 
         .info-box h3 {
-            font-family: 'Bebas Neue', sans-serif;
+            font-family: var(--font-display);
             font-size: 1.8rem;
             letter-spacing: 2px;
             margin-bottom: 20px;
@@ -381,58 +198,19 @@
             border: 2px solid var(--pure-black);
         }
 
-        .info-box li:nth-child(3)::before {
-            background: var(--primary-blue);
-        }
-
-        .info-box li:nth-child(4)::before {
-            background: var(--primary-red);
-        }
+        .info-box li:nth-child(3)::before { background: var(--primary-blue); }
+        .info-box li:nth-child(4)::before { background: var(--primary-red); }
 
         .info-box li:nth-child(5)::before {
             background: var(--primary-yellow);
             border: 2px solid var(--pure-black);
         }
 
-        /* CTA Button */
+        /* --- CTA Button Override --- */
         .cta-button {
-            display: inline-block;
             padding: 20px 60px;
-            font-family: 'Bebas Neue', sans-serif;
             font-size: 1.8rem;
-            letter-spacing: 3px;
-            text-decoration: none;
-            color: var(--pure-white);
-            background: var(--pure-black);
-            border: 4px solid var(--pure-black);
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
             margin: 20px 0;
-            box-shadow: 4px 4px 0 var(--primary-red);
-            position: relative;
-            overflow: hidden;
-            z-index: 1;
-        }
-
-        .cta-button::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: var(--primary-red);
-            transition: left 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-            z-index: -1;
-        }
-
-        .cta-button:hover::before {
-            left: 0;
-        }
-
-        .cta-button:hover {
-            border-color: var(--primary-red);
-            transform: translateY(-3px);
-            box-shadow: 6px 8px 0 var(--primary-red);
         }
 
         .button-wrapper {
@@ -440,7 +218,7 @@
             margin: 40px 0;
         }
 
-        /* Status Note */
+        /* --- Status Note --- */
         .status-note {
             border: 4px solid var(--primary-red);
             background: rgba(230, 57, 70, 0.06);
@@ -462,106 +240,20 @@
         }
 
         .status-note strong {
-            font-family: 'Bebas Neue', sans-serif;
+            font-family: var(--font-display);
             font-size: 1.3rem;
             letter-spacing: 2px;
         }
 
-        /* Footer */
+        /* --- Footer spacing override --- */
         footer {
-            padding: 60px 0;
-            border-top: 4px solid var(--pure-black);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
             margin-top: 60px;
         }
 
-        footer p {
-            font-size: 0.9rem;
-            line-height: 1.8;
-        }
-
-        footer a {
-            color: var(--primary-red);
-            text-decoration: none;
-            font-weight: 600;
-            position: relative;
-            transition: color 0.3s;
-        }
-
-        footer a::after {
-            content: '';
-            position: absolute;
-            bottom: -2px;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background: var(--primary-red);
-            transform: scaleX(0);
-            transform-origin: right;
-            transition: transform 0.3s;
-        }
-
-        footer a:hover::after {
-            transform: scaleX(1);
-            transform-origin: left;
-        }
-
-        .footer-shapes {
-            display: flex;
-            gap: 20px;
-        }
-
-        .footer-shape {
-            width: 30px;
-            height: 30px;
-            transition: transform 0.3s;
-        }
-
-        .footer-shape:hover {
-            transform: scale(1.3) rotate(15deg);
-        }
-
-        .footer-shape.circle {
-            border-radius: 50%;
-            background: var(--primary-red);
-        }
-
-        .footer-shape.square {
-            background: var(--primary-yellow);
-        }
-
-        .footer-shape.triangle {
-            width: 0;
-            height: 0;
-            border-left: 15px solid transparent;
-            border-right: 15px solid transparent;
-            border-bottom: 26px solid var(--primary-blue);
-        }
-
-        /* Touch optimization */
+        /* ==========================================================
+           Registration — Touch Overrides
+           ========================================================== */
         @media (hover: none) and (pointer: coarse) {
-            .nav-links a,
-            .cta-button,
-            .menu-toggle,
-            footer a {
-                min-height: 44px;
-                min-width: 44px;
-                display: inline-flex;
-                align-items: center;
-                justify-content: center;
-            }
-
-            .nav-links a {
-                display: flex;
-            }
-
-            .cta-button:active {
-                transform: scale(0.97);
-                box-shadow: 2px 2px 0 var(--primary-red);
-            }
-
             .info-box li:hover {
                 transform: none;
             }
@@ -571,63 +263,10 @@
             }
         }
 
-        /* Prevent tap highlight on iOS/Android */
-        a, button, .menu-toggle {
-            -webkit-tap-highlight-color: transparent;
-        }
-
-        /* Body scroll lock when mobile menu is open */
-        body.menu-open {
-            overflow: hidden;
-            position: fixed;
-            width: 100%;
-            left: 0;
-        }
-
-        /* Responsive — Mobile */
+        /* ==========================================================
+           Registration — Responsive: Mobile
+           ========================================================== */
         @media (max-width: 768px) {
-            .container {
-                padding: 20px 16px;
-            }
-
-            nav {
-                position: relative;
-                padding: 20px 0;
-                margin-bottom: 30px;
-            }
-
-            .menu-toggle {
-                display: flex;
-            }
-
-            .nav-links {
-                position: absolute;
-                top: 100%;
-                left: -16px;
-                right: -16px;
-                background: var(--off-white);
-                flex-direction: column;
-                gap: 0;
-                border-bottom: 4px solid var(--pure-black);
-                max-height: 0;
-                overflow: hidden;
-                transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-                z-index: 100;
-            }
-
-            .nav-links.open {
-                max-height: 300px;
-            }
-
-            .nav-links a {
-                display: flex;
-                align-items: center;
-                padding: 16px 20px;
-                min-height: 52px;
-                border-top: 2px solid rgba(13, 13, 13, 0.08);
-                font-size: 1rem;
-            }
-
             .page-header {
                 padding: 30px 0;
             }
@@ -682,11 +321,8 @@
             }
 
             .cta-button {
-                display: block;
-                text-align: center;
-                padding: 18px 24px;
                 font-size: 1.4rem;
-                width: 100%;
+                padding: 18px 24px;
             }
 
             .button-wrapper {
@@ -700,26 +336,12 @@
             .status-note strong {
                 font-size: 1.1rem;
             }
-
-            footer {
-                flex-direction: column;
-                gap: 25px;
-                text-align: center;
-                padding: 40px 0;
-            }
         }
 
-        /* Responsive — Small phones */
+        /* ==========================================================
+           Registration — Responsive: Small Phones
+           ========================================================== */
         @media (max-width: 480px) {
-            .container {
-                padding: 16px 12px;
-            }
-
-            .nav-logo {
-                font-size: 2rem;
-                letter-spacing: 2px;
-            }
-
             .page-header h1 {
                 font-size: clamp(2.5rem, 15vw, 4rem);
             }
@@ -754,45 +376,6 @@
                 padding: 16px 18px;
                 font-size: 1.2rem;
             }
-
-            footer p {
-                font-size: 0.8rem;
-            }
-
-            .nav-links {
-                left: -12px;
-                right: -12px;
-            }
-        }
-
-        /* Accessibility: reduced motion */
-        @media (prefers-reduced-motion: reduce) {
-            *, *::before, *::after {
-                animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: 0.01ms !important;
-            }
-
-            .reveal {
-                opacity: 1;
-                transform: none;
-            }
-        }
-
-        /* Focus-visible styles for keyboard navigation */
-        a:focus-visible,
-        .cta-button:focus-visible {
-            outline: 3px solid var(--primary-red);
-            outline-offset: 3px;
-        }
-
-        .menu-toggle:focus-visible {
-            outline: 3px solid var(--primary-red);
-            outline-offset: 3px;
-        }
-
-        .nav-links a:focus-visible::after {
-            transform: scaleX(1);
         }
     </style>
 </head>
