@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description"
-        content="IndyHAX - The First-Ever Hybrid CTF & Hackathon at Independence High School. Capture flags, build projects, or do both. April 18, 2026.">
+        content="IndyHAX - The First-Ever Hybrid CTF & Hackathon at Independence High School. Capture flags, build projects, or do both.">
     <title>IndyHAX | Hybrid CTF & Hackathon</title>
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -43,6 +43,55 @@
             min-height: 100vh;
         }
 
+        /* Grain overlay */
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+            opacity: 0.03;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+        }
+
+        /* Grid pattern background */
+        .grid-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            background-image:
+                linear-gradient(rgba(13, 13, 13, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(13, 13, 13, 0.03) 1px, transparent 1px);
+            background-size: 60px 60px;
+        }
+
+        /* Diagonal accent stripe */
+        .accent-stripe {
+            position: fixed;
+            top: -50%;
+            right: 8%;
+            width: 2px;
+            height: 200%;
+            background: var(--primary-red);
+            opacity: 0.08;
+            transform: rotate(15deg);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .accent-stripe:nth-child(2) {
+            right: 8.5%;
+            width: 6px;
+            opacity: 0.04;
+        }
+
         /* Animations */
         @keyframes spin {
             to {
@@ -50,17 +99,81 @@
             }
         }
 
-        @keyframes float {
-
-            0%,
-            100% {
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
                 transform: translateY(0);
             }
+        }
 
-            50% {
-                transform: translateY(-30px);
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-60px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
             }
         }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(60px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.85);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes drawLine {
+            from { transform: scaleX(0); }
+            to { transform: scaleX(1); }
+        }
+
+        @keyframes pulseGlow {
+            0%, 100% { box-shadow: 4px 4px 0 var(--pure-black); }
+            50% { box-shadow: 6px 6px 0 var(--pure-black), 0 0 20px rgba(244, 211, 94, 0.3); }
+        }
+
+        /* Scroll reveal */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .reveal-delay-1 { transition-delay: 0.1s; }
+        .reveal-delay-2 { transition-delay: 0.2s; }
+        .reveal-delay-3 { transition-delay: 0.3s; }
+        .reveal-delay-4 { transition-delay: 0.4s; }
 
         /* Container */
         .container {
@@ -79,6 +192,7 @@
             padding: 25px 0;
             border-bottom: 4px solid var(--pure-black);
             margin-bottom: 60px;
+            animation: fadeIn 0.6s ease both;
         }
 
         .nav-logo {
@@ -86,6 +200,12 @@
             font-size: 2.5rem;
             color: var(--pure-black);
             letter-spacing: 4px;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .nav-logo:hover {
+            color: var(--primary-red);
         }
 
         .nav-links {
@@ -118,12 +238,43 @@
             height: 4px;
             background: var(--primary-red);
             transform: scaleX(0);
-            transition: transform 0.3s;
+            transform-origin: left;
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         .nav-links a:hover::after,
         .nav-links a.active::after {
             transform: scaleX(1);
+        }
+
+        /* Mobile Menu */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 6px;
+            cursor: pointer;
+            padding: 8px;
+            z-index: 100;
+        }
+
+        .menu-toggle span {
+            display: block;
+            width: 28px;
+            height: 3px;
+            background: var(--pure-black);
+            transition: transform 0.3s, opacity 0.3s;
+        }
+
+        .menu-toggle.open span:nth-child(1) {
+            transform: rotate(45deg) translate(6px, 6px);
+        }
+
+        .menu-toggle.open span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-toggle.open span:nth-child(3) {
+            transform: rotate(-45deg) translate(6px, -6px);
         }
 
         /* Hero */
@@ -134,29 +285,6 @@
             align-items: center;
             padding: 80px 0;
             min-height: 70vh;
-        }
-
-        .hero-label {
-            display: inline-block;
-            background: var(--primary-yellow);
-            padding: 12px 28px;
-            font-size: 0.85rem;
-            font-weight: 700;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            margin-bottom: -25px;
-            margin-left: 10px;
-            transform: rotate(-3deg);
-            position: relative;
-            z-index: 2;
-            border: 3px solid var(--pure-black);
-            box-shadow: 4px 4px 0 var(--pure-black);
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-
-        .hero-label:hover {
-            transform: rotate(-1deg) translateY(-2px);
-            box-shadow: 6px 6px 0 var(--pure-black);
         }
 
         .hero-logo {
@@ -172,6 +300,8 @@
             letter-spacing: -2px;
             margin-bottom: 30px;
             position: relative;
+            animation: slideInLeft 0.8s cubic-bezier(0.16, 1, 0.3, 1) both 0.1s;
+            opacity: 0;
         }
 
         .hero h1::after {
@@ -182,19 +312,24 @@
             width: 150px;
             height: 8px;
             background: var(--primary-red);
+            animation: drawLine 0.6s cubic-bezier(0.16, 1, 0.3, 1) both 0.8s;
+            transform-origin: left;
         }
 
         .hero-tagline {
             font-size: 1.3rem;
             line-height: 1.8;
             max-width: 450px;
-            opacity: 0.8;
+            opacity: 0;
+            animation: fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) both 0.5s;
         }
 
         .hero-visual {
             display: flex;
             justify-content: center;
             align-items: center;
+            animation: slideInRight 0.8s cubic-bezier(0.16, 1, 0.3, 1) both 0.3s;
+            opacity: 0;
         }
 
         .hero-visual img {
@@ -202,7 +337,7 @@
             width: 100%;
             height: auto;
             filter: drop-shadow(8px 8px 0 var(--primary-yellow)) drop-shadow(0 4px 20px rgba(0, 0, 0, .15));
-            transition: transform 0.3s, filter 0.3s;
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), filter 0.4s;
         }
 
         .hero-visual img:hover {
@@ -260,22 +395,6 @@
             box-shadow: inset 0 0 30px rgba(0, 0, 0, .1);
         }
 
-        .details-grid-link {
-            text-decoration: none;
-            color: inherit;
-            display: block;
-            cursor: pointer;
-        }
-
-        .details-grid-link:hover .details-grid {
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
-            transform: translateY(-2px);
-        }
-
-        .details-grid-link .details-grid {
-            transition: box-shadow 0.3s, transform 0.3s;
-        }
-
         .detail-block .label {
             font-size: 0.85rem;
             font-weight: 700;
@@ -290,6 +409,25 @@
             font-size: 2.5rem;
             letter-spacing: 2px;
             line-height: 1.1;
+        }
+
+        .tbd-badge {
+            display: inline-block;
+            padding: 4px 16px;
+            background: rgba(0, 0, 0, 0.15);
+            border-radius: 4px;
+            font-size: 0.75rem;
+            letter-spacing: 3px;
+            margin-top: 8px;
+            font-family: 'Work Sans', sans-serif;
+            font-weight: 600;
+            text-transform: uppercase;
+            animation: pulse 2.5s ease infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.7; }
+            50% { opacity: 1; }
         }
 
         /* Features */
@@ -308,6 +446,7 @@
             font-family: 'Bebas Neue', sans-serif;
             font-size: 4rem;
             letter-spacing: 3px;
+            white-space: nowrap;
         }
 
         .section-header .line {
@@ -328,7 +467,8 @@
             border-right: 4px solid var(--pure-black);
             position: relative;
             background: var(--pure-white);
-            transition: background 0.3s;
+            transition: background 0.4s, transform 0.3s;
+            overflow: hidden;
         }
 
         .feature-card:nth-child(2n) {
@@ -349,7 +489,20 @@
             background: var(--primary-red);
             transform: scaleY(0);
             transform-origin: top;
-            transition: transform 0.3s;
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .feature-card::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 0 0 40px 40px;
+            border-color: transparent transparent rgba(0, 0, 0, 0.03) transparent;
+            transition: border-width 0.3s;
         }
 
         .feature-card:nth-child(2)::before {
@@ -368,6 +521,10 @@
             transform: scaleY(1);
         }
 
+        .feature-card:hover::after {
+            border-width: 0 0 60px 60px;
+        }
+
         .feature-card:hover {
             background: var(--off-white);
         }
@@ -377,12 +534,22 @@
             font-size: 2rem;
             letter-spacing: 2px;
             margin-bottom: 15px;
+            transition: transform 0.3s;
+        }
+
+        .feature-card:hover h3 {
+            transform: translateX(8px);
         }
 
         .feature-card p {
             font-size: 1rem;
             line-height: 1.8;
             opacity: 0.8;
+            transition: opacity 0.3s;
+        }
+
+        .feature-card:hover p {
+            opacity: 1;
         }
 
         /* CTA */
@@ -429,7 +596,8 @@
             position: relative;
             overflow: hidden;
             z-index: 1;
-            transition: transform 0.3s;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 4px 4px 0 var(--primary-red);
         }
 
         .cta-button::before {
@@ -440,7 +608,7 @@
             width: 100%;
             height: 100%;
             background: var(--primary-red);
-            transition: left 0.3s;
+            transition: left 0.4s cubic-bezier(0.16, 1, 0.3, 1);
             z-index: -1;
         }
 
@@ -449,7 +617,8 @@
         }
 
         .cta-button:hover {
-            transform: translateY(-2px);
+            transform: translateY(-3px);
+            box-shadow: 6px 8px 0 var(--primary-red);
         }
 
         .cta-visual {
@@ -459,12 +628,21 @@
             align-items: center;
             min-height: 200px;
             height: 100%;
-            width: calc(100% + 1px);
-            flex: 1;
             margin: 0;
-            margin-right: -1px;
             padding: 0;
             box-sizing: border-box;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-visual::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.05) 0%, transparent 60%);
         }
 
         .cta-visual img {
@@ -474,6 +652,41 @@
             animation: spin 15s linear infinite;
             opacity: 0.85;
             filter: drop-shadow(0 4px 15px rgba(255, 255, 255, .2));
+        }
+
+        /* Marquee Banner */
+        .marquee-banner {
+            background: var(--pure-black);
+            color: var(--pure-white);
+            padding: 18px 0;
+            overflow: hidden;
+            border: 4px solid var(--pure-black);
+            margin: 40px 0;
+        }
+
+        .marquee-track {
+            display: flex;
+            animation: marquee 25s linear infinite;
+            white-space: nowrap;
+        }
+
+        .marquee-track span {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.3rem;
+            letter-spacing: 4px;
+            padding: 0 40px;
+            flex-shrink: 0;
+        }
+
+        .marquee-track .dot {
+            color: var(--primary-red);
+            font-size: 1.5rem;
+            padding: 0 20px;
+        }
+
+        @keyframes marquee {
+            from { transform: translateX(0); }
+            to { transform: translateX(-50%); }
         }
 
         /* Footer */
@@ -494,6 +707,26 @@
             color: var(--primary-red);
             text-decoration: none;
             font-weight: 600;
+            position: relative;
+            transition: color 0.3s;
+        }
+
+        footer a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--primary-red);
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.3s;
+        }
+
+        footer a:hover::after {
+            transform: scaleX(1);
+            transform-origin: left;
         }
 
         .footer-shapes {
@@ -504,6 +737,11 @@
         .footer-shape {
             width: 30px;
             height: 30px;
+            transition: transform 0.3s;
+        }
+
+        .footer-shape:hover {
+            transform: scale(1.3) rotate(15deg);
         }
 
         .footer-shape.circle {
@@ -523,49 +761,189 @@
             border-bottom: 26px solid var(--primary-blue);
         }
 
-        /* Responsive */
+        /* Touch optimization */
+        @media (hover: none) and (pointer: coarse) {
+            /* Ensure minimum 44px touch targets */
+            .nav-links a,
+            .cta-button,
+            .menu-toggle,
+            footer a {
+                min-height: 44px;
+                min-width: 44px;
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .nav-links a {
+                display: flex;
+            }
+
+            /* Remove hover-only effects on touch devices */
+            .feature-card:hover {
+                background: var(--pure-white);
+            }
+
+            .feature-card:hover h3 {
+                transform: none;
+            }
+
+            .feature-card:hover::before {
+                transform: scaleY(0);
+            }
+
+            .hero-visual img:hover {
+                transform: none;
+                filter: drop-shadow(8px 8px 0 var(--primary-yellow)) drop-shadow(0 4px 20px rgba(0, 0, 0, .15));
+            }
+
+            /* Use active states instead for tactile feedback */
+            .cta-button:active {
+                transform: scale(0.97);
+                box-shadow: 2px 2px 0 var(--primary-red);
+            }
+
+            .feature-card:active {
+                background: var(--off-white);
+            }
+
+            .feature-card:active::before {
+                transform: scaleY(1);
+            }
+        }
+
+        /* Prevent tap highlight on iOS/Android */
+        a, button, .menu-toggle, .feature-card {
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        /* Body scroll lock when mobile menu is open */
+        body.menu-open {
+            overflow: hidden;
+            position: fixed;
+            width: 100%;
+            left: 0;
+        }
+
+        /* Responsive — Tablet */
         @media (max-width: 968px) {
             .hero {
                 grid-template-columns: 1fr;
-                gap: 40px;
+                gap: 30px;
                 text-align: center;
+                padding: 40px 0 60px;
+                min-height: auto;
+            }
+
+            .hero h1 {
+                font-size: clamp(4.5rem, 14vw, 8rem);
             }
 
             .hero h1::after {
-                left: 50%;
-                transform: translateX(-50%);
+                left: 0;
+                right: 0;
+                margin: 0 auto;
             }
 
             .hero-tagline {
                 margin: 0 auto;
+                font-size: 1.15rem;
             }
 
             .hero-visual {
                 order: -1;
             }
+
+            .hero-visual img {
+                max-width: 300px;
+            }
+
+            .section-header h2 {
+                font-size: 2.5rem;
+            }
+
+            .cta-section {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-visual {
+                padding: 50px;
+                width: 100%;
+                margin-right: 0;
+            }
         }
 
+        /* Responsive — Mobile */
         @media (max-width: 768px) {
+            .container {
+                padding: 20px 16px;
+            }
+
             nav {
-                flex-direction: column;
-                gap: 20px;
+                position: relative;
+                padding: 20px 0;
+                margin-bottom: 30px;
+            }
+
+            .menu-toggle {
+                display: flex;
             }
 
             .nav-links {
-                gap: 30px;
+                position: absolute;
+                top: 100%;
+                left: -16px;
+                right: -16px;
+                background: var(--off-white);
+                flex-direction: column;
+                gap: 0;
+                border-bottom: 4px solid var(--pure-black);
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+                z-index: 100;
+            }
+
+            .nav-links.open {
+                max-height: 300px;
+            }
+
+            .nav-links a {
+                display: flex;
+                align-items: center;
+                padding: 16px 20px;
+                min-height: 52px;
+                border-top: 2px solid rgba(13, 13, 13, 0.08);
+                font-size: 1rem;
+            }
+
+            .hero {
+                padding: 20px 0 40px;
+            }
+
+            .hero-visual img {
+                max-width: 220px;
             }
 
             .details-grid {
                 grid-template-columns: 1fr;
+                margin: 50px 0;
             }
 
             .detail-block {
                 border-right: none;
                 border-bottom: 4px solid var(--pure-black);
+                padding: 35px 25px;
             }
 
             .detail-block:last-child {
                 border-bottom: none;
+                width: 100%;
+                margin-right: 0;
+            }
+
+            .features {
+                padding: 50px 0;
             }
 
             .features-grid {
@@ -575,33 +953,205 @@
             .feature-card {
                 border-right: none !important;
                 border-bottom: 4px solid var(--pure-black) !important;
+                padding: 35px 25px;
             }
 
             .feature-card:last-child {
                 border-bottom: none !important;
             }
 
-            .cta-section {
-                grid-template-columns: 1fr;
+            .cta-content {
+                padding: 40px 24px;
             }
 
-            .cta-visual {
-                padding: 60px;
+            .cta-content h2 {
+                font-size: 3rem;
+            }
+
+            .cta-content p {
+                font-size: 1rem;
+            }
+
+            .cta-button {
+                display: block;
+                text-align: center;
+                padding: 18px 30px;
+                font-size: 1.3rem;
+                width: 100%;
             }
 
             footer {
                 flex-direction: column;
-                gap: 30px;
+                gap: 25px;
                 text-align: center;
+                padding: 40px 0;
             }
+
+            .marquee-banner {
+                margin: 20px -16px;
+            }
+
+            .section-header {
+                gap: 16px;
+                margin-bottom: 30px;
+            }
+
+            .section-header h2 {
+                font-size: 2rem;
+                white-space: normal;
+            }
+        }
+
+        /* Responsive — Small phones */
+        @media (max-width: 480px) {
+            .container {
+                padding: 16px 12px;
+            }
+
+            .nav-logo {
+                font-size: 2rem;
+                letter-spacing: 2px;
+            }
+
+            .hero h1 {
+                font-size: clamp(3.5rem, 18vw, 5rem);
+                margin-bottom: 20px;
+            }
+
+            .hero-tagline {
+                font-size: 1rem;
+                line-height: 1.7;
+            }
+
+            .hero-visual img {
+                max-width: 180px;
+            }
+
+            .detail-block {
+                padding: 25px 18px;
+            }
+
+            .detail-block .value {
+                font-size: 1.8rem;
+            }
+
+            .detail-block .label {
+                font-size: 0.75rem;
+            }
+
+            .feature-card {
+                padding: 28px 18px;
+            }
+
+            .feature-card h3 {
+                font-size: 1.6rem;
+            }
+
+            .feature-card p {
+                font-size: 0.95rem;
+            }
+
+            .cta-content {
+                padding: 30px 16px;
+            }
+
+            .cta-content h2 {
+                font-size: 2.5rem;
+            }
+
+            .cta-content p {
+                font-size: 0.95rem;
+                margin-bottom: 30px;
+            }
+
+            .cta-button {
+                padding: 16px 20px;
+                font-size: 1.2rem;
+            }
+
+            .cta-visual {
+                padding: 40px;
+            }
+
+            .cta-visual img {
+                max-width: 140px;
+            }
+
+            .section-header h2 {
+                font-size: 1.6rem;
+            }
+
+            .marquee-track span {
+                font-size: 1rem;
+                letter-spacing: 2px;
+                padding: 0 20px;
+            }
+
+            .marquee-track .dot {
+                font-size: 1.2rem;
+                padding: 0 10px;
+            }
+
+            footer p {
+                font-size: 0.8rem;
+            }
+
+            .nav-links {
+                left: -12px;
+                right: -12px;
+            }
+        }
+
+        /* Accessibility: reduced motion */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+
+            .reveal {
+                opacity: 1;
+                transform: none;
+            }
+
+            .marquee-track {
+                animation: none;
+            }
+        }
+
+        /* Focus-visible styles for keyboard navigation */
+        a:focus-visible,
+        .cta-button:focus-visible {
+            outline: 3px solid var(--primary-red);
+            outline-offset: 3px;
+        }
+
+        .menu-toggle:focus-visible {
+            outline: 3px solid var(--primary-red);
+            outline-offset: 3px;
+        }
+
+        .nav-links a:focus-visible::after {
+            transform: scaleX(1);
         }
     </style>
 </head>
 
 <body>
+    <!-- Background elements -->
+    <div class="grid-bg"></div>
+    <div class="accent-stripe"></div>
+    <div class="accent-stripe"></div>
+
     <div class="container">
         <nav>
-            <div class="nav-logo">INDYHAX</div>
+            <a href="index.html" class="nav-logo">INDYHAX</a>
+            <div class="menu-toggle" role="button" tabindex="0" aria-label="Toggle navigation menu" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
             <div class="nav-links">
                 <a href="index.html" class="active">Home</a>
                 <a href="registration.html">Register</a>
@@ -612,61 +1162,77 @@
             <div class="hero-content">
                 <h1>INDY<br>HAX</h1>
                 <p class="hero-tagline">The ultimate <strong>Hybrid CTF & Hackathon</strong>. Capture flags. Build
-                    projects. Or do both.<br>Open to all LCPS students.</p>
+                    projects. Or do both.<br>Open to all Loudoun County Public Schools (LCPS) students.</p>
             </div>
             <div class="hero-visual">
-                <img src="logo.PNG" alt="IndyHAX Logo - Gnome on a Duck">
+                <img src="logo.PNG" alt="IndyHAX Logo - Gnome on a Duck" width="450" height="450">
             </div>
         </section>
 
-        <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=IndyHAX%20-%20Hybrid%20CTF%20%26%20Hackathon&dates=20260418T120000Z/20260418T200000Z&details=Independence%20High%20School%27s%20first-ever%20Hybrid%20CTF%20%26%20Hackathon.%20Capture%20flags%2C%20build%20projects%2C%20or%20do%20both!%0A%0ARegister%20at%3A%20https%3A%2F%2Findyhax.com&location=Independence%20High%20School%2C%20Ashburn%2C%20VA"
-            target="_blank" rel="noopener" class="details-grid-link" title="Add to Google Calendar">
-            <section class="details-grid">
-                <div class="detail-block">
-                    <div class="label">Location</div>
-                    <div class="value">Independence High School</div>
-                </div>
-                <div class="detail-block">
-                    <div class="label">Date</div>
-                    <div class="value">April 18, 2026</div>
-                </div>
-                <div class="detail-block">
-                    <div class="label">Time</div>
-                    <div class="value">8:00 AM – 4:00 PM</div>
-                </div>
-            </section>
-        </a>
+        <!-- Marquee Banner -->
+        <div class="marquee-banner reveal">
+            <div class="marquee-track">
+                <span>CAPTURE THE FLAG</span><span class="dot">&bull;</span>
+                <span>BUILD PROJECTS</span><span class="dot">&bull;</span>
+                <span>WIN PRIZES</span><span class="dot">&bull;</span>
+                <span>HYBRID FORMAT</span><span class="dot">&bull;</span>
+                <span>ALL SKILL LEVELS</span><span class="dot">&bull;</span>
+                <span>FREE TO ATTEND</span><span class="dot">&bull;</span>
+                <span>CAPTURE THE FLAG</span><span class="dot">&bull;</span>
+                <span>BUILD PROJECTS</span><span class="dot">&bull;</span>
+                <span>WIN PRIZES</span><span class="dot">&bull;</span>
+                <span>HYBRID FORMAT</span><span class="dot">&bull;</span>
+                <span>ALL SKILL LEVELS</span><span class="dot">&bull;</span>
+                <span>FREE TO ATTEND</span><span class="dot">&bull;</span>
+            </div>
+        </div>
+
+        <section class="details-grid reveal">
+            <div class="detail-block">
+                <div class="label">Location</div>
+                <div class="value">Independence High School</div>
+            </div>
+            <div class="detail-block">
+                <div class="label">Date</div>
+                <div class="value">TBD</div>
+                <div class="tbd-badge">Stay Tuned</div>
+            </div>
+            <div class="detail-block">
+                <div class="label">Time</div>
+                <div class="value">8:00 AM – 4:00 PM</div>
+            </div>
+        </section>
 
         <section class="features">
-            <div class="section-header">
+            <div class="section-header reveal">
                 <h2>TWO TRACKS. ONE EPIC EVENT.</h2>
                 <div class="line"></div>
             </div>
             <div class="features-grid">
-                <div class="feature-card">
-                    <h3>🚩 CAPTURE THE FLAG</h3>
+                <div class="feature-card reveal reveal-delay-1">
+                    <h3>CAPTURE THE FLAG</h3>
                     <p>Test your cybersecurity prowess with Jeopardy-style CTF challenges. Crack codes, exploit
                         vulnerabilities, and capture flags to prove you've got what it takes.</p>
                 </div>
-                <div class="feature-card">
-                    <h3>🛠️ BUILD YOUR IDEA</h3>
+                <div class="feature-card reveal reveal-delay-2">
+                    <h3>BUILD YOUR IDEA</h3>
                     <p>Got a vision? Bring it to life. Whether it's AI, web apps, or something wild—this is your arena
                         to build, ship, and showcase real projects.</p>
                 </div>
-                <div class="feature-card">
-                    <h3>⚡ HACK, CAPTURE, OR BOTH</h3>
+                <div class="feature-card reveal reveal-delay-3">
+                    <h3>HACK, CAPTURE, OR BOTH</h3>
                     <p>Why choose? Our hybrid format lets you do it all. Earn extra points by solving CTF challenges
                         while building your project. Maximum impact, maximum fun.</p>
                 </div>
-                <div class="feature-card">
-                    <h3>🏆 COMPETE & WIN</h3>
+                <div class="feature-card reveal reveal-delay-4">
+                    <h3>COMPETE & WIN</h3>
                     <p>Whether you're a security researcher or a software engineer, bring your A-game. Amazing prizes
                         await for top CTF solvers, best projects, and hybrid champions.</p>
                 </div>
             </div>
         </section>
 
-        <section class="cta-section">
+        <section class="cta-section reveal">
             <div class="cta-content">
                 <h2>READY TO<br>COMPETE?</h2>
                 <p>Break into cybersecurity. Ship your first project. Or dominate both. This is your chance to prove
@@ -674,18 +1240,18 @@
                 <a href="registration.html" class="cta-button">Register Now</a>
             </div>
             <div class="cta-visual">
-                <img src="logo.PNG" alt="IndyHAX Logo">
+                <img src="logo.PNG" alt="IndyHAX Logo" width="200" height="200">
             </div>
         </section>
 
-        <footer>
+        <footer class="reveal">
             <div>
                 <p><strong>IndyHAX 2026</strong> — Independence High School</p>
                 <p>Organized by <a href="https://tarushv.com">Tarushv Kosgi</a>, <a href="https://abhiboora.com">Abhinav
                         Boora</a>, Tanisha Singh, Lalith Dasa &amp; Dheeraj Chennaboina</p>
                 <p><a href="https://indyhax.com">indyhax.com</a></p>
             </div>
-            <div class="footer-shapes">
+            <div class="footer-shapes" aria-hidden="true">
                 <div class="footer-shape circle"></div>
                 <div class="footer-shape square"></div>
                 <div class="footer-shape triangle"></div>
@@ -694,24 +1260,118 @@
     </div>
 
     <script>
-        // Parallax effect for hero image
+        // Mobile menu: close on link click + body scroll lock
+        (function() {
+            const toggle = document.querySelector('.menu-toggle');
+            const navLinks = document.querySelector('.nav-links');
+            const links = navLinks.querySelectorAll('a');
+            let scrollPos = 0;
+
+            function closeMenu() {
+                toggle.classList.remove('open');
+                toggle.setAttribute('aria-expanded', 'false');
+                navLinks.classList.remove('open');
+                document.body.classList.remove('menu-open');
+                window.scrollTo(0, scrollPos);
+            }
+
+            function openMenu() {
+                scrollPos = window.scrollY;
+                toggle.classList.add('open');
+                toggle.setAttribute('aria-expanded', 'true');
+                navLinks.classList.add('open');
+                document.body.classList.add('menu-open');
+                document.body.style.top = `-${scrollPos}px`;
+            }
+
+            toggle.addEventListener('click', function(e) {
+                e.stopPropagation();
+                if (navLinks.classList.contains('open')) {
+                    closeMenu();
+                } else {
+                    openMenu();
+                }
+            });
+
+            toggle.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    toggle.click();
+                }
+            });
+
+            // Close menu when a nav link is tapped
+            links.forEach(function(link) {
+                link.addEventListener('click', function() {
+                    if (navLinks.classList.contains('open')) {
+                        closeMenu();
+                    }
+                });
+            });
+
+            // Close menu on outside tap
+            document.addEventListener('click', function(e) {
+                if (navLinks.classList.contains('open') && !navLinks.contains(e.target) && !toggle.contains(e.target)) {
+                    closeMenu();
+                }
+            });
+
+            // Close menu on Escape key
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && navLinks.classList.contains('open')) {
+                    closeMenu();
+                    toggle.focus();
+                }
+            });
+        })();
+
+        // Scroll reveal with IntersectionObserver
+        const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -60px 0px' };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // Parallax effect for hero image — disabled on touch devices
+        const isTouchDevice = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
         const heroImg = document.querySelector('.hero-visual img');
-        if (heroImg) {
+        if (heroImg && !isTouchDevice) {
             let tx = 0, ty = 0, cx = 0, cy = 0, hovering = false, raf = null;
             const ease = () => {
-                cx += (tx - cx) * 0.1;
-                cy += (ty - cy) * 0.1;
+                cx += (tx - cx) * 0.08;
+                cy += (ty - cy) * 0.08;
                 heroImg.style.transform = `translate(${cx}px, ${cy}px)`;
                 if (Math.abs(tx - cx) > 0.1 || Math.abs(ty - cy) > 0.1 || hovering) raf = requestAnimationFrame(ease);
             };
             heroImg.addEventListener('mousemove', e => {
                 const r = heroImg.getBoundingClientRect();
-                tx = ((e.clientX - r.left) / r.width - 0.5) * r.width * 0.15;
-                ty = ((e.clientY - r.top) / r.height - 0.5) * r.height * 0.15;
+                tx = ((e.clientX - r.left) / r.width - 0.5) * r.width * 0.12;
+                ty = ((e.clientY - r.top) / r.height - 0.5) * r.height * 0.12;
                 if (!hovering) { hovering = true; ease(); }
             });
             heroImg.addEventListener('mouseleave', () => { hovering = false; tx = ty = 0; if (!raf) ease(); });
         }
+
+        // Smooth number counter for any future stat elements
+        document.querySelectorAll('[data-count]').forEach(el => {
+            const target = parseInt(el.dataset.count);
+            let current = 0;
+            const step = target / 60;
+            const count = () => {
+                current += step;
+                if (current >= target) { el.textContent = target; return; }
+                el.textContent = Math.floor(current);
+                requestAnimationFrame(count);
+            };
+            const io = new IntersectionObserver(([e]) => { if (e.isIntersecting) { count(); io.disconnect(); } });
+            io.observe(el);
+        });
     </script>
 </body>
 
