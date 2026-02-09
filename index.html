@@ -13,7 +13,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Work+Sans:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="styles.css?v=20260208b">
+    <link rel="stylesheet" href="styles.css?v=20260208c">
     <style>
         /* ==========================================================
            Index — Page-Specific Styles
@@ -718,6 +718,7 @@
                 toggle.setAttribute('aria-expanded', 'false');
                 navLinks.classList.remove('open');
                 document.body.classList.remove('menu-open');
+                document.body.style.top = '';
                 window.scrollTo(0, scrollPos);
             }
 
@@ -767,6 +768,13 @@
                 if (e.key === 'Escape' && navLinks.classList.contains('open')) {
                     closeMenu();
                     toggle.focus();
+                }
+            });
+
+            // Safety: reset mobile menu state when resizing to desktop
+            window.addEventListener('resize', function() {
+                if (window.innerWidth > 768 && navLinks.classList.contains('open')) {
+                    closeMenu();
                 }
             });
         })();
