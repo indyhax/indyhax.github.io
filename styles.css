@@ -423,15 +423,6 @@ body.menu-open {
     .container {
         max-width: 100%;
     }
-}
-
-/* ============================================================
-   Responsive — Mobile (≤ 768px)
-   ============================================================ */
-@media (max-width: 768px) {
-    .container {
-        padding: 20px 16px;
-    }
 
     nav {
         position: relative;
@@ -450,8 +441,8 @@ body.menu-open {
     .nav-links {
         position: absolute;
         top: calc(100% + 2px);
-        left: -16px;
-        right: -16px;
+        left: -20px;
+        right: -20px;
         background: rgba(255, 255, 255, 0.82);
         -webkit-backdrop-filter: blur(14px) saturate(145%);
         backdrop-filter: blur(14px) saturate(145%);
@@ -488,6 +479,20 @@ body.menu-open {
     .nav-links a::after {
         left: 20px;
         width: calc(100% - 40px);
+    }
+}
+
+/* ============================================================
+   Responsive — Mobile (≤ 768px)
+   ============================================================ */
+@media (max-width: 768px) {
+    .container {
+        padding: 20px 16px;
+    }
+
+    .nav-links {
+        left: -16px;
+        right: -16px;
     }
 
     .cta-button {
