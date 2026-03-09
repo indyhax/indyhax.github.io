@@ -384,7 +384,6 @@ footer a:hover::after {
 @media (hover: none) and (pointer: coarse) {
     .nav-links a,
     .cta-button,
-    .menu-toggle,
     footer a {
         min-height: 44px;
         min-width: 44px;
@@ -436,6 +435,10 @@ body.menu-open {
 
     .menu-toggle {
         display: flex;
+        min-height: 44px;
+        min-width: 44px;
+        align-items: center;
+        justify-content: center;
     }
 
     .nav-links {
