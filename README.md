@@ -7,7 +7,7 @@
 ## Event Details
 
 - **Location:** Independence High School
-- **Date:** (TBD)
+- **Date:** May (exact date TBD)
 - **Theme:** Building Smarter Systems for Smarter Students.
 
 ## The Challenge
