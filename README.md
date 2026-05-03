@@ -7,7 +7,7 @@
 ## Event Details
 
 - **Location:** Independence High School
-- **Date:** (TBD)
+- **Date:** June 7, 2026
 - **Theme:** Building Smarter Systems for Smarter Students.
 
 ## The Challenge
@@ -75,7 +75,7 @@ We envision a future where AI assists students in managing their academic respon
 
 Start thinking about how you would design an AI-powered platform that you and your classmates would actually want to use. What features would be most helpful? How can AI make managing schoolwork feel less overwhelming and more manageable?
 
-Stay tuned for the official event date announcement. Get ready to code, create, and change the way students work!
+Mark your calendar for June 7, 2026. Get ready to code, create, and change the way students work!
 
 ---
 
