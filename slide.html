@@ -24,14 +24,15 @@
             --blue: #1d3557;
             --black: #0d0d0d;
             --white: #fff;
-            --paper: #f0efe9;
+            --paper: #f6f0e4;
+            --paper-deep: #e7dcc7;
             --border: 5px solid var(--black);
-            --shadow: 12px 12px 0 var(--black);
+            --shadow: 9px 9px 0 var(--black);
         }
 
         body {
             font-family: 'Work Sans', sans-serif;
-            background: #c4c4c4;
+            background: #d6d0c3;
             min-height: 100vh;
             display: flex;
             justify-content: center;
@@ -43,7 +44,9 @@
         .slide {
             width: 1920px;
             height: 1080px;
-            background: var(--paper);
+            background:
+                radial-gradient(circle at 76% 20%, rgba(244, 211, 94, 0.24), transparent 34%),
+                linear-gradient(135deg, var(--paper), var(--paper-deep));
             color: var(--black);
             position: relative;
             overflow: hidden;
@@ -54,13 +57,13 @@
         /* Giant year watermark */
         .watermark-year {
             position: absolute;
-            right: -20px;
-            top: 40px;
+            right: -8px;
+            top: 88px;
             font-family: 'Bebas Neue', sans-serif;
-            font-size: 320px;
-            line-height: 0.72;
+            font-size: 280px;
+            line-height: 0.8;
             color: transparent;
-            -webkit-text-stroke: 2px rgba(13, 13, 13, 0.12);
+            -webkit-text-stroke: 2px rgba(13, 13, 13, 0.1);
             letter-spacing: -6px;
             pointer-events: none;
             user-select: none;
@@ -71,8 +74,8 @@
             position: relative;
             z-index: 1;
             display: grid;
-            grid-template-columns: 520px 1fr 440px;
-            grid-template-rows: 72px 1fr 88px;
+            grid-template-columns: 500px minmax(0, 1fr) 420px;
+            grid-template-rows: 78px 1fr 78px;
             height: 100%;
         }
 
@@ -84,66 +87,65 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 0 36px;
+            padding: 0 44px;
             border-bottom: var(--border);
             font-weight: 700;
-            font-size: 15px;
-            letter-spacing: 0.42em;
+            font-size: 14px;
+            letter-spacing: 0.32em;
             text-transform: uppercase;
         }
 
         .ribbon-marquee {
             display: flex;
-            gap: 2.5em;
+            gap: 2em;
             flex-wrap: wrap;
             row-gap: 0.35em;
+            opacity: 0.86;
         }
 
         /* Left column — typographic slam */
         .col-title {
             border-right: var(--border);
-            padding: 40px 36px 32px;
+            padding: 54px 44px 40px;
             display: flex;
             flex-direction: column;
             justify-content: flex-start;
-            gap: 20px;
-            background: repeating-linear-gradient(
-                180deg,
-                var(--yellow) 0,
-                var(--yellow) 8px,
-                var(--paper) 8px,
-                var(--paper) 16px
-            );
-            background-size: 100% 24px;
+            gap: 28px;
+            background:
+                linear-gradient(90deg, rgba(13, 13, 13, 0.07) 1px, transparent 1px),
+                linear-gradient(180deg, var(--yellow), #efd068);
+            background-size: 34px 100%, 100% 100%;
         }
 
         .tape {
             align-self: flex-start;
             background: var(--red);
             color: var(--white);
-            padding: 10px 18px;
+            padding: 10px 16px;
             border: var(--border);
-            font-size: 12px;
+            font-size: 11px;
             font-weight: 700;
-            letter-spacing: 0.22em;
+            letter-spacing: 0.18em;
             text-transform: uppercase;
-            transform: rotate(-4deg);
-            box-shadow: 6px 6px 0 var(--black);
+            line-height: 1.35;
+            max-width: 360px;
+            transform: rotate(-2deg);
+            box-shadow: 5px 5px 0 var(--black);
         }
 
         .wordmark {
             font-family: 'Bebas Neue', sans-serif;
-            line-height: 0.82;
-            margin-top: 8px;
+            line-height: 0.84;
+            margin-top: 4px;
         }
 
         .wordmark .indy {
             display: block;
-            font-size: 198px;
+            font-size: 188px;
             letter-spacing: -4px;
             text-shadow:
-                4px 4px 0 rgba(230, 57, 70, 0.35),
-                8px 8px 0 var(--black);
+                3px 3px 0 rgba(230, 57, 70, 0.36),
+                7px 7px 0 var(--black);
         }
 
         .wordmark .hax-slab {
@@ -151,74 +153,77 @@
             margin-top: 8px;
             background: var(--red);
             color: var(--white);
-            padding: 4px 22px 12px;
+            padding: 4px 20px 10px;
             border: var(--border);
-            font-size: 212px;
+            font-size: 190px;
             letter-spacing: 2px;
             box-shadow: var(--shadow);
-            transform: translate(8px, 0) rotate(-1deg);
+            transform: translate(6px, 0) rotate(-0.75deg);
         }
 
         .lcps-strip {
             margin-top: auto;
             background: var(--black);
             color: var(--white);
-            padding: 18px 20px;
+            padding: 20px 22px;
             border: var(--border);
-            font-size: 15px;
+            font-size: 14px;
             font-weight: 700;
-            line-height: 1.45;
+            line-height: 1.5;
             letter-spacing: 0.04em;
+            box-shadow: 6px 6px 0 rgba(13, 13, 13, 0.22);
         }
 
         /* Center — stacked track cards */
         .col-program {
-            padding: 36px 40px 28px;
+            padding: 54px 54px 42px;
             display: flex;
             flex-direction: column;
-            gap: 22px;
+            gap: 24px;
             justify-content: center;
         }
 
         .program-head {
             font-family: 'Bebas Neue', sans-serif;
-            font-size: 52px;
-            letter-spacing: 3px;
+            font-size: 58px;
+            letter-spacing: 2px;
             border-bottom: 5px solid var(--black);
-            padding-bottom: 10px;
-            margin-bottom: 4px;
+            padding-bottom: 14px;
+            margin-bottom: 10px;
+            max-width: 720px;
         }
 
         .track {
             border: var(--border);
-            padding: 22px 24px;
-            box-shadow: 8px 8px 0 var(--black);
+            padding: 26px 30px 28px;
+            box-shadow: 7px 7px 0 var(--black);
             position: relative;
+            max-width: 760px;
         }
 
         .track:nth-child(2) {
-            transform: translate(14px, 0);
+            transform: translate(0, 0);
             background: var(--white);
         }
 
         .track:nth-child(3) {
-            transform: translate(4px, 0);
+            transform: translate(22px, 0);
             background: var(--yellow);
         }
 
         .track:nth-child(4) {
-            transform: translate(24px, 0);
+            transform: translate(44px, 0);
             background: var(--red);
             color: var(--white);
         }
 
         .track-num {
             position: absolute;
-            top: 16px;
-            right: 20px;
+            top: 18px;
+            right: 24px;
             font-family: 'Bebas Neue', sans-serif;
-            font-size: 44px;
-            opacity: 0.35;
+            font-size: 50px;
+            opacity: 0.25;
             line-height: 1;
         }
 
@@ -229,16 +234,16 @@
 
         .track h3 {
             font-family: 'Bebas Neue', sans-serif;
-            font-size: 36px;
-            letter-spacing: 2px;
-            margin-bottom: 10px;
+            font-size: 38px;
+            letter-spacing: 1.8px;
+            margin-bottom: 12px;
         }
 
         .track p {
-            font-size: 16px;
+            font-size: 15px;
             font-weight: 600;
-            line-height: 1.55;
-            max-width: 54ch;
+            line-height: 1.62;
+            max-width: 48ch;
             opacity: 0.92;
         }
 
@@ -249,22 +254,24 @@
 
         /* Right — logistics pillar */
         .col-logistics {
-            background: var(--blue);
+            background:
+                linear-gradient(180deg, rgba(255, 255, 255, 0.05), transparent 44%),
+                var(--blue);
             color: var(--white);
             border-left: var(--border);
-            padding: 36px 32px;
+            padding: 46px 34px 40px;
             display: flex;
             flex-direction: column;
-            gap: 28px;
+            gap: 26px;
         }
 
         .col-logistics .where-label {
             font-size: 12px;
             font-weight: 700;
-            letter-spacing: 0.38em;
+            letter-spacing: 0.28em;
             text-transform: uppercase;
-            opacity: 0.75;
-            border: 3px solid rgba(255, 255, 255, 0.35);
+            opacity: 0.8;
+            border: 3px solid rgba(255, 255, 255, 0.42);
             display: inline-block;
             padding: 8px 14px;
             width: fit-content;
@@ -272,14 +279,14 @@
 
         .col-logistics .date-big {
             font-family: 'Bebas Neue', sans-serif;
-            font-size: 86px;
-            line-height: 0.92;
+            font-size: 78px;
+            line-height: 0.95;
             letter-spacing: 1px;
-            margin-top: 4px;
+            margin-top: 18px;
         }
 
         .col-logistics .date-plain {
-            font-size: 17px;
+            font-size: 16px;
             font-weight: 700;
             margin-top: 14px;
             letter-spacing: 0.08em;
@@ -288,46 +295,48 @@
         }
 
         .col-logistics .venue {
-            font-size: 26px;
+            font-size: 24px;
             font-weight: 700;
-            line-height: 1.28;
+            line-height: 1.32;
             border-left: 6px solid var(--yellow);
-            padding-left: 18px;
+            padding-left: 20px;
         }
 
         .col-logistics .time-block {
-            background: rgba(0, 0, 0, 0.25);
+            background: rgba(0, 0, 0, 0.22);
             border: 4px solid var(--white);
-            padding: 18px 20px;
+            padding: 18px 20px 16px;
             font-family: 'Bebas Neue', sans-serif;
-            font-size: 42px;
-            letter-spacing: 2px;
+            font-size: 38px;
+            letter-spacing: 1.4px;
+            white-space: nowrap;
+            box-shadow: 6px 6px 0 rgba(0, 0, 0, 0.28);
         }
 
         .logo-box {
             margin-top: auto;
             align-self: center;
-            padding: 12px;
+            padding: 14px;
             background: var(--white);
             border: var(--border);
-            box-shadow: 8px 8px 0 var(--yellow);
+            box-shadow: 7px 7px 0 var(--yellow);
         }
 
         .logo-box img {
             display: block;
-            width: 180px;
+            width: 160px;
             height: auto;
         }
 
         .site-cta {
             text-align: center;
-            margin-top: 20px;
+            margin-top: 16px;
         }
 
         .site-cta .url {
             font-family: 'Bebas Neue', sans-serif;
-            font-size: 32px;
-            letter-spacing: 0.14em;
+            font-size: 34px;
+            letter-spacing: 0.12em;
         }
 
         .site-cta a {
@@ -335,11 +344,11 @@
             margin-top: 12px;
             background: var(--yellow);
             color: var(--black);
-            padding: 12px 28px;
+            padding: 12px 24px;
             border: var(--border);
             font-weight: 800;
-            font-size: 14px;
-            letter-spacing: 0.35em;
+            font-size: 13px;
+            letter-spacing: 0.24em;
             text-transform: uppercase;
             text-decoration: none;
             box-shadow: 6px 6px 0 rgba(13, 13, 13, 0.4);
@@ -356,13 +365,13 @@
             border-top: var(--border);
             background: var(--yellow);
             color: var(--black);
-            padding: 0 36px;
+            padding: 0 44px;
             display: flex;
             align-items: center;
             justify-content: space-between;
             gap: 24px;
             font-weight: 700;
-            font-size: 14px;
+            font-size: 13px;
             letter-spacing: 0.06em;
         }
 
@@ -373,9 +382,10 @@
         .footer-extra {
             font-size: 11px;
             font-weight: 600;
-            max-width: 640px;
+            max-width: 520px;
             line-height: 1.35;
             letter-spacing: 0.03em;
+            text-align: right;
         }
 
         @media print {
@@ -414,38 +424,38 @@
             </header>
 
             <aside class="col-title">
-                <div class="tape">Loudoun County Public Schools · students welcome</div>
+                <div class="tape">Open to Loudoun County Public Schools students</div>
                 <div class="wordmark">
                     <span class="indy">INDY</span>
                     <span class="hax-slab">HAX</span>
                 </div>
                 <div class="lcps-strip">
-                    LCPS-first hybrid arena: jeopardy-style CTF, open build arena, &amp; stacked scoring when you choose
-                    both. Zero cost to attend · all grade levels invited.
+                    A one-day hybrid arena: capture flags, build real projects, or compete in both tracks. Free to
+                    attend · all skill levels invited.
                 </div>
             </aside>
 
             <section class="col-program" aria-label="Program tracks">
-                <h2 class="program-head">TWO TRACKS · ONE CLOCK</h2>
+                <h2 class="program-head">TWO TRACKS · ONE EVENT</h2>
 
                 <article class="track">
                     <span class="track-num">01</span>
                     <h3>CAPTURE THE FLAG</h3>
-                    <p>Jeopardy-style cybersecurity challenges—decode prompts, poke at vulnerabilities, chase flags.</p>
+                    <p>Jeopardy-style cybersecurity challenges: decode prompts, probe vulnerabilities, and capture flags.</p>
                 </article>
 
                 <article class="track">
                     <span class="track-num">02</span>
                     <h3>BUILD YOUR IDEA</h3>
-                    <p>Bring a sprint-ready concept (web, automation, experiments in AI)—ship it, demo it live on the
-                        floor.</p>
+                    <p>Bring a sprint-ready concept for the web, automation, AI, or anything useful. Build it and demo
+                        it live.</p>
                 </article>
 
                 <article class="track">
                     <span class="track-num">03</span>
                     <h3>HACK BOTH</h3>
-                    <p>Hybrid entrants stack points cracking CTFs while pushing pixels on their build—bonus weight for dual
-                        threat finishers targeting prizes.</p>
+                    <p>Solve CTF challenges while shipping your project. Hybrid competitors can score across both
+                        sides of the event.</p>
                 </article>
             </section>
 
@@ -456,7 +466,7 @@
                     <p class="date-plain">June 7, 2026</p>
                 </div>
                 <div class="venue">Independence<br>High School<br>Loudoun County, Virginia</div>
-                <div class="time-block">09:00 – 14:00</div>
+                <div class="time-block">9:00 AM – 2:00 PM</div>
                 <div class="logo-box">
                     <img src="logo.PNG" width="180" height="180" alt="IndyHAX mascot mark">
                 </div>
@@ -468,7 +478,7 @@
 
             <footer class="footer-bar">
                 <span><strong>COMPETE &amp; WIN</strong> — prizes for top CTF solvers, best projects &amp; hybrid
-                    champions · free to attend · all skill levels · bring gear for your chosen track</span>
+                    champions · free to attend · all skill levels welcome</span>
                 <span class="footer-extra">Tarushv Kosgi · Abhinav Boora · Lalith Dasa · Dheeraj Chennaboina
                 </span>
             </footer>
