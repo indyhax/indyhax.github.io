@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="IndyHAX — Hybrid CTF & Hackathon at Independence High School. June 7, 2026.">
+    <title>IndyHAX — Event Slide</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Work+Sans:wght@400;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --red: #e63946;
+            --yellow: #f4d35e;
+            --blue: #1d3557;
+            --black: #0d0d0d;
+            --white: #fff;
+        }
+
+        body {
+            font-family: 'Work Sans', sans-serif;
+            background: #e8e8e8;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 24px;
+        }
+
+        /* 16:9 deck slide — screenshot-friendly at 1920×1080 */
+        .slide {
+            width: 1920px;
+            height: 1080px;
+            background: var(--black);
+            color: var(--white);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            border: 6px solid var(--black);
+            box-shadow: 0 24px 80px rgba(0, 0, 0, 0.35);
+        }
+
+        .slide-grid {
+            position: absolute;
+            inset: 0;
+            opacity: 0.06;
+            background-image:
+                linear-gradient(var(--white) 1px, transparent 1px),
+                linear-gradient(90deg, var(--white) 1px, transparent 1px);
+            background-size: 48px 48px;
+            pointer-events: none;
+        }
+
+        .badge {
+            display: inline-block;
+            background: var(--yellow);
+            color: var(--black);
+            font-size: 20px;
+            font-weight: 700;
+            letter-spacing: 0.35em;
+            text-transform: uppercase;
+            padding: 14px 32px;
+            border: 4px solid var(--black);
+            margin-bottom: 28px;
+            transform: rotate(-1.5deg);
+        }
+
+        h1 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(120px, 14vw, 220px);
+            line-height: 0.82;
+            letter-spacing: -2px;
+            margin-bottom: 16px;
+        }
+
+        h1 .hax {
+            color: var(--red);
+        }
+
+        .subtitle {
+            font-size: 36px;
+            font-weight: 600;
+            max-width: 920px;
+            line-height: 1.35;
+            margin-bottom: 56px;
+            opacity: 0.92;
+        }
+
+        .facts {
+            display: flex;
+            gap: 0;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 48px;
+            border: 4px solid var(--black);
+        }
+
+        .fact {
+            padding: 32px 48px;
+            min-width: 280px;
+            border-right: 4px solid var(--black);
+        }
+
+        .fact:last-child {
+            border-right: none;
+        }
+
+        .fact-red {
+            background: var(--red);
+        }
+
+        .fact-yellow {
+            background: var(--yellow);
+            color: var(--black);
+        }
+
+        .fact-blue {
+            background: var(--blue);
+        }
+
+        .fact .label-text {
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 0.28em;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            opacity: 0.9;
+        }
+
+        .fact .value {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 42px;
+            letter-spacing: 2px;
+            line-height: 1.1;
+        }
+
+        .highlights {
+            font-size: 22px;
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            margin-bottom: 36px;
+        }
+
+        .highlights span.dot {
+            color: var(--red);
+            padding: 0 12px;
+        }
+
+        .cta-row {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 38px;
+            letter-spacing: 0.15em;
+        }
+
+        .cta-row a {
+            color: var(--yellow);
+            text-decoration: none;
+            border-bottom: 4px solid var(--yellow);
+        }
+
+        .cta-row a:hover {
+            color: var(--white);
+            border-color: var(--white);
+        }
+
+        .accent-bar {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 14px;
+            display: flex;
+        }
+
+        .accent-bar div {
+            flex: 1;
+        }
+
+        .accent-bar .red {
+            background: var(--red);
+        }
+
+        .accent-bar .yellow {
+            background: var(--yellow);
+        }
+
+        .accent-bar .blue {
+            background: var(--blue);
+        }
+
+        .logo-float {
+            position: absolute;
+            top: 48px;
+            right: 56px;
+            width: 160px;
+            height: auto;
+            filter: drop-shadow(8px 8px 0 rgba(244, 211, 94, 0.35));
+        }
+
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+
+            .slide {
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="slide" role="img" aria-label="IndyHAX event summary slide">
+        <div class="slide-grid" aria-hidden="true"></div>
+        <img class="logo-float" src="logo.PNG" width="160" height="160" alt="">
+
+        <div class="badge">Hybrid CTF &amp; Hackathon</div>
+
+        <h1>
+            INDY<span class="hax">HAX</span>
+        </h1>
+
+        <p class="subtitle">Independence High School • Open to all LCPS students — capture flags, ship projects,
+            or compete in both tracks in one day.</p>
+
+        <div class="facts">
+            <div class="fact fact-red">
+                <div class="label-text">Date</div>
+                <div class="value">June 7, 2026</div>
+            </div>
+            <div class="fact fact-yellow">
+                <div class="label-text">Venue</div>
+                <div class="value">Independence HS</div>
+            </div>
+            <div class="fact fact-blue">
+                <div class="label-text">Time</div>
+                <div class="value">9 AM – 2 PM</div>
+            </div>
+        </div>
+
+        <p class="highlights">
+            CTF<span class="dot">•</span>Build<span class="dot">•</span>Hybrid scoring<span class="dot">•</span>Free
+            to attend<span class="dot">•</span>All skill levels
+        </p>
+
+        <p class="cta-row">
+            INDYHAX.COM &nbsp;·&nbsp; <a href="registration.html">REGISTER</a>
+        </p>
+
+        <div class="accent-bar" aria-hidden="true">
+            <div class="red"></div>
+            <div class="yellow"></div>
+            <div class="blue"></div>
+        </div>
+    </div>
+</body>
+
+</html>
