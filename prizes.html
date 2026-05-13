@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="IndyHAX prizes for first, second, third, and hackathon winners.">
+    <title>Prizes | IndyHAX</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Work+Sans:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* ==========================================================
+           Prizes - Page-Specific Styles
+           ========================================================== */
+        .container {
+            max-width: 1240px;
+        }
+
+        .page-header {
+            padding: 50px 0 20px;
+            text-align: center;
+            animation: fadeUp 0.8s var(--ease-out-expo) both 0.1s;
+            opacity: 0;
+        }
+
+        .page-header h1 {
+            display: inline-block;
+            position: relative;
+            font-family: var(--font-display);
+            font-size: clamp(5rem, 14vw, 10rem);
+            letter-spacing: 5px;
+            line-height: 0.9;
+            margin-bottom: 24px;
+        }
+
+        .page-header h1::after {
+            content: '';
+            position: absolute;
+            bottom: -12px;
+            left: 50%;
+            width: min(360px, 100%);
+            height: 8px;
+            background: var(--primary-red);
+            transform: translateX(-50%) scaleX(0);
+            animation: prizeLine 0.6s var(--ease-out-expo) both 0.6s;
+            transform-origin: center;
+        }
+
+        .page-header .tagline {
+            max-width: 720px;
+            margin: 36px auto 0;
+            font-size: 1.15rem;
+            line-height: 1.8;
+            opacity: 0.78;
+        }
+
+        @keyframes prizeLine {
+            to {
+                transform: translateX(-50%) scaleX(1);
+            }
+        }
+
+        .podium-wrap {
+            margin: 70px 0 50px;
+            padding-top: 34px;
+            border-bottom: 10px solid var(--pure-black);
+        }
+
+        .podium {
+            display: grid;
+            grid-template-columns: 1fr 1.1fr 1fr;
+            align-items: end;
+            gap: 22px;
+        }
+
+        .podium-card {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            border: var(--border-thick);
+            background: var(--pure-white);
+            box-shadow: 8px 8px 0 rgba(13, 13, 13, 0.08);
+            overflow: hidden;
+            transition: transform 0.3s var(--ease-out-expo), box-shadow 0.3s;
+        }
+
+        .podium-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 12px 14px 0 rgba(13, 13, 13, 0.1);
+        }
+
+        .podium-card.first {
+            min-height: 520px;
+            order: 2;
+        }
+
+        .podium-card.second {
+            min-height: 430px;
+            order: 1;
+        }
+
+        .podium-card.third {
+            min-height: 350px;
+            order: 3;
+        }
+
+        .rank-band {
+            padding: 24px 28px;
+            border-bottom: var(--border-thick);
+            color: var(--pure-black);
+        }
+
+        .first .rank-band {
+            background: var(--primary-yellow);
+        }
+
+        .second .rank-band {
+            background: var(--primary-blue);
+            color: var(--pure-white);
+        }
+
+        .third .rank-band {
+            background: var(--primary-red);
+            color: var(--pure-white);
+        }
+
+        .rank-label {
+            display: block;
+            font-family: var(--font-display);
+            font-size: clamp(3.2rem, 7vw, 6rem);
+            letter-spacing: 4px;
+            line-height: 0.85;
+        }
+
+        .rank-subtitle {
+            display: block;
+            margin-top: 12px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        .prize-body {
+            display: flex;
+            flex: 1;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 30px;
+        }
+
+        .prize-item {
+            font-family: var(--font-display);
+            font-size: clamp(2.1rem, 4.5vw, 4rem);
+            letter-spacing: 2px;
+            line-height: 0.95;
+            margin-bottom: 18px;
+        }
+
+        .prize-count {
+            display: inline-block;
+            width: fit-content;
+            padding: 9px 14px;
+            border: 3px solid var(--pure-black);
+            background: var(--off-white);
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .podium-step {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 74px;
+            border-top: var(--border-thick);
+            background: var(--pure-black);
+            color: var(--pure-white);
+            font-family: var(--font-display);
+            font-size: 3rem;
+            letter-spacing: 4px;
+        }
+
+        .first .podium-step {
+            min-height: 130px;
+        }
+
+        .second .podium-step {
+            min-height: 98px;
+        }
+
+        .hack-prize {
+            display: grid;
+            grid-template-columns: 1fr 1.35fr;
+            margin: 60px 0 40px;
+            border: var(--border-thick);
+            background: var(--pure-white);
+            box-shadow: 8px 8px 0 rgba(230, 57, 70, 0.18);
+        }
+
+        .hack-prize-label {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 220px;
+            padding: 32px;
+            border-right: var(--border-thick);
+            background: var(--primary-red);
+            color: var(--pure-white);
+            font-family: var(--font-display);
+            font-size: clamp(3rem, 7vw, 6rem);
+            letter-spacing: 4px;
+            line-height: 0.9;
+            text-align: center;
+        }
+
+        .hack-prize-body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 42px;
+        }
+
+        .hack-prize-body h2 {
+            font-family: var(--font-display);
+            font-size: clamp(2.8rem, 6vw, 5rem);
+            letter-spacing: 3px;
+            line-height: 0.95;
+            margin-bottom: 18px;
+        }
+
+        .hack-prize-body p {
+            max-width: 560px;
+            font-size: 1.08rem;
+            line-height: 1.8;
+            opacity: 0.78;
+        }
+
+        .fine-print {
+            border: 4px solid var(--primary-yellow);
+            background: rgba(244, 211, 94, 0.1);
+            padding: 24px 28px;
+            margin: 30px 0;
+            font-size: 0.98rem;
+            line-height: 1.7;
+        }
+
+        footer {
+            margin-top: 60px;
+        }
+
+        @media (max-width: 968px) {
+            .podium {
+                grid-template-columns: 1fr;
+                gap: 18px;
+            }
+
+            .podium-card.first,
+            .podium-card.second,
+            .podium-card.third {
+                order: initial;
+                min-height: auto;
+            }
+
+            .podium-card.first {
+                order: 1;
+            }
+
+            .podium-card.second {
+                order: 2;
+            }
+
+            .podium-card.third {
+                order: 3;
+            }
+
+            .first .podium-step,
+            .second .podium-step,
+            .podium-step {
+                min-height: 78px;
+            }
+
+            .hack-prize {
+                grid-template-columns: 1fr;
+            }
+
+            .hack-prize-label {
+                min-height: 150px;
+                border-right: none;
+                border-bottom: var(--border-thick);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .page-header {
+                padding: 30px 0 12px;
+            }
+
+            .podium-wrap {
+                margin: 40px 0 34px;
+                padding-top: 12px;
+            }
+
+            .rank-band,
+            .prize-body,
+            .hack-prize-body {
+                padding: 24px 20px;
+            }
+
+            .rank-label {
+                font-size: 3.2rem;
+            }
+
+            .prize-item {
+                font-size: 2.4rem;
+            }
+
+            .hack-prize {
+                margin: 42px 0 28px;
+            }
+
+            .hack-prize-label {
+                padding: 28px 20px;
+            }
+
+            .fine-print {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="grid-bg"></div>
+
+    <div class="container">
+        <nav>
+            <a href="index.html" class="nav-logo">INDYHAX</a>
+            <div class="menu-toggle" role="button" tabindex="0" aria-label="Toggle navigation menu" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="registration.html">Register</a>
+                <a href="prizes.html" class="active">Prizes</a>
+                <a href="code-of-conduct.html">Code of Conduct</a>
+            </div>
+        </nav>
+
+        <header class="page-header">
+            <h1>PRIZES</h1>
+            <p class="tagline">Top teams take the podium. Each listed prize set includes one item for every member of a four-person team.</p>
+        </header>
+
+        <section class="podium-wrap reveal" aria-label="Competition podium prizes">
+            <div class="podium">
+                <article class="podium-card second">
+                    <div class="rank-band">
+                        <span class="rank-label">2ND</span>
+                        <span class="rank-subtitle">Runner Up</span>
+                    </div>
+                    <div class="prize-body">
+                        <h2 class="prize-item">Projector</h2>
+                        <span class="prize-count">4 total - one per teammate</span>
+                    </div>
+                    <div class="podium-step">2</div>
+                </article>
+
+                <article class="podium-card first">
+                    <div class="rank-band">
+                        <span class="rank-label">1ST</span>
+                        <span class="rank-subtitle">Champion</span>
+                    </div>
+                    <div class="prize-body">
+                        <h2 class="prize-item">iPad</h2>
+                        <span class="prize-count">4 total - one per teammate</span>
+                    </div>
+                    <div class="podium-step">1</div>
+                </article>
+
+                <article class="podium-card third">
+                    <div class="rank-band">
+                        <span class="rank-label">3RD</span>
+                        <span class="rank-subtitle">Finalist</span>
+                    </div>
+                    <div class="prize-body">
+                        <h2 class="prize-item">Sceptre Display</h2>
+                        <span class="prize-count">4 total - one per teammate</span>
+                    </div>
+                    <div class="podium-step">3</div>
+                </article>
+            </div>
+        </section>
+
+        <section class="hack-prize reveal" aria-label="Hackathon winner prize">
+            <div class="hack-prize-label">HACK<br>WIN</div>
+            <div class="hack-prize-body">
+                <h2>JBL GO 4 Bluetooth Speaker</h2>
+                <p>The winning hackathon team earns a JBL GO 4 Bluetooth speaker for each teammate.</p>
+            </div>
+        </section>
+
+        <p class="fine-print reveal">Prize availability, substitutions, and final eligibility are subject to organizer approval. Teams must follow the IndyHAX Code of Conduct and the exactly four member team rule to be eligible for prizes.</p>
+
+        <footer class="reveal">
+            <div>
+                <p><strong>IndyHAX 2026</strong> - Independence High School</p>
+                <p>Organized by <a href="https://tarushv.com">Tarushv Kosgi</a>, <a href="https://abhiboora.com">Abhinav
+                        Boora</a>, Lalith Dasa &amp; Dheeraj Chennaboina</p>
+                <p><a href="https://indyhax.com">indyhax.com</a></p>
+            </div>
+            <div class="footer-shapes" aria-hidden="true">
+                <div class="footer-shape circle"></div>
+                <div class="footer-shape square"></div>
+                <div class="footer-shape triangle"></div>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        (function() {
+            const toggle = document.querySelector('.menu-toggle');
+            const navLinks = document.querySelector('.nav-links');
+            const links = navLinks.querySelectorAll('a');
+            let scrollPos = 0;
+
+            function closeMenu() {
+                toggle.classList.remove('open');
+                toggle.setAttribute('aria-expanded', 'false');
+                navLinks.classList.remove('open');
+                document.body.classList.remove('menu-open');
+                document.body.style.top = '';
+                window.scrollTo(0, scrollPos);
+            }
+
+            function openMenu() {
+                scrollPos = window.scrollY;
+                toggle.classList.add('open');
+                toggle.setAttribute('aria-expanded', 'true');
+                navLinks.classList.add('open');
+                document.body.classList.add('menu-open');
+                document.body.style.top = `-${scrollPos}px`;
+            }
+
+            toggle.addEventListener('click', function(e) {
+                e.stopPropagation();
+                if (navLinks.classList.contains('open')) {
+                    closeMenu();
+                } else {
+                    openMenu();
+                }
+            });
+
+            toggle.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    toggle.click();
+                }
+            });
+
+            links.forEach(function(link) {
+                link.addEventListener('click', function() {
+                    if (navLinks.classList.contains('open')) {
+                        closeMenu();
+                    }
+                });
+            });
+
+            document.addEventListener('click', function(e) {
+                if (navLinks.classList.contains('open') && !navLinks.contains(e.target) && !toggle.contains(e.target)) {
+                    closeMenu();
+                }
+            });
+
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && navLinks.classList.contains('open')) {
+                    closeMenu();
+                    toggle.focus();
+                }
+            });
+
+            window.addEventListener('resize', function() {
+                if (window.innerWidth > 968 && navLinks.classList.contains('open')) {
+                    closeMenu();
+                }
+            });
+        })();
+
+        const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -60px 0px' };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    </script>
+</body>
+
+</html>
