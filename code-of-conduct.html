@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="IndyHAX Code of Conduct, event rules, team requirements, and participant expectations.">
+    <title>Code of Conduct | IndyHAX</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Work+Sans:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* ==========================================================
+           Code of Conduct - Page-Specific Styles
+           ========================================================== */
+        .container {
+            max-width: 1200px;
+        }
+
+        .page-header {
+            padding: 50px 0 30px;
+            animation: fadeUp 0.8s var(--ease-out-expo) both 0.1s;
+            opacity: 0;
+        }
+
+        .page-header h1 {
+            font-family: var(--font-display);
+            font-size: clamp(4rem, 11vw, 8rem);
+            letter-spacing: 4px;
+            line-height: 0.95;
+            margin-bottom: 24px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .page-header h1::after {
+            content: '';
+            position: absolute;
+            bottom: -12px;
+            left: 0;
+            width: 100%;
+            height: 8px;
+            background: var(--primary-red);
+            animation: drawLine 0.6s var(--ease-out-expo) both 0.6s;
+            transform-origin: left;
+        }
+
+        .page-header .tagline {
+            max-width: 760px;
+            font-size: 1.15rem;
+            line-height: 1.8;
+            opacity: 0.78;
+            margin-top: 34px;
+        }
+
+        .rule-banner {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            border: var(--border-thick);
+            margin: 40px 0;
+            background: var(--pure-white);
+        }
+
+        .rule-banner strong {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 160px;
+            padding: 30px;
+            background: var(--primary-yellow);
+            border-right: var(--border-thick);
+            font-family: var(--font-display);
+            font-size: clamp(3rem, 7vw, 6rem);
+            letter-spacing: 3px;
+            line-height: 0.9;
+            text-align: center;
+        }
+
+        .rule-banner div {
+            display: flex;
+            align-items: center;
+            padding: 36px 44px;
+            font-size: 1.2rem;
+            line-height: 1.7;
+        }
+
+        .conduct-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            border: var(--border-thick);
+            background: var(--pure-white);
+            margin: 40px 0;
+        }
+
+        .conduct-card {
+            padding: 34px;
+            border-right: var(--border-thick);
+            border-bottom: var(--border-thick);
+        }
+
+        .conduct-card:nth-child(2n) {
+            border-right: none;
+        }
+
+        .conduct-card:nth-last-child(-n+2) {
+            border-bottom: none;
+        }
+
+        .conduct-card h2 {
+            font-family: var(--font-display);
+            font-size: 2rem;
+            letter-spacing: 2px;
+            margin-bottom: 18px;
+        }
+
+        .conduct-card ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .conduct-card li {
+            position: relative;
+            padding-left: 28px;
+            margin-bottom: 14px;
+            line-height: 1.65;
+        }
+
+        .conduct-card li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0.65em;
+            width: 12px;
+            height: 12px;
+            background: var(--primary-red);
+            transform: translateY(-50%);
+        }
+
+        .conduct-card:nth-child(2) li::before,
+        .conduct-card:nth-child(5) li::before {
+            background: var(--primary-yellow);
+            border: 2px solid var(--pure-black);
+        }
+
+        .conduct-card:nth-child(3) li::before,
+        .conduct-card:nth-child(6) li::before {
+            background: var(--primary-blue);
+        }
+
+        .report-box {
+            border: var(--border-thick);
+            background: var(--primary-blue);
+            color: var(--pure-white);
+            padding: 40px;
+            margin: 40px 0;
+        }
+
+        .report-box h2 {
+            font-family: var(--font-display);
+            font-size: 2.4rem;
+            letter-spacing: 3px;
+            margin-bottom: 16px;
+        }
+
+        .report-box p {
+            font-size: 1.05rem;
+            line-height: 1.8;
+            max-width: 900px;
+        }
+
+        footer {
+            margin-top: 60px;
+        }
+
+        @media (max-width: 768px) {
+            .page-header {
+                padding: 30px 0 16px;
+            }
+
+            .rule-banner,
+            .conduct-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .rule-banner strong {
+                border-right: none;
+                border-bottom: var(--border-thick);
+                min-height: 120px;
+            }
+
+            .rule-banner div,
+            .report-box {
+                padding: 26px 22px;
+            }
+
+            .conduct-card,
+            .conduct-card:nth-child(2n),
+            .conduct-card:nth-last-child(-n+2) {
+                border-right: none;
+                border-bottom: var(--border-thick);
+                padding: 26px 22px;
+            }
+
+            .conduct-card:last-child {
+                border-bottom: none;
+            }
+
+            .conduct-card h2 {
+                font-size: 1.65rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="grid-bg"></div>
+
+    <div class="container">
+        <nav>
+            <a href="index.html" class="nav-logo">INDYHAX</a>
+            <div class="menu-toggle" role="button" tabindex="0" aria-label="Toggle navigation menu" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="registration.html">Register</a>
+                <a href="code-of-conduct.html" class="active">Code of Conduct</a>
+            </div>
+        </nav>
+
+        <header class="page-header">
+            <h1>CODE OF<br>CONDUCT</h1>
+            <p class="tagline">IndyHAX is built for serious creativity, fair competition, and a respectful student environment. Everyone attending, competing, mentoring, judging, or organizing is expected to follow these rules.</p>
+        </header>
+
+        <section class="rule-banner reveal">
+            <strong>4<br>ONLY</strong>
+            <div>Every competing team must have exactly four students. Teams with fewer than four or more than four members are not eligible to compete, submit, present, or win prizes.</div>
+        </section>
+
+        <main class="conduct-grid reveal">
+            <section class="conduct-card">
+                <h2>RESPECT EVERYONE</h2>
+                <ul>
+                    <li>Treat participants, mentors, judges, sponsors, staff, and guests with respect.</li>
+                    <li>No harassment, bullying, intimidation, discrimination, threats, or personal attacks.</li>
+                    <li>Keep language, jokes, images, usernames, projects, and presentations appropriate for a school event.</li>
+                </ul>
+            </section>
+
+            <section class="conduct-card">
+                <h2>COMPETE FAIRLY</h2>
+                <ul>
+                    <li>Build during the event window unless organizers explicitly allow prebuilt materials.</li>
+                    <li>Credit any libraries, templates, assets, datasets, AI tools, or outside code used in your project.</li>
+                    <li>Do not copy another team's work, submit someone else's project, or interfere with another team's progress.</li>
+                </ul>
+            </section>
+
+            <section class="conduct-card">
+                <h2>TEAM RULES</h2>
+                <ul>
+                    <li>Teams must contain exactly four members.</li>
+                    <li>All team members must be eligible LCPS students and must be registered for IndyHAX.</li>
+                    <li>Team changes require organizer approval before judging begins.</li>
+                </ul>
+            </section>
+
+            <section class="conduct-card">
+                <h2>CTF SAFETY</h2>
+                <ul>
+                    <li>Only attack, scan, or exploit systems that are part of the official IndyHAX CTF environment.</li>
+                    <li>Do not target school networks, personal devices, public websites, accounts, or infrastructure.</li>
+                    <li>Do not share flags, answers, exploits, or challenge solutions with other teams.</li>
+                </ul>
+            </section>
+
+            <section class="conduct-card">
+                <h2>AI AND TOOLS</h2>
+                <ul>
+                    <li>AI tools are allowed when they support learning, building, debugging, or design.</li>
+                    <li>Teams remain responsible for understanding and explaining what they submit.</li>
+                    <li>Generated code, text, images, or ideas should be disclosed during judging when relevant.</li>
+                </ul>
+            </section>
+
+            <section class="conduct-card">
+                <h2>EVENT EXPECTATIONS</h2>
+                <ul>
+                    <li>Follow Independence High School and LCPS rules at all times.</li>
+                    <li>Respect the venue, equipment, classrooms, common areas, and event schedule.</li>
+                    <li>Organizer decisions on eligibility, conduct, scoring, submissions, and prizes are final.</li>
+                </ul>
+            </section>
+        </main>
+
+        <section class="report-box reveal">
+            <h2>REPORTING ISSUES</h2>
+            <p>If something feels unsafe, unfair, or inappropriate, tell an IndyHAX organizer, teacher, or event staff member as soon as possible. Organizers may warn, remove, disqualify, or ban anyone who violates this code of conduct.</p>
+        </section>
+
+        <footer class="reveal">
+            <div>
+                <p><strong>IndyHAX 2026</strong> - Independence High School</p>
+                <p>Organized by <a href="https://tarushv.com">Tarushv Kosgi</a>, <a href="https://abhiboora.com">Abhinav
+                        Boora</a>, Lalith Dasa &amp; Dheeraj Chennaboina</p>
+                <p><a href="https://indyhax.com">indyhax.com</a></p>
+            </div>
+            <div class="footer-shapes" aria-hidden="true">
+                <div class="footer-shape circle"></div>
+                <div class="footer-shape square"></div>
+                <div class="footer-shape triangle"></div>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        (function() {
+            const toggle = document.querySelector('.menu-toggle');
+            const navLinks = document.querySelector('.nav-links');
+            const links = navLinks.querySelectorAll('a');
+            let scrollPos = 0;
+
+            function closeMenu() {
+                toggle.classList.remove('open');
+                toggle.setAttribute('aria-expanded', 'false');
+                navLinks.classList.remove('open');
+                document.body.classList.remove('menu-open');
+                document.body.style.top = '';
+                window.scrollTo(0, scrollPos);
+            }
+
+            function openMenu() {
+                scrollPos = window.scrollY;
+                toggle.classList.add('open');
+                toggle.setAttribute('aria-expanded', 'true');
+                navLinks.classList.add('open');
+                document.body.classList.add('menu-open');
+                document.body.style.top = `-${scrollPos}px`;
+            }
+
+            toggle.addEventListener('click', function(e) {
+                e.stopPropagation();
+                if (navLinks.classList.contains('open')) {
+                    closeMenu();
+                } else {
+                    openMenu();
+                }
+            });
+
+            toggle.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    toggle.click();
+                }
+            });
+
+            links.forEach(function(link) {
+                link.addEventListener('click', function() {
+                    if (navLinks.classList.contains('open')) {
+                        closeMenu();
+                    }
+                });
+            });
+
+            document.addEventListener('click', function(e) {
+                if (navLinks.classList.contains('open') && !navLinks.contains(e.target) && !toggle.contains(e.target)) {
+                    closeMenu();
+                }
+            });
+
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && navLinks.classList.contains('open')) {
+                    closeMenu();
+                    toggle.focus();
+                }
+            });
+
+            window.addEventListener('resize', function() {
+                if (window.innerWidth > 968 && navLinks.classList.contains('open')) {
+                    closeMenu();
+                }
+            });
+        })();
+
+        const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -60px 0px' };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    </script>
+</body>
+
+</html>
