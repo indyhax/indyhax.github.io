@@ -68,7 +68,6 @@
         .podium-wrap {
             margin: 70px 0 50px;
             padding-top: 34px;
-            border-bottom: 10px solid var(--pure-black);
         }
 
         .podium {
@@ -98,24 +97,29 @@
         }
 
         .podium-card.first {
-            min-height: 610px;
+            min-height: 500px;
             order: 2;
         }
 
         .podium-card.second {
-            min-height: 520px;
+            min-height: 455px;
             order: 1;
         }
 
         .podium-card.third {
-            min-height: 460px;
+            min-height: 420px;
             order: 3;
         }
 
         .rank-band {
+            min-height: 154px;
             padding: 24px 28px;
             border-bottom: var(--border-thick);
             color: var(--pure-black);
+        }
+
+        .first .rank-band {
+            min-height: 172px;
         }
 
         .first .rank-band {
@@ -153,50 +157,54 @@
             display: flex;
             flex: 1;
             flex-direction: column;
-            justify-content: space-between;
-            gap: 24px;
-            padding: 28px;
+            justify-content: flex-end;
+            padding: 196px 28px 30px;
         }
 
         .prize-media {
+            position: absolute;
+            top: 92px;
+            left: 22px;
+            right: 22px;
+            z-index: 2;
             display: flex;
             align-items: center;
-            justify-content: center;
-            min-height: 190px;
-            border: 3px solid var(--pure-black);
-            background:
-                radial-gradient(circle at 35% 25%, rgba(244, 211, 94, 0.32), transparent 34%),
-                radial-gradient(circle at 72% 72%, rgba(230, 57, 70, 0.18), transparent 36%),
-                repeating-linear-gradient(135deg, rgba(13, 13, 13, 0.045) 0 2px, transparent 2px 12px),
-                var(--off-white);
-            overflow: hidden;
+            justify-content: flex-end;
+            height: 240px;
+            pointer-events: none;
         }
 
         .first .prize-media {
-            min-height: 245px;
+            top: 96px;
+            height: 300px;
         }
 
         .second .prize-media {
-            min-height: 210px;
+            height: 255px;
         }
 
         .prize-media img {
             display: block;
-            width: min(86%, 300px);
-            height: 210px;
+            width: min(78%, 310px);
+            height: 238px;
             object-fit: contain;
-            filter: drop-shadow(12px 16px 0 rgba(13, 13, 13, 0.16));
-            transform: rotate(-2deg);
+            filter: drop-shadow(14px 18px 0 rgba(13, 13, 13, 0.18));
+            transform: rotate(-3deg);
             transition: transform 0.55s var(--ease-out-expo), filter 0.55s var(--ease-out-expo);
         }
 
         .first .prize-media img {
-            height: 260px;
+            height: 300px;
+            width: min(62%, 260px);
         }
 
-        .second .prize-media img,
+        .second .prize-media img {
+            width: min(86%, 340px);
+            height: 250px;
+        }
+
         .third .prize-media img {
-            width: min(92%, 320px);
+            width: min(82%, 300px);
         }
 
         .podium-card:hover .prize-media img,
@@ -207,6 +215,8 @@
 
         .prize-copy {
             margin-top: auto;
+            position: relative;
+            z-index: 3;
         }
 
         .prize-item {
@@ -229,22 +239,6 @@
             letter-spacing: 2px;
             line-height: 1.35;
             text-transform: uppercase;
-        }
-
-        .podium-step {
-            min-height: 52px;
-            border-top: var(--border-thick);
-            background:
-                linear-gradient(90deg, transparent 0 18px, rgba(255, 255, 255, 0.16) 18px 22px, transparent 22px 40px),
-                var(--pure-black);
-        }
-
-        .first .podium-step {
-            min-height: 86px;
-        }
-
-        .second .podium-step {
-            min-height: 66px;
         }
 
         .hack-prize {
@@ -362,12 +356,6 @@
                 order: 3;
             }
 
-            .first .podium-step,
-            .second .podium-step,
-            .podium-step {
-                min-height: 34px;
-            }
-
             .hack-prize {
                 grid-template-columns: 1fr;
             }
@@ -401,18 +389,37 @@
                 padding: 24px 20px;
             }
 
-            .prize-media {
-                min-height: 180px;
+            .rank-band,
+            .first .rank-band {
+                min-height: 142px;
             }
 
-            .first .prize-media,
-            .second .prize-media {
-                min-height: 200px;
+            .prize-body {
+                padding-top: 190px;
+            }
+
+            .prize-media {
+                top: 86px;
+                left: 18px;
+                right: 18px;
+                justify-content: center;
+                height: 230px;
+            }
+
+            .first .prize-media {
+                top: 82px;
+                height: 238px;
             }
 
             .prize-media img,
             .first .prize-media img {
-                height: 190px;
+                width: min(84%, 285px);
+                height: 222px;
+            }
+
+            .second .prize-media img,
+            .third .prize-media img {
+                width: min(92%, 315px);
             }
 
             .rank-label {
@@ -470,16 +477,15 @@
                         <span class="rank-label">2ND</span>
                         <span class="rank-subtitle">Runner Up</span>
                     </div>
+                    <div class="prize-media">
+                        <img src="assets/prizes/projector-cutout.png" alt="Projector prize" width="1500" height="1396" loading="lazy">
+                    </div>
                     <div class="prize-body">
-                        <div class="prize-media">
-                            <img src="assets/prizes/projector-cutout.png" alt="Projector prize" width="1500" height="1396" loading="lazy">
-                        </div>
                         <div class="prize-copy">
                             <h2 class="prize-item">Projector</h2>
                             <span class="prize-count">4 total - one per teammate</span>
                         </div>
                     </div>
-                    <div class="podium-step" aria-hidden="true"></div>
                 </article>
 
                 <article class="podium-card first">
@@ -487,16 +493,15 @@
                         <span class="rank-label">1ST</span>
                         <span class="rank-subtitle">Champion</span>
                     </div>
+                    <div class="prize-media">
+                        <img src="assets/prizes/ipad-cutout.png" alt="iPad prize" width="1326" height="1500" loading="lazy">
+                    </div>
                     <div class="prize-body">
-                        <div class="prize-media">
-                            <img src="assets/prizes/ipad-cutout.png" alt="iPad prize" width="1326" height="1500" loading="lazy">
-                        </div>
                         <div class="prize-copy">
                             <h2 class="prize-item">iPad</h2>
                             <span class="prize-count">4 total - one per teammate</span>
                         </div>
                     </div>
-                    <div class="podium-step" aria-hidden="true"></div>
                 </article>
 
                 <article class="podium-card third">
@@ -504,16 +509,15 @@
                         <span class="rank-label">3RD</span>
                         <span class="rank-subtitle">Finalist</span>
                     </div>
+                    <div class="prize-media">
+                        <img src="assets/prizes/sceptre-display-cutout.png" alt="Sceptre display prize" width="1099" height="1285" loading="lazy">
+                    </div>
                     <div class="prize-body">
-                        <div class="prize-media">
-                            <img src="assets/prizes/sceptre-display-cutout.png" alt="Sceptre display prize" width="1099" height="1285" loading="lazy">
-                        </div>
                         <div class="prize-copy">
                             <h2 class="prize-item">Sceptre Display</h2>
                             <span class="prize-count">4 total - one per teammate</span>
                         </div>
                     </div>
-                    <div class="podium-step" aria-hidden="true"></div>
                 </article>
             </div>
         </section>
