@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Tools and resources for IndyHAX CTF participants.">
+    <title>Tools & Resources | IndyHAX</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Work+Sans:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css?v=20260208d">
+    <style>
+        .resources-hero {
+            padding: 70px 0 40px;
+        }
+
+        .resources-hero h1 {
+            font-family: var(--font-display);
+            font-size: clamp(5rem, 13vw, 10rem);
+            line-height: 0.85;
+            letter-spacing: 2px;
+            margin-bottom: 28px;
+        }
+
+        .resources-hero h1::after {
+            content: '';
+            display: block;
+            width: 150px;
+            height: 8px;
+            background: var(--primary-red);
+            margin-top: 18px;
+        }
+
+        .resources-hero .tagline {
+            max-width: 720px;
+            font-size: 1.2rem;
+            line-height: 1.8;
+            opacity: 0.82;
+        }
+
+        .resource-banner {
+            background: var(--pure-black);
+            color: var(--pure-white);
+            border: var(--border-thick);
+            overflow: hidden;
+            margin: 45px 0 80px;
+            padding: 18px 0;
+        }
+
+        .resource-track {
+            display: flex;
+            white-space: nowrap;
+            animation: marquee 25s linear infinite;
+        }
+
+        .resource-track span {
+            font-family: var(--font-display);
+            font-size: 1.3rem;
+            letter-spacing: 4px;
+            padding: 0 36px;
+            flex-shrink: 0;
+        }
+
+        .resource-track .dot {
+            color: var(--primary-red);
+            padding: 0 10px;
+        }
+
+        .tool-section {
+            padding: 20px 0 100px;
+        }
+
+        .tool-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            border: var(--border-thick);
+            background: var(--pure-white);
+        }
+
+        .tool-card {
+            position: relative;
+            min-height: 270px;
+            padding: 42px 34px 34px;
+            border-right: var(--border-thick);
+            border-bottom: var(--border-thick);
+            background: var(--pure-white);
+            display: flex;
+            flex-direction: column;
+            transition: background 0.3s, transform 0.3s;
+        }
+
+        .tool-card:nth-child(3n) {
+            border-right: none;
+        }
+
+        .tool-card:nth-last-child(-n+3) {
+            border-bottom: none;
+        }
+
+        .tool-card::before {
+            content: '';
+            position: absolute;
+            inset: 0 auto 0 0;
+            width: 8px;
+            background: var(--primary-red);
+            transform: scaleY(0);
+            transform-origin: top;
+            transition: transform 0.3s var(--ease-out-expo);
+        }
+
+        .tool-card:nth-child(3n+2)::before {
+            background: var(--primary-yellow);
+        }
+
+        .tool-card:nth-child(3n)::before {
+            background: var(--primary-blue);
+        }
+
+        .tool-card:hover {
+            background: var(--off-white);
+        }
+
+        .tool-card:hover::before {
+            transform: scaleY(1);
+        }
+
+        .tool-card h3 {
+            font-family: var(--font-display);
+            font-size: 2.2rem;
+            letter-spacing: 2px;
+            margin-bottom: 8px;
+        }
+
+        .tool-label {
+            color: var(--primary-red);
+            font-size: 0.78rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 18px;
+        }
+
+        .tool-card p {
+            line-height: 1.75;
+            opacity: 0.78;
+            flex: 1;
+        }
+
+        .tool-link {
+            align-self: flex-start;
+            margin-top: 28px;
+            padding: 13px 24px;
+            font-family: var(--font-display);
+            font-size: 1.1rem;
+            letter-spacing: 2px;
+            text-decoration: none;
+            text-transform: uppercase;
+            color: var(--pure-black);
+            background: var(--primary-yellow);
+            border: var(--border-thick);
+            box-shadow: 4px 4px 0 var(--pure-black);
+            transition: transform 0.3s var(--ease-out-expo), box-shadow 0.3s;
+        }
+
+        .tool-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 6px 7px 0 var(--primary-red);
+        }
+
+        .resource-note {
+            margin-top: 70px;
+            border: var(--border-thick);
+            background: var(--primary-yellow);
+            padding: 36px;
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .resource-note h2 {
+            font-family: var(--font-display);
+            font-size: 3.2rem;
+            letter-spacing: 2px;
+            line-height: 1;
+        }
+
+        .resource-note p {
+            line-height: 1.8;
+        }
+
+        @media (max-width: 968px) {
+            .tool-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .tool-card:nth-child(3n) {
+                border-right: var(--border-thick);
+            }
+
+            .tool-card:nth-child(2n) {
+                border-right: none;
+            }
+
+            .tool-card:nth-last-child(-n+3) {
+                border-bottom: var(--border-thick);
+            }
+
+            .tool-card:nth-last-child(-n+2) {
+                border-bottom: none;
+            }
+
+            .resource-note {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .resources-hero {
+                padding: 35px 0 20px;
+            }
+
+            .tool-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .tool-card,
+            .tool-card:nth-child(2n),
+            .tool-card:nth-child(3n) {
+                border-right: none;
+                border-bottom: var(--border-thick);
+                min-height: auto;
+                padding: 34px 24px;
+            }
+
+            .tool-card:last-child {
+                border-bottom: none;
+            }
+
+            .resource-note {
+                padding: 28px 22px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="grid-bg"></div>
+
+    <div class="container">
+        <nav>
+            <a href="index.html" class="nav-logo">INDYHAX</a>
+            <div class="menu-toggle" role="button" tabindex="0" aria-label="Toggle navigation menu" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="registration.html">Register</a>
+                <a href="prizes.html">Prizes</a>
+                <a href="tools-resources.html" class="active">Tools / Resources</a>
+                <a href="code-of-conduct.html">Code of Conduct</a>
+            </div>
+        </nav>
+
+        <header class="resources-hero">
+            <h1>TOOLS /<br>RESOURCES</h1>
+            <p class="tagline">A simple directory of useful tools for CTF players. This page explains what each tool does without giving away any challenge answers.</p>
+        </header>
+
+        <section class="resource-banner reveal" aria-label="Resource topics">
+            <div class="resource-track">
+                <span>DECODING</span><span class="dot">&bull;</span>
+                <span>HASHES</span><span class="dot">&bull;</span>
+                <span>CIPHERS</span><span class="dot">&bull;</span>
+                <span>TOKENS</span><span class="dot">&bull;</span>
+                <span>CONVERSIONS</span><span class="dot">&bull;</span>
+                <span>NOTES</span><span class="dot">&bull;</span>
+                <span>DECODING</span><span class="dot">&bull;</span>
+                <span>HASHES</span><span class="dot">&bull;</span>
+                <span>CIPHERS</span><span class="dot">&bull;</span>
+                <span>TOKENS</span><span class="dot">&bull;</span>
+                <span>CONVERSIONS</span><span class="dot">&bull;</span>
+                <span>NOTES</span><span class="dot">&bull;</span>
+            </div>
+        </section>
+
+        <main class="tool-section">
+            <div class="section-header reveal">
+                <h2>COMMON TOOLS</h2>
+                <div class="line"></div>
+            </div>
+
+            <section class="tool-grid reveal" aria-label="Common CTF tools">
+                <article class="tool-card">
+                    <h3>CyberChef</h3>
+                    <div class="tool-label">Data transforms</div>
+                    <p>CyberChef transforms data in the browser. It can decode Base64 and hex, convert numbers, calculate hashes, work with XOR, and chain multiple steps together.</p>
+                    <a class="tool-link" href="https://gchq.github.io/CyberChef/">Open Tool</a>
+                </article>
+
+                <article class="tool-card">
+                    <h3>dCode</h3>
+                    <div class="tool-label">Cipher solvers</div>
+                    <p>dCode has a large set of solvers for classic ciphers, encodings, math puzzles, and text transformations.</p>
+                    <a class="tool-link" href="https://www.dcode.fr/">Open Tool</a>
+                </article>
+
+                <article class="tool-card">
+                    <h3>CaesarCipher.org</h3>
+                    <div class="tool-label">Letter shifts</div>
+                    <p>CaesarCipher.org focuses on Caesar shifts. It is a simple way to see how rotating letters through the alphabet changes text.</p>
+                    <a class="tool-link" href="https://caesarcipher.org/ciphers/caesar">Open Tool</a>
+                </article>
+
+                <article class="tool-card">
+                    <h3>CrackStation</h3>
+                    <div class="tool-label">Hash lookup</div>
+                    <p>CrackStation checks hashes against lookup tables. It is best for common unsalted hashes where the original value may be a simple word or phrase.</p>
+                    <a class="tool-link" href="https://crackstation.net/">Open Tool</a>
+                </article>
+
+                <article class="tool-card">
+                    <h3>jwt.io</h3>
+                    <div class="tool-label">JWT viewer</div>
+                    <p>jwt.io decodes JSON Web Tokens so the header and payload are readable. It also shows the algorithm and signature section.</p>
+                    <a class="tool-link" href="https://jwt.io/">Open Tool</a>
+                </article>
+
+                <article class="tool-card">
+                    <h3>JWT Cracker</h3>
+                    <div class="tool-label">Weak secrets</div>
+                    <p>JWT Cracker tests possible secrets for signed JWTs. It helps show why short or guessable token secrets are unsafe.</p>
+                    <a class="tool-link" href="https://jwt-cracker.com/">Open Tool</a>
+                </article>
+
+                <article class="tool-card">
+                    <h3>FactorDB</h3>
+                    <div class="tool-label">Number factors</div>
+                    <p>FactorDB stores known integer factorizations. It can help identify whether a large number breaks into smaller prime factors.</p>
+                    <a class="tool-link" href="http://factordb.com/">Open Tool</a>
+                </article>
+
+                <article class="tool-card">
+                    <h3>dCode RSA</h3>
+                    <div class="tool-label">RSA calculator</div>
+                    <p>dCode RSA works with common RSA values like moduli, public exponents, ciphertexts, and primes.</p>
+                    <a class="tool-link" href="https://www.dcode.fr/rsa-cipher">Open Tool</a>
+                </article>
+
+                <article class="tool-card">
+                    <h3>ASCII Converter</h3>
+                    <div class="tool-label">Text and numbers</div>
+                    <p>ASCII converters translate between text and numeric forms such as decimal, hex, and binary.</p>
+                    <a class="tool-link" href="https://www.rapidtables.com/convert/number/ascii-hex-bin-dec-converter.html">Open Tool</a>
+                </article>
+
+                <article class="tool-card">
+                    <h3>Diffchecker</h3>
+                    <div class="tool-label">Compare text</div>
+                    <p>Diffchecker compares two pieces of text and highlights changes. It is useful when two outputs look almost the same.</p>
+                    <a class="tool-link" href="https://www.diffchecker.com/text-compare/">Open Tool</a>
+                </article>
+
+                <article class="tool-card">
+                    <h3>regex101</h3>
+                    <div class="tool-label">Pattern testing</div>
+                    <p>regex101 helps test regular expressions and explains what each part does. It is useful for pulling patterns out of logs or text.</p>
+                    <a class="tool-link" href="https://regex101.com/">Open Tool</a>
+                </article>
+
+                <article class="tool-card">
+                    <h3>Google</h3>
+                    <div class="tool-label">Research</div>
+                    <p>Search engines help look up file formats, error messages, cipher names, tool documentation, and unfamiliar CTF terms.</p>
+                    <a class="tool-link" href="https://www.google.com/">Open Tool</a>
+                </article>
+            </section>
+
+            <section class="resource-note reveal">
+                <h2>NO SPOILERS</h2>
+                <p>This page is only a toolbox. It does not include flags, challenge-specific solve paths, or private CTF materials.</p>
+            </section>
+        </main>
+
+        <footer class="reveal">
+            <div>
+                <p><strong>IndyHAX 2026</strong> - Independence High School</p>
+                <p>Organized by <a href="https://tarushv.com">Tarushv Kosgi</a>, <a href="https://abhiboora.com">Abhinav
+                        Boora</a>, Lalith Dasa &amp; Dheeraj Chennaboina</p>
+                <p><a href="https://indyhax.com">indyhax.com</a></p>
+            </div>
+            <div class="footer-shapes" aria-hidden="true">
+                <div class="footer-shape circle"></div>
+                <div class="footer-shape square"></div>
+                <div class="footer-shape triangle"></div>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        (function() {
+            const toggle = document.querySelector('.menu-toggle');
+            const navLinks = document.querySelector('.nav-links');
+            const links = navLinks.querySelectorAll('a');
+            let scrollPos = 0;
+
+            function closeMenu() {
+                toggle.classList.remove('open');
+                toggle.setAttribute('aria-expanded', 'false');
+                navLinks.classList.remove('open');
+                document.body.classList.remove('menu-open');
+                document.body.style.top = '';
+                window.scrollTo(0, scrollPos);
+            }
+
+            function openMenu() {
+                scrollPos = window.scrollY;
+                toggle.classList.add('open');
+                toggle.setAttribute('aria-expanded', 'true');
+                navLinks.classList.add('open');
+                document.body.classList.add('menu-open');
+                document.body.style.top = `-${scrollPos}px`;
+            }
+
+            toggle.addEventListener('click', function(e) {
+                e.stopPropagation();
+                if (navLinks.classList.contains('open')) {
+                    closeMenu();
+                } else {
+                    openMenu();
+                }
+            });
+
+            toggle.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    toggle.click();
+                }
+            });
+
+            links.forEach(function(link) {
+                link.addEventListener('click', function() {
+                    if (navLinks.classList.contains('open')) {
+                        closeMenu();
+                    }
+                });
+            });
+
+            document.addEventListener('click', function(e) {
+                if (navLinks.classList.contains('open') && !navLinks.contains(e.target) && !toggle.contains(e.target)) {
+                    closeMenu();
+                }
+            });
+
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && navLinks.classList.contains('open')) {
+                    closeMenu();
+                    toggle.focus();
+                }
+            });
+        })();
+
+        const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -60px 0px' };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    </script>
+</body>
+
+</html>
