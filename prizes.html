@@ -52,11 +52,12 @@
         }
 
         .page-header .tagline {
-            max-width: 720px;
+            max-width: 760px;
             margin: 36px auto 0;
-            font-size: 1.15rem;
+            font-size: 1.22rem;
             line-height: 1.8;
-            opacity: 0.78;
+            font-weight: 600;
+            opacity: 0.86;
         }
 
         @keyframes prizeLine {
@@ -227,20 +228,6 @@
             margin-bottom: 18px;
         }
 
-        .prize-count {
-            display: inline-block;
-            width: fit-content;
-            max-width: 100%;
-            padding: 9px 14px;
-            border: 3px solid var(--pure-black);
-            background: var(--off-white);
-            font-size: 0.85rem;
-            font-weight: 700;
-            letter-spacing: 2px;
-            line-height: 1.35;
-            text-transform: uppercase;
-        }
-
         .hack-prize {
             display: flex;
             flex-direction: column;
@@ -305,7 +292,7 @@
             font-size: clamp(2.8rem, 6vw, 5rem);
             letter-spacing: 3px;
             line-height: 0.95;
-            margin-bottom: 18px;
+            margin-bottom: 0;
         }
 
         .hack-prize-body p {
@@ -481,7 +468,7 @@
 
         <header class="page-header">
             <h1>PRIZES</h1>
-            <p class="tagline">Top teams take the podium. Each listed prize set includes one item for every team member.</p>
+            <p class="tagline">Top teams take the podium. Every listed prize is awarded once per team member.</p>
         </header>
 
         <section class="podium-wrap reveal" aria-label="Competition podium prizes">
@@ -497,7 +484,6 @@
                     <div class="prize-body">
                         <div class="prize-copy">
                             <h2 class="prize-item">Projector</h2>
-                            <span class="prize-count">One per team member</span>
                         </div>
                     </div>
                 </article>
@@ -513,7 +499,6 @@
                     <div class="prize-body">
                         <div class="prize-copy">
                             <h2 class="prize-item">iPad</h2>
-                            <span class="prize-count">One per team member</span>
                         </div>
                     </div>
                 </article>
@@ -529,7 +514,6 @@
                     <div class="prize-body">
                         <div class="prize-copy">
                             <h2 class="prize-item">Sceptre Display</h2>
-                            <span class="prize-count">One per team member</span>
                         </div>
                     </div>
                 </article>
@@ -546,7 +530,6 @@
             </div>
             <div class="hack-prize-body">
                 <h2>JBL GO 4 Bluetooth Speaker</h2>
-                <p>The winning hackathon team earns a JBL GO 4 Bluetooth speaker for each team member.</p>
             </div>
         </section>
 
