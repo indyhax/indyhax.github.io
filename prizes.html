@@ -82,8 +82,11 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+            position: relative;
             border: var(--border-thick);
-            background: var(--pure-white);
+            background:
+                linear-gradient(135deg, rgba(255, 255, 255, 0.96), rgba(248, 248, 248, 0.86)),
+                var(--pure-white);
             box-shadow: 8px 8px 0 rgba(13, 13, 13, 0.08);
             overflow: hidden;
             transition: transform 0.3s var(--ease-out-expo), box-shadow 0.3s;
@@ -95,17 +98,17 @@
         }
 
         .podium-card.first {
-            min-height: 520px;
+            min-height: 610px;
             order: 2;
         }
 
         .podium-card.second {
-            min-height: 430px;
+            min-height: 520px;
             order: 1;
         }
 
         .podium-card.third {
-            min-height: 350px;
+            min-height: 460px;
             order: 3;
         }
 
@@ -150,8 +153,60 @@
             display: flex;
             flex: 1;
             flex-direction: column;
-            justify-content: flex-end;
-            padding: 30px;
+            justify-content: space-between;
+            gap: 24px;
+            padding: 28px;
+        }
+
+        .prize-media {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 190px;
+            border: 3px solid var(--pure-black);
+            background:
+                radial-gradient(circle at 35% 25%, rgba(244, 211, 94, 0.32), transparent 34%),
+                radial-gradient(circle at 72% 72%, rgba(230, 57, 70, 0.18), transparent 36%),
+                repeating-linear-gradient(135deg, rgba(13, 13, 13, 0.045) 0 2px, transparent 2px 12px),
+                var(--off-white);
+            overflow: hidden;
+        }
+
+        .first .prize-media {
+            min-height: 245px;
+        }
+
+        .second .prize-media {
+            min-height: 210px;
+        }
+
+        .prize-media img {
+            display: block;
+            width: min(86%, 300px);
+            height: 210px;
+            object-fit: contain;
+            filter: drop-shadow(12px 16px 0 rgba(13, 13, 13, 0.16));
+            transform: rotate(-2deg);
+            transition: transform 0.55s var(--ease-out-expo), filter 0.55s var(--ease-out-expo);
+        }
+
+        .first .prize-media img {
+            height: 260px;
+        }
+
+        .second .prize-media img,
+        .third .prize-media img {
+            width: min(92%, 320px);
+        }
+
+        .podium-card:hover .prize-media img,
+        .hack-prize:hover .hack-prize-media img {
+            transform: scale(1.06) rotate(1deg);
+            filter: drop-shadow(16px 20px 0 rgba(13, 13, 13, 0.2));
+        }
+
+        .prize-copy {
+            margin-top: auto;
         }
 
         .prize-item {
@@ -165,43 +220,48 @@
         .prize-count {
             display: inline-block;
             width: fit-content;
+            max-width: 100%;
             padding: 9px 14px;
             border: 3px solid var(--pure-black);
             background: var(--off-white);
             font-size: 0.85rem;
             font-weight: 700;
             letter-spacing: 2px;
+            line-height: 1.35;
             text-transform: uppercase;
         }
 
         .podium-step {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            min-height: 74px;
+            min-height: 52px;
             border-top: var(--border-thick);
-            background: var(--pure-black);
-            color: var(--pure-white);
-            font-family: var(--font-display);
-            font-size: 3rem;
-            letter-spacing: 4px;
+            background:
+                linear-gradient(90deg, transparent 0 18px, rgba(255, 255, 255, 0.16) 18px 22px, transparent 22px 40px),
+                var(--pure-black);
         }
 
         .first .podium-step {
-            min-height: 130px;
+            min-height: 86px;
         }
 
         .second .podium-step {
-            min-height: 98px;
+            min-height: 66px;
         }
 
         .hack-prize {
             display: grid;
-            grid-template-columns: 1fr 1.35fr;
+            grid-template-columns: 0.72fr 0.82fr 1.25fr;
+            align-items: stretch;
             margin: 60px 0 40px;
             border: var(--border-thick);
             background: var(--pure-white);
             box-shadow: 8px 8px 0 rgba(230, 57, 70, 0.18);
+            overflow: hidden;
+            transition: transform 0.3s var(--ease-out-expo), box-shadow 0.3s;
+        }
+
+        .hack-prize:hover {
+            transform: translateY(-5px);
+            box-shadow: 12px 14px 0 rgba(230, 57, 70, 0.22);
         }
 
         .hack-prize-label {
@@ -218,6 +278,28 @@
             letter-spacing: 4px;
             line-height: 0.9;
             text-align: center;
+        }
+
+        .hack-prize-media {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 260px;
+            border-right: var(--border-thick);
+            background:
+                radial-gradient(circle at 50% 42%, rgba(244, 211, 94, 0.44), transparent 36%),
+                repeating-linear-gradient(-45deg, rgba(13, 13, 13, 0.05) 0 2px, transparent 2px 13px),
+                var(--off-white);
+        }
+
+        .hack-prize-media img {
+            display: block;
+            width: min(86%, 260px);
+            height: 220px;
+            object-fit: contain;
+            filter: drop-shadow(12px 16px 0 rgba(13, 13, 13, 0.16));
+            transform: rotate(3deg);
+            transition: transform 0.55s var(--ease-out-expo), filter 0.55s var(--ease-out-expo);
         }
 
         .hack-prize-body {
@@ -283,7 +365,7 @@
             .first .podium-step,
             .second .podium-step,
             .podium-step {
-                min-height: 78px;
+                min-height: 34px;
             }
 
             .hack-prize {
@@ -292,6 +374,12 @@
 
             .hack-prize-label {
                 min-height: 150px;
+                border-right: none;
+                border-bottom: var(--border-thick);
+            }
+
+            .hack-prize-media {
+                min-height: 220px;
                 border-right: none;
                 border-bottom: var(--border-thick);
             }
@@ -311,6 +399,20 @@
             .prize-body,
             .hack-prize-body {
                 padding: 24px 20px;
+            }
+
+            .prize-media {
+                min-height: 180px;
+            }
+
+            .first .prize-media,
+            .second .prize-media {
+                min-height: 200px;
+            }
+
+            .prize-media img,
+            .first .prize-media img {
+                height: 190px;
             }
 
             .rank-label {
@@ -368,10 +470,15 @@
                         <span class="rank-subtitle">Runner Up</span>
                     </div>
                     <div class="prize-body">
-                        <h2 class="prize-item">Projector</h2>
-                        <span class="prize-count">4 total - one per teammate</span>
+                        <div class="prize-media">
+                            <img src="assets/prizes/projector-cutout.png" alt="Projector prize" width="1500" height="1396" loading="lazy">
+                        </div>
+                        <div class="prize-copy">
+                            <h2 class="prize-item">Projector</h2>
+                            <span class="prize-count">4 total - one per teammate</span>
+                        </div>
                     </div>
-                    <div class="podium-step">2</div>
+                    <div class="podium-step" aria-hidden="true"></div>
                 </article>
 
                 <article class="podium-card first">
@@ -380,10 +487,15 @@
                         <span class="rank-subtitle">Champion</span>
                     </div>
                     <div class="prize-body">
-                        <h2 class="prize-item">iPad</h2>
-                        <span class="prize-count">4 total - one per teammate</span>
+                        <div class="prize-media">
+                            <img src="assets/prizes/ipad-cutout.png" alt="iPad prize" width="1326" height="1500" loading="lazy">
+                        </div>
+                        <div class="prize-copy">
+                            <h2 class="prize-item">iPad</h2>
+                            <span class="prize-count">4 total - one per teammate</span>
+                        </div>
                     </div>
-                    <div class="podium-step">1</div>
+                    <div class="podium-step" aria-hidden="true"></div>
                 </article>
 
                 <article class="podium-card third">
@@ -392,16 +504,24 @@
                         <span class="rank-subtitle">Finalist</span>
                     </div>
                     <div class="prize-body">
-                        <h2 class="prize-item">Sceptre Display</h2>
-                        <span class="prize-count">4 total - one per teammate</span>
+                        <div class="prize-media">
+                            <img src="assets/prizes/sceptre-display-cutout.png" alt="Sceptre display prize" width="1099" height="1285" loading="lazy">
+                        </div>
+                        <div class="prize-copy">
+                            <h2 class="prize-item">Sceptre Display</h2>
+                            <span class="prize-count">4 total - one per teammate</span>
+                        </div>
                     </div>
-                    <div class="podium-step">3</div>
+                    <div class="podium-step" aria-hidden="true"></div>
                 </article>
             </div>
         </section>
 
         <section class="hack-prize reveal" aria-label="Hackathon winner prize">
             <div class="hack-prize-label">HACK<br>WIN</div>
+            <div class="hack-prize-media">
+                <img src="assets/prizes/jbl-go-4-cutout.png" alt="JBL GO 4 Bluetooth speaker prize" width="1500" height="1500" loading="lazy">
+            </div>
             <div class="hack-prize-body">
                 <h2>JBL GO 4 Bluetooth Speaker</h2>
                 <p>The winning hackathon team earns a JBL GO 4 Bluetooth speaker for each teammate.</p>
