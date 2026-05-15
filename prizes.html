@@ -242,12 +242,16 @@
         }
 
         .hack-prize {
-            display: grid;
-            grid-template-columns: 0.72fr 0.82fr 1.25fr;
-            align-items: stretch;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+            min-height: 420px;
             margin: 60px 0 40px;
             border: var(--border-thick);
-            background: var(--pure-white);
+            background:
+                linear-gradient(135deg, rgba(255, 255, 255, 0.96), rgba(248, 248, 248, 0.86)),
+                var(--pure-white);
             box-shadow: 8px 8px 0 rgba(230, 57, 70, 0.18);
             overflow: hidden;
             transition: transform 0.3s var(--ease-out-expo), box-shadow 0.3s;
@@ -259,48 +263,41 @@
         }
 
         .hack-prize-label {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            min-height: 220px;
+            min-height: 168px;
             padding: 32px;
-            border-right: var(--border-thick);
+            border-bottom: var(--border-thick);
             background: var(--primary-red);
             color: var(--pure-white);
-            font-family: var(--font-display);
-            font-size: clamp(3rem, 7vw, 6rem);
-            letter-spacing: 4px;
-            line-height: 0.9;
-            text-align: center;
         }
 
         .hack-prize-media {
+            position: absolute;
+            top: 72px;
+            right: 48px;
+            z-index: 2;
             display: flex;
             align-items: center;
-            justify-content: center;
-            min-height: 260px;
-            border-right: var(--border-thick);
-            background:
-                radial-gradient(circle at 50% 42%, rgba(244, 211, 94, 0.44), transparent 36%),
-                repeating-linear-gradient(-45deg, rgba(13, 13, 13, 0.05) 0 2px, transparent 2px 13px),
-                var(--off-white);
+            justify-content: flex-end;
+            width: min(40%, 360px);
+            height: 270px;
+            pointer-events: none;
         }
 
         .hack-prize-media img {
             display: block;
-            width: min(86%, 260px);
-            height: 220px;
+            width: min(100%, 300px);
+            height: 270px;
             object-fit: contain;
-            filter: drop-shadow(12px 16px 0 rgba(13, 13, 13, 0.16));
-            transform: rotate(3deg);
+            filter: drop-shadow(14px 18px 0 rgba(13, 13, 13, 0.18));
+            transform: rotate(4deg);
             transition: transform 0.55s var(--ease-out-expo), filter 0.55s var(--ease-out-expo);
         }
 
         .hack-prize-body {
             display: flex;
             flex-direction: column;
-            justify-content: center;
-            padding: 42px;
+            justify-content: flex-end;
+            padding: 128px 42px 42px;
         }
 
         .hack-prize-body h2 {
@@ -312,7 +309,7 @@
         }
 
         .hack-prize-body p {
-            max-width: 560px;
+            max-width: 620px;
             font-size: 1.08rem;
             line-height: 1.8;
             opacity: 0.78;
@@ -356,20 +353,19 @@
                 order: 3;
             }
 
-            .hack-prize {
-                grid-template-columns: 1fr;
-            }
-
             .hack-prize-label {
-                min-height: 150px;
-                border-right: none;
-                border-bottom: var(--border-thick);
+                min-height: 142px;
             }
 
             .hack-prize-media {
-                min-height: 220px;
-                border-right: none;
-                border-bottom: var(--border-thick);
+                top: 82px;
+                right: 22px;
+                width: min(42%, 270px);
+                height: 230px;
+            }
+
+            .hack-prize-media img {
+                height: 230px;
             }
         }
 
@@ -436,6 +432,24 @@
 
             .hack-prize-label {
                 padding: 28px 20px;
+            }
+
+            .hack-prize-media {
+                top: 84px;
+                left: 18px;
+                right: 18px;
+                justify-content: center;
+                width: auto;
+                height: 220px;
+            }
+
+            .hack-prize-media img {
+                width: min(74%, 250px);
+                height: 214px;
+            }
+
+            .hack-prize-body {
+                padding-top: 190px;
             }
 
             .fine-print {
@@ -523,7 +537,10 @@
         </section>
 
         <section class="hack-prize reveal" aria-label="Hackathon winner prize">
-            <div class="hack-prize-label">HACK<br>WIN</div>
+            <div class="hack-prize-label">
+                <span class="rank-label">HACK</span>
+                <span class="rank-subtitle">Winner</span>
+            </div>
             <div class="hack-prize-media">
                 <img src="assets/prizes/jbl-go-4-cutout.png" alt="JBL GO 4 Bluetooth speaker prize" width="1500" height="1500" loading="lazy">
             </div>
