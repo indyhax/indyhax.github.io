@@ -4,8 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Tools and resources for IndyHAX CTF participants.">
-    <title>Tools & Resources | IndyHAX</title>
+    <meta name="description" content="Crypto tools and resources for IndyHAX CTF participants.">
+    <title>Crypto Tools & Resources | IndyHAX</title>
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -171,28 +171,6 @@
             box-shadow: 6px 7px 0 var(--primary-red);
         }
 
-        .resource-note {
-            margin-top: 70px;
-            border: var(--border-thick);
-            background: var(--primary-yellow);
-            padding: 36px;
-            display: grid;
-            grid-template-columns: 1fr 2fr;
-            gap: 30px;
-            align-items: center;
-        }
-
-        .resource-note h2 {
-            font-family: var(--font-display);
-            font-size: 3.2rem;
-            letter-spacing: 2px;
-            line-height: 1;
-        }
-
-        .resource-note p {
-            line-height: 1.8;
-        }
-
         @media (max-width: 968px) {
             .tool-grid {
                 grid-template-columns: repeat(2, 1fr);
@@ -214,9 +192,6 @@
                 border-bottom: none;
             }
 
-            .resource-note {
-                grid-template-columns: 1fr;
-            }
         }
 
         @media (max-width: 768px) {
@@ -241,9 +216,6 @@
                 border-bottom: none;
             }
 
-            .resource-note {
-                padding: 28px 22px;
-            }
         }
     </style>
 </head>
@@ -269,8 +241,8 @@
         </nav>
 
         <header class="resources-hero">
-            <h1>TOOLS /<br>RESOURCES</h1>
-            <p class="tagline">A simple directory of useful tools for CTF players. This page explains what each tool does without giving away any challenge answers.</p>
+            <h1>CRYPTO TOOLS /<br>RESOURCES</h1>
+            <p class="tagline">A simple directory of useful crypto tools for CTF players. These tools help with decoding, hashes, ciphers, tokens, number conversions, and public-key crypto basics.</p>
         </header>
 
         <section class="resource-banner reveal" aria-label="Resource topics">
@@ -292,11 +264,11 @@
 
         <main class="tool-section">
             <div class="section-header reveal">
-                <h2>COMMON TOOLS</h2>
+                <h2>CRYPTO TOOLS</h2>
                 <div class="line"></div>
             </div>
 
-            <section class="tool-grid reveal" aria-label="Common CTF tools">
+            <section class="tool-grid reveal" aria-label="Common crypto tools">
                 <article class="tool-card">
                     <h3>CyberChef</h3>
                     <div class="tool-label">Data transforms</div>
@@ -380,11 +352,6 @@
                     <p>Search engines help look up file formats, error messages, cipher names, tool documentation, and unfamiliar CTF terms.</p>
                     <a class="tool-link" href="https://www.google.com/">Open Tool</a>
                 </article>
-            </section>
-
-            <section class="resource-note reveal">
-                <h2>NO SPOILERS</h2>
-                <p>This page is only a toolbox. It does not include flags, challenge-specific solve paths, or private CTF materials.</p>
             </section>
         </main>
 
