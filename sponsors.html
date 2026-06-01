@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Sponsors supporting IndyHAX 2026.">
+    <title>Sponsors | IndyHAX</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Work+Sans:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css?v=20260208d">
+    <style>
+        .sponsors-hero {
+            padding: 70px 0 40px;
+        }
+
+        .sponsors-hero h1 {
+            font-family: var(--font-display);
+            font-size: clamp(5rem, 13vw, 10rem);
+            line-height: 0.85;
+            letter-spacing: 3px;
+            margin-bottom: 28px;
+        }
+
+        .sponsors-hero h1::after {
+            content: '';
+            display: block;
+            width: 150px;
+            height: 8px;
+            background: var(--primary-red);
+            margin-top: 18px;
+            animation: drawLine 0.6s var(--ease-out-expo) both 0.35s;
+            transform-origin: left;
+        }
+
+        .sponsors-hero .tagline {
+            max-width: 760px;
+            font-size: 1.2rem;
+            line-height: 1.8;
+            opacity: 0.82;
+        }
+
+        .sponsor-section {
+            padding: 35px 0 110px;
+        }
+
+        .sponsor-card {
+            display: grid;
+            grid-template-columns: minmax(0, 1.15fr) minmax(280px, 0.85fr);
+            gap: 0;
+            border: var(--border-thick);
+            background: var(--pure-white);
+            box-shadow: 10px 10px 0 rgba(230, 57, 70, 0.18);
+            overflow: hidden;
+            transition: transform 0.3s var(--ease-out-expo), box-shadow 0.3s;
+        }
+
+        .sponsor-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 14px 16px 0 rgba(230, 57, 70, 0.22);
+        }
+
+        .sponsor-logo-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 360px;
+            padding: 60px;
+            background: var(--pure-white);
+            border-right: var(--border-thick);
+        }
+
+        .sponsor-logo-link img {
+            display: block;
+            width: min(100%, 820px);
+            height: auto;
+            transition: transform 0.35s var(--ease-out-expo);
+        }
+
+        .sponsor-logo-link:hover img,
+        .sponsor-logo-link:focus-visible img {
+            transform: scale(1.03);
+        }
+
+        .sponsor-copy {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 44px;
+            background: var(--primary-yellow);
+        }
+
+        .sponsor-label {
+            display: inline-block;
+            width: fit-content;
+            margin-bottom: 22px;
+            padding: 7px 12px;
+            background: var(--pure-black);
+            color: var(--pure-white);
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        .sponsor-copy h2 {
+            font-family: var(--font-display);
+            font-size: clamp(3rem, 6vw, 5rem);
+            letter-spacing: 3px;
+            line-height: 0.95;
+            margin-bottom: 20px;
+        }
+
+        .sponsor-copy p {
+            font-size: 1.04rem;
+            line-height: 1.8;
+            font-weight: 600;
+            opacity: 0.82;
+        }
+
+        .sponsor-copy .cta-button {
+            width: fit-content;
+            margin-top: 36px;
+            background: var(--pure-black);
+            box-shadow: 4px 4px 0 var(--primary-red);
+        }
+
+        footer {
+            margin-top: 20px;
+        }
+
+        @media (max-width: 968px) {
+            .sponsor-card {
+                grid-template-columns: 1fr;
+            }
+
+            .sponsor-logo-link {
+                min-height: 260px;
+                padding: 42px 30px;
+                border-right: none;
+                border-bottom: var(--border-thick);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .sponsors-hero {
+                padding: 45px 0 24px;
+            }
+
+            .sponsor-section {
+                padding-bottom: 70px;
+            }
+
+            .sponsor-copy {
+                padding: 32px 24px;
+            }
+
+            .sponsor-copy .cta-button {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="grid-bg"></div>
+
+    <div class="container">
+        <nav>
+            <a href="index.html" class="nav-logo">INDYHAX</a>
+            <div class="menu-toggle" role="button" tabindex="0" aria-label="Toggle navigation menu" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="registration.html">Register</a>
+                <a href="prizes.html">Prizes</a>
+                <a href="sponsors.html" class="active">Sponsors</a>
+                <a href="code-of-conduct.html">Code of Conduct</a>
+            </div>
+        </nav>
+
+        <header class="sponsors-hero reveal">
+            <h1>SPONSORS</h1>
+            <p class="tagline">IndyHAX is backed by organizations helping students explore cybersecurity, engineering, and building real projects.</p>
+        </header>
+
+        <main class="sponsor-section">
+            <article class="sponsor-card reveal" aria-labelledby="gmu-cyber-security-engineering">
+                <a class="sponsor-logo-link" href="https://cybersecurity.gmu.edu/" target="_blank" rel="noopener">
+                    <img src="assets/sponsors/gmu-cyber-security-engineering.png" alt="George Mason University College of Engineering and Computing Cyber Security Engineering" width="1008" height="251">
+                </a>
+                <div class="sponsor-copy">
+                    <div>
+                        <span class="sponsor-label">Sponsor</span>
+                        <h2 id="gmu-cyber-security-engineering">GMU Cyber Security Engineering</h2>
+                        <p>George Mason University's Department of Cyber Security Engineering supports the next generation of students building secure, resilient systems.</p>
+                    </div>
+                    <a class="cta-button" href="https://cybersecurity.gmu.edu/" target="_blank" rel="noopener">Visit GMU CYSE</a>
+                </div>
+            </article>
+        </main>
+
+        <footer class="reveal">
+            <div>
+                <p><strong>IndyHAX 2026</strong> - Independence High School</p>
+                <p>Led by <a href="https://tarushv.com">Tarushv Kosgi</a>, <a href="https://www.linkedin.com/in/lalith-eshwar-dasa-053094403">Lalith Dasa</a>, <a href="https://www.linkedin.com/in/dheeraj-chennaboina-4454293a2">Dheeraj Chennaboina</a> &amp; <a href="https://abhiboora.com">Abhinav
+                        Boora</a></p>
+                <p><a href="https://indyhax.com">indyhax.com</a></p>
+            </div>
+            <div class="footer-shapes" aria-hidden="true">
+                <div class="footer-shape circle"></div>
+                <div class="footer-shape square"></div>
+                <div class="footer-shape triangle"></div>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        (function() {
+            const toggle = document.querySelector('.menu-toggle');
+            const navLinks = document.querySelector('.nav-links');
+            const links = navLinks.querySelectorAll('a');
+            let scrollPos = 0;
+
+            function closeMenu() {
+                toggle.classList.remove('open');
+                toggle.setAttribute('aria-expanded', 'false');
+                navLinks.classList.remove('open');
+                document.body.classList.remove('menu-open');
+                document.body.style.top = '';
+                window.scrollTo(0, scrollPos);
+            }
+
+            function openMenu() {
+                scrollPos = window.scrollY;
+                toggle.classList.add('open');
+                toggle.setAttribute('aria-expanded', 'true');
+                navLinks.classList.add('open');
+                document.body.classList.add('menu-open');
+                document.body.style.top = `-${scrollPos}px`;
+            }
+
+            toggle.addEventListener('click', function(e) {
+                e.stopPropagation();
+                if (navLinks.classList.contains('open')) {
+                    closeMenu();
+                } else {
+                    openMenu();
+                }
+            });
+
+            toggle.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    toggle.click();
+                }
+            });
+
+            links.forEach(function(link) {
+                link.addEventListener('click', function() {
+                    if (navLinks.classList.contains('open')) {
+                        closeMenu();
+                    }
+                });
+            });
+
+            document.addEventListener('click', function(e) {
+                if (navLinks.classList.contains('open') && !navLinks.contains(e.target) && !toggle.contains(e.target)) {
+                    closeMenu();
+                }
+            });
+
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && navLinks.classList.contains('open')) {
+                    closeMenu();
+                    toggle.focus();
+                }
+            });
+
+            window.addEventListener('resize', function() {
+                if (window.innerWidth > 968 && navLinks.classList.contains('open')) {
+                    closeMenu();
+                }
+            });
+        })();
+
+        const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -60px 0px' };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    </script>
+</body>
+
+</html>
