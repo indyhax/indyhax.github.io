@@ -129,6 +129,62 @@
             box-shadow: 4px 4px 0 var(--primary-red);
         }
 
+        .sponsor-interest {
+            display: grid;
+            grid-template-columns: minmax(0, 0.7fr) minmax(260px, 0.3fr);
+            gap: 28px;
+            align-items: center;
+            margin-top: 42px;
+            padding: 36px 40px;
+            border: var(--border-thick);
+            background: var(--pure-black);
+            color: var(--pure-white);
+            box-shadow: 8px 8px 0 var(--primary-yellow);
+        }
+
+        .sponsor-interest h2 {
+            font-family: var(--font-display);
+            font-size: clamp(2.8rem, 6vw, 5rem);
+            line-height: 0.92;
+            letter-spacing: 3px;
+            margin-bottom: 14px;
+        }
+
+        .sponsor-interest p {
+            max-width: 760px;
+            font-size: 1.04rem;
+            font-weight: 600;
+            line-height: 1.8;
+            opacity: 0.86;
+        }
+
+        .sponsor-interest a {
+            color: inherit;
+        }
+
+        .sponsor-email {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 18px 24px;
+            border: 4px solid var(--pure-white);
+            background: var(--primary-red);
+            color: var(--pure-white);
+            font-family: var(--font-display);
+            font-size: 1.45rem;
+            letter-spacing: 2px;
+            text-align: center;
+            text-decoration: none;
+            box-shadow: 5px 5px 0 var(--primary-yellow);
+            transition: transform 0.3s var(--ease-out-expo), box-shadow 0.3s;
+        }
+
+        .sponsor-email:hover,
+        .sponsor-email:focus-visible {
+            transform: translateY(-3px);
+            box-shadow: 7px 8px 0 var(--primary-yellow);
+        }
+
         footer {
             margin-top: 20px;
         }
@@ -143,6 +199,10 @@
                 padding: 42px 30px;
                 border-right: none;
                 border-bottom: var(--border-thick);
+            }
+
+            .sponsor-interest {
+                grid-template-columns: 1fr;
             }
         }
 
@@ -160,6 +220,14 @@
             }
 
             .sponsor-copy .cta-button {
+                width: 100%;
+            }
+
+            .sponsor-interest {
+                padding: 30px 24px;
+            }
+
+            .sponsor-email {
                 width: 100%;
             }
         }
@@ -205,6 +273,14 @@
                     <a class="cta-button" href="https://cybersecurity.gmu.edu/" target="_blank" rel="noopener">Visit GMU CYSE</a>
                 </div>
             </article>
+
+            <section class="sponsor-interest reveal" aria-labelledby="sponsor-interest-heading">
+                <div>
+                    <h2 id="sponsor-interest-heading">Interested in Sponsorship?</h2>
+                    <p>Help fuel IndyHAX with prizes, mentorship, workshops, or support for students taking their first serious swing at cybersecurity and building. For sponsorship details, partnership ideas, or ways to get involved, reach out to our team.</p>
+                </div>
+                <a class="sponsor-email" href="mailto:lalith@indyhax.com">Email Us</a>
+            </section>
         </main>
 
         <footer class="reveal">
