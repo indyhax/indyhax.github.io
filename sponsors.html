@@ -64,6 +64,10 @@
             box-shadow: 14px 16px 0 rgba(230, 57, 70, 0.22);
         }
 
+        .sponsor-card + .sponsor-card {
+            margin-top: 42px;
+        }
+
         .sponsor-logo-link {
             display: flex;
             align-items: center;
@@ -84,6 +88,15 @@
         .sponsor-logo-link:hover img,
         .sponsor-logo-link:focus-visible img {
             transform: scale(1.03);
+        }
+
+        .sponsor-logo-link.cloud9-logo {
+            background: var(--primary-blue);
+        }
+
+        .sponsor-logo-link.cloud9-logo img {
+            width: min(74%, 520px);
+            filter: drop-shadow(10px 12px 0 rgba(13, 13, 13, 0.18));
         }
 
         .sponsor-copy {
@@ -271,6 +284,20 @@
                         <p>George Mason University's Department of Cyber Security Engineering supports the next generation of students building secure, resilient systems.</p>
                     </div>
                     <a class="cta-button" href="https://cybersecurity.gmu.edu/" target="_blank" rel="noopener">Visit GMU CYSE</a>
+                </div>
+            </article>
+
+            <article class="sponsor-card reveal" aria-labelledby="cloud9-advisers">
+                <a class="sponsor-logo-link cloud9-logo" href="https://www.cloud9advisers.com/" target="_blank" rel="noopener">
+                    <img src="assets/sponsors/cloud9-advisers.png" alt="Cloud 9 Advisers" width="414" height="207">
+                </a>
+                <div class="sponsor-copy">
+                    <div>
+                        <span class="sponsor-label">Sponsor</span>
+                        <h2 id="cloud9-advisers">Cloud 9 Advisers</h2>
+                        <p>Cloud 9 Advisers helps organizations make clear, confident technology decisions across cybersecurity, cloud, IT, communications, and connectivity.</p>
+                    </div>
+                    <a class="cta-button" href="https://www.cloud9advisers.com/" target="_blank" rel="noopener">Visit Cloud 9</a>
                 </div>
             </article>
 
