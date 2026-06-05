@@ -376,72 +376,22 @@
             line-height: 1.5;
         }
 
-        .mentor-media {
-            position: relative;
-            min-height: 0;
-            border: 3px solid var(--black);
-            background:
-                linear-gradient(90deg, rgba(13, 13, 13, 0.07) 1px, transparent 1px),
-                var(--mentor-bg, var(--yellow));
-            background-size: 34px 100%, auto;
-            overflow: hidden;
-        }
-
-        .mentor-media::before {
-            content: '';
-            position: absolute;
-            inset: 8% 9% auto auto;
-            width: 38%;
-            aspect-ratio: 1;
-            border: 3px solid var(--black);
-            background: var(--blue);
-            transform: rotate(4deg);
-        }
-
-        .mentor-media::after {
-            content: '';
-            position: absolute;
-            left: 8%;
-            right: 8%;
-            bottom: 9%;
-            height: 12px;
-            background: var(--red);
-            border: 2px solid var(--black);
-        }
-
-        .mentor-cutout {
-            position: absolute;
-            left: 47%;
-            bottom: -8%;
-            z-index: 2;
-            width: min(58%, 330px);
-            max-height: 112%;
-            object-fit: contain;
-            filter:
-                drop-shadow(8px 8px 0 rgba(13, 13, 13, 0.92))
-                drop-shadow(0 18px 28px rgba(13, 13, 13, 0.2));
-            transform: translateX(-50%);
-        }
-
-        .mentor-cutout.gebril-cutout {
-            left: 52%;
-            bottom: -3%;
-            width: min(66%, 390px);
-            max-height: 108%;
-        }
-
-        .mentor-label {
-            position: absolute;
-            left: 8%;
-            top: 9%;
-            z-index: 3;
-            max-width: 48%;
-            padding: 16px 18px;
+        .mentor-photo-frame {
+            align-self: center;
+            justify-self: center;
+            width: min(100%, 460px);
+            aspect-ratio: 4 / 5;
             border: 3px solid var(--black);
             background: var(--white);
-            font-size: clamp(10px, 1vw, 14px);
-            font-weight: 800;
-            line-height: 1.35;
+            overflow: hidden;
+            box-shadow: 10px 10px 0 var(--black);
+        }
+
+        .mentor-photo-frame img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
         .rules {
@@ -888,9 +838,8 @@
                     <div class="title-rule"></div>
                     <p>Thank you for championing the students and helping make IndyHAX possible.</p>
                 </div>
-                <div class="mentor-media" style="--d: 1; --mentor-bg: var(--red);">
-                    <div class="mentor-label">IndyHAX mentor spotlight</div>
-                    <img class="mentor-cutout gebril-cutout" src="assets/slides/team/gebril-cutout.png" alt="Dr. Mohammed Gebril">
+                <div class="mentor-photo-frame" style="--d: 1;">
+                    <img src="assets/slides/team/gebril-focus.jpg" alt="Dr. Mohammed Gebril">
                 </div>
             </article>
 
@@ -903,9 +852,8 @@
                     <div class="title-rule"></div>
                     <p>Thank you for supporting the students and making room for the work behind IndyHAX.</p>
                 </div>
-                <div class="mentor-media" style="--d: 1; --mentor-bg: var(--yellow);">
-                    <div class="mentor-label">IndyHAX mentor spotlight</div>
-                    <img class="mentor-cutout" src="assets/slides/team/chhabra-cutout.png" alt="Ms. Chhabra">
+                <div class="mentor-photo-frame" style="--d: 1;">
+                    <img src="assets/slides/team/chhabra-focus.jpg" alt="Ms. Chhabra">
                 </div>
             </article>
 
@@ -934,18 +882,18 @@
                 </div>
             </article>
 
-            <article class="slide title-slide" data-title="Live Reveal" style="--accent: var(--blue);">
+            <article class="slide title-slide" data-title="Reserved 08" style="--accent: var(--blue);">
                 <div class="corner-tag" style="--accent: var(--blue);"><span>08</span><span>IndyHAX</span></div>
                 <div class="tag-line"></div>
                 <div class="title-block" style="--d: 0;"></div>
-                <div style="--d: 1;"><h2>REVEALED LIVE</h2><div class="title-rule"></div></div>
+                <div style="--d: 1;"><h2>INDYHAX</h2><div class="title-rule"></div></div>
             </article>
 
-            <article class="slide title-slide" data-title="Bridge" style="--accent: var(--red);">
+            <article class="slide title-slide" data-title="Reserved 09" style="--accent: var(--red);">
                 <div class="corner-tag"><span>09</span><span>IndyHAX</span></div>
                 <div class="tag-line"></div>
                 <div class="title-block" style="--d: 0;"></div>
-                <div style="--d: 1;"><h2>BRIDGE</h2><div class="title-rule"></div></div>
+                <div style="--d: 1;"><h2>INDYHAX</h2><div class="title-rule"></div></div>
             </article>
 
             <article class="slide code" data-title="CTF Code">
@@ -980,7 +928,7 @@
                 <div class="corner-tag"><span>13</span><span>IndyHAX</span></div>
                 <div class="tag-line"></div>
                 <div class="winner-panel" style="--d: 0;"><h2>INDYHAX HACKATHON<br>3RD PLACE</h2><p>PRIZE: 500 POINTS</p></div>
-                <div class="winner-empty" style="--d: 1;"><div><strong>WINNER</strong><p>Team announced live</p></div></div>
+                <div class="winner-empty" style="--d: 1;"><div><strong>WINNER</strong><p>Team announced at awards</p></div></div>
             </article>
 
             <article class="slide team-name" data-title="Team Name"><div class="team-name-box" style="--d: 0;"><div><h2>TEAM NAME</h2><div class="redline"></div><p><strong>MEMBERS</strong></p></div></div></article>
@@ -989,7 +937,7 @@
                 <div class="corner-tag"><span>15</span><span>IndyHAX</span></div>
                 <div class="tag-line"></div>
                 <div class="winner-panel" style="--d: 0;"><h2>INDYHAX HACKATHON<br>2 PLACE</h2><p>PRIZE: 600 POINTS</p></div>
-                <div class="winner-empty" style="--d: 1;"><div><strong>WINNER</strong><p>Team announced live</p></div></div>
+                <div class="winner-empty" style="--d: 1;"><div><strong>WINNER</strong><p>Team announced at awards</p></div></div>
             </article>
 
             <article class="slide team-name" data-title="Team Name"><div class="team-name-box" style="--d: 0;"><div><h2>TEAM NAME</h2><div class="redline"></div><p><strong>MEMBERS</strong></p></div></div></article>
@@ -998,7 +946,7 @@
                 <div class="corner-tag"><span>17</span><span>IndyHAX</span></div>
                 <div class="tag-line"></div>
                 <div class="winner-panel" style="--d: 0;"><h2>INDYHAX HACKATHON<br>1ST PLACE</h2><p>PRIZE: 700 POINTS + JBL SPEAKERS</p></div>
-                <div class="winner-empty" style="--d: 1;"><div><strong>WINNER</strong><p>Team announced live</p></div></div>
+                <div class="winner-empty" style="--d: 1;"><div><strong>WINNER</strong><p>Team announced at awards</p></div></div>
             </article>
 
             <article class="slide team-name" data-title="Team Name"><div class="team-name-box" style="--d: 0;"><div><h2>TEAM NAME</h2><div class="redline"></div><p><strong>MEMBERS</strong></p></div></div></article>
@@ -1049,7 +997,7 @@
             </button>
         </nav>
 
-        <div class="hud" aria-live="polite">
+        <div class="hud">
             <span id="slideCount">01 / 25</span>
             <span class="progress" aria-hidden="true"><span id="progressBar"></span></span>
         </div>

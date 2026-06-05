@@ -8,31 +8,11 @@
 
 - **Location:** Independence High School
 - **Date:** June 7, 2026
-- **Theme:** Building Smarter Systems for Smarter Students.
+- **Event Focus:** Hackathon and CTF competition.
 
 ## The Challenge
 
-### An Academic management website integrated with Ai with the student in mind.
-
-Students are challenged to create a **web-based platform** that helps fellow students manage their academic life more effectively. The platform should have but not be limted to:
-
-- **To-Do List Management:** An simple and inovative interface for students to track their tasks
-- **Assignment Tracking:** Easy-to-use tools for monitoring homework, projects, and deadlines
-- **AI Integration:** The core feature - an AI Agent that enhances the user experience
-
-### AI Agent Requirements
-
-Participants must build an **AI Agent** using resources from industry-leading providers:
-- **Google AI Resources** (such as Gemini API, Google Cloud AI)
-- **Microsoft AI Resources** (such as Azure AI, Copilot API)
-
-The AI Agent should provide intelligent features such as:
-- Smart task prioritization
-- Deadline reminders and intelligent scheduling
-- Assignment difficulty assessment
-- Study time recommendations
-- Natural language interaction for adding tasks
-- Personalized productivity insights
+Challenge details are provided to participants during the event.
 
 ## Presentation & Judging
 
@@ -59,7 +39,7 @@ Gain hands-on experience with the same AI tools used by professional developers 
 - Collaborate in a team environment
 
 ### Make an Impact
-Create a solution that could be adopted by students across your school and beyond, making a real difference in how students organize their academic lives.
+Create a solution that could be adopted by students across your school and beyond.
 
 ## Our Vision
 
