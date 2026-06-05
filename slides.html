@@ -278,6 +278,10 @@
             border: 2px solid var(--black);
         }
 
+        .person img.tarushv-photo {
+            object-position: 50% 35%;
+        }
+
         .person strong {
             display: block;
             font-family: var(--display);
@@ -344,6 +348,100 @@
             height: 3px;
             margin-top: 22px;
             background: var(--black);
+        }
+
+        .mentor-slide {
+            grid-template-columns: 45% 1fr;
+            align-items: stretch;
+            gap: 5%;
+            padding: 7% 5%;
+        }
+
+        .mentor-copy {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 22px;
+        }
+
+        .mentor-copy h2 {
+            font-size: clamp(48px, 7vw, 100px);
+            max-width: 7ch;
+        }
+
+        .mentor-copy p {
+            max-width: 34ch;
+            font-size: clamp(12px, 1.35vw, 18px);
+            font-weight: 800;
+            line-height: 1.5;
+        }
+
+        .mentor-media {
+            position: relative;
+            min-height: 0;
+            border: 3px solid var(--black);
+            background:
+                linear-gradient(90deg, rgba(13, 13, 13, 0.07) 1px, transparent 1px),
+                var(--mentor-bg, var(--yellow));
+            background-size: 34px 100%, auto;
+            overflow: hidden;
+        }
+
+        .mentor-media::before {
+            content: '';
+            position: absolute;
+            inset: 8% 9% auto auto;
+            width: 38%;
+            aspect-ratio: 1;
+            border: 3px solid var(--black);
+            background: var(--blue);
+            transform: rotate(4deg);
+        }
+
+        .mentor-media::after {
+            content: '';
+            position: absolute;
+            left: 8%;
+            right: 8%;
+            bottom: 9%;
+            height: 12px;
+            background: var(--red);
+            border: 2px solid var(--black);
+        }
+
+        .mentor-cutout {
+            position: absolute;
+            left: 47%;
+            bottom: -8%;
+            z-index: 2;
+            width: min(58%, 330px);
+            max-height: 112%;
+            object-fit: contain;
+            filter:
+                drop-shadow(8px 8px 0 rgba(13, 13, 13, 0.92))
+                drop-shadow(0 18px 28px rgba(13, 13, 13, 0.2));
+            transform: translateX(-50%);
+        }
+
+        .mentor-cutout.gebril-cutout {
+            left: 52%;
+            bottom: -3%;
+            width: min(66%, 390px);
+            max-height: 108%;
+        }
+
+        .mentor-label {
+            position: absolute;
+            left: 8%;
+            top: 9%;
+            z-index: 3;
+            max-width: 48%;
+            padding: 16px 18px;
+            border: 3px solid var(--black);
+            background: var(--white);
+            font-size: clamp(10px, 1vw, 14px);
+            font-weight: 800;
+            line-height: 1.35;
         }
 
         .rules {
@@ -754,7 +852,7 @@
                 <div class="tag-line"></div>
                 <h2 class="slide-title" style="--d: 0;">THE TEAM</h2>
                 <div class="team-grid" style="--d: 1;">
-                    <div class="person" style="--card-bg: var(--white);"><img src="assets/slides/team/tarushv.png" alt="Tarushv"><div><strong>TARUSHV</strong><span>IndyHAX organizer</span></div></div>
+                    <div class="person" style="--card-bg: var(--white);"><img class="tarushv-photo" src="assets/slides/team/tarushv.jpeg" alt="Tarushv"><div><strong>TARUSHV</strong><span>IndyHAX organizer</span></div></div>
                     <div class="person" style="--card-bg: var(--yellow);"><img src="assets/slides/team/abhi.png" alt="Abhi"><div><strong>ABHI</strong><span>IndyHAX organizer</span></div></div>
                     <div class="person" style="--card-bg: var(--white);"><img src="assets/slides/team/lalith.png" alt="Lalith"><div><strong>LALITH</strong><span>IndyHAX organizer</span></div></div>
                     <div class="person" style="--card-bg: var(--yellow);"><img src="assets/slides/team/dheeraj.png" alt="Dheeraj"><div><strong>DHEERAJ</strong><span>IndyHAX organizer</span></div></div>
@@ -781,18 +879,34 @@
                 <div style="--d: 1;"><h2>ACKNOWLEDGEMENTS</h2><div class="title-rule"></div></div>
             </article>
 
-            <article class="slide title-slide" data-title="Dr. Gebril" style="--accent: var(--red);">
+            <article class="slide mentor-slide" data-title="Dr. Gebril" style="--accent: var(--red);">
                 <div class="corner-tag"><span>05</span><span>IndyHAX</span></div>
                 <div class="tag-line"></div>
-                <div class="title-block" style="--d: 0;"></div>
-                <div style="--d: 1;"><h2>DR.<br>GEBRIL</h2><div class="title-rule"></div></div>
+                <div class="mentor-copy" style="--d: 0;">
+                    <span class="kicker">Acknowledgement</span>
+                    <h2>DR. MOHAMMED<br>GEBRIL</h2>
+                    <div class="title-rule"></div>
+                    <p>Thank you for championing the students and helping make IndyHAX possible.</p>
+                </div>
+                <div class="mentor-media" style="--d: 1; --mentor-bg: var(--red);">
+                    <div class="mentor-label">IndyHAX mentor spotlight</div>
+                    <img class="mentor-cutout gebril-cutout" src="assets/slides/team/gebril-cutout.png" alt="Dr. Mohammed Gebril">
+                </div>
             </article>
 
-            <article class="slide title-slide" data-title="Mrs. Chhabra" style="--accent: var(--yellow);">
+            <article class="slide mentor-slide" data-title="Ms. Chhabra" style="--accent: var(--yellow);">
                 <div class="corner-tag" style="--accent: var(--yellow); --tag-color: var(--black);"><span>06</span><span>IndyHAX</span></div>
                 <div class="tag-line"></div>
-                <div class="title-block" style="--d: 0;"></div>
-                <div style="--d: 1;"><h2>MRS.<br>CHHABRA</h2><div class="title-rule"></div></div>
+                <div class="mentor-copy" style="--d: 0;">
+                    <span class="kicker" style="background: var(--yellow); color: var(--black);">Acknowledgement</span>
+                    <h2>MS.<br>CHHABRA</h2>
+                    <div class="title-rule"></div>
+                    <p>Thank you for supporting the students and making room for the work behind IndyHAX.</p>
+                </div>
+                <div class="mentor-media" style="--d: 1; --mentor-bg: var(--yellow);">
+                    <div class="mentor-label">IndyHAX mentor spotlight</div>
+                    <img class="mentor-cutout" src="assets/slides/team/chhabra-cutout.png" alt="Ms. Chhabra">
+                </div>
             </article>
 
             <article class="slide rules" data-title="Hackathon Rules">
@@ -820,11 +934,11 @@
                 </div>
             </article>
 
-            <article class="slide title-slide" data-title="Hackathon Theme" style="--accent: var(--blue);">
+            <article class="slide title-slide" data-title="Live Reveal" style="--accent: var(--blue);">
                 <div class="corner-tag" style="--accent: var(--blue);"><span>08</span><span>IndyHAX</span></div>
                 <div class="tag-line"></div>
                 <div class="title-block" style="--d: 0;"></div>
-                <div style="--d: 1;"><h2>INDYHAX HACKATHON THEME</h2><div class="title-rule"></div></div>
+                <div style="--d: 1;"><h2>REVEALED LIVE</h2><div class="title-rule"></div></div>
             </article>
 
             <article class="slide title-slide" data-title="Bridge" style="--accent: var(--red);">
