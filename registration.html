@@ -4,8 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Register for IndyHAX - The Hybrid CTF & Hackathon at Independence High School. Free to attend. Open to all High School Students.">
-    <title>Register | IndyHAX</title>
+    <meta name="description" content="IndyHAX registration is closed because event capacity has been reached.">
+    <title>Registration Closed | IndyHAX</title>
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -213,6 +213,23 @@
             margin: 20px 0;
         }
 
+        .cta-button.closed-status {
+            cursor: default;
+            background: var(--primary-red);
+            border-color: var(--primary-red);
+            color: var(--pure-white);
+            box-shadow: 4px 4px 0 var(--pure-black);
+        }
+
+        .cta-button.closed-status::before {
+            display: none;
+        }
+
+        .cta-button.closed-status:hover {
+            transform: none;
+            box-shadow: 4px 4px 0 var(--pure-black);
+        }
+
         .button-wrapper {
             text-align: center;
             margin: 40px 0;
@@ -399,7 +416,7 @@
             </div>
             <div class="nav-links">
                 <a href="index.html">Home</a>
-                <a href="registration.html" class="active">Register</a>
+                <a href="registration.html" class="active">Event Full</a>
                 <a href="prizes.html">Prizes</a>
                 <a href="sponsors.html">Sponsors</a>
                 <a href="code-of-conduct.html">Code of Conduct</a>
@@ -408,8 +425,8 @@
 
         <!-- Page Header -->
         <header class="page-header">
-            <h1>REGISTER</h1>
-            <p class="tagline">Secure Your Spot at IndyHAX</p>
+            <h1>REGISTRATION CLOSED</h1>
+            <p class="tagline">IndyHAX has reached event capacity</p>
         </header>
 
         <!-- Main Content -->
@@ -419,26 +436,27 @@
             </div>
             <div class="card-body">
                 <div class="info-box">
-                    <h3>BEFORE YOU REGISTER</h3>
+                    <h3>EVENT STATUS</h3>
                     <ul>
                         <li>IndyHAX is completely free to attend</li>
-                        <li>Open to all High School Students</li>
+                        <li>Registration is now closed</li>
+                        <li>Event capacity has been reached</li>
                         <li>Bring your laptop and enthusiasm</li>
                         <li>Teams may have up to four members</li>
                         <li>The challenge will be revealed at the event</li>
                     </ul>
                 </div>
 
-                <p>Ready to join IndyHAX as a <strong>participant</strong>? Click the button below to fill out our
-                    signup form and secure your spot!
+                <p>Thanks for the incredible interest in IndyHAX. Participant signups and the registration form are
+                    now closed because we have reached capacity for the event.
                 </p>
 
                 <div class="button-wrapper">
-                    <a href="https://forms.gle/sbW7n6SA9xFoaVwT6" target="_blank" rel="noopener noreferrer" class="cta-button">PARTICIPANT SIGNUP</a>
+                    <span class="cta-button closed-status" aria-disabled="true">REGISTRATION CLOSED</span>
                 </div>
 
                 <div class="status-note">
-                    <strong>NOTE:</strong> Registration is now open! Sign up early as spots are limited.
+                    <strong>NOTE:</strong> Capacity has been reached, so we are no longer accepting new participant signups.
                 </div>
             </div>
         </div>
