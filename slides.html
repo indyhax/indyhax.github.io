@@ -1,0 +1,1027 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="IndyHAX presentation slides with interactive navigation.">
+    <title>IndyHAX - Presentation Slides</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Work+Sans:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --red: #e63946;
+            --yellow: #f4d35e;
+            --blue: #1d3557;
+            --black: #0d0d0d;
+            --white: #ffffff;
+            --off-white: #f8f8f8;
+            --paper: #f4f1e8;
+            --grid: rgba(13, 13, 13, 0.055);
+            --glass: rgba(255, 255, 255, 0.44);
+            --ease: cubic-bezier(0.16, 1, 0.3, 1);
+            --border: 4px solid var(--black);
+            --display: 'Bebas Neue', Impact, sans-serif;
+            --body: 'Work Sans', Arial, sans-serif;
+        }
+
+        html,
+        body {
+            min-height: 100%;
+            overflow: hidden;
+        }
+
+        body {
+            font-family: var(--body);
+            color: var(--black);
+            background:
+                linear-gradient(var(--grid) 1px, transparent 1px),
+                linear-gradient(90deg, var(--grid) 1px, transparent 1px),
+                radial-gradient(circle at 15% 10%, rgba(230, 57, 70, 0.18), transparent 28%),
+                radial-gradient(circle at 86% 88%, rgba(244, 211, 94, 0.28), transparent 32%),
+                var(--paper);
+            background-size: 54px 54px, 54px 54px, auto, auto, auto;
+        }
+
+        body::after {
+            content: '';
+            position: fixed;
+            inset: 0;
+            z-index: 20;
+            pointer-events: none;
+            opacity: 0.03;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+        }
+
+        .deck-shell {
+            position: relative;
+            width: 100vw;
+            min-height: 100dvh;
+            display: grid;
+            place-items: center;
+            padding: clamp(12px, 2.5vw, 34px);
+        }
+
+        .stage {
+            position: relative;
+            width: min(100%, calc((100dvh - clamp(24px, 5vw, 68px)) * 16 / 9));
+            aspect-ratio: 16 / 9;
+            border: var(--border);
+            background: var(--off-white);
+            overflow: hidden;
+            box-shadow: 10px 10px 0 rgba(13, 13, 13, 0.96);
+            contain: layout paint;
+        }
+
+        .slide {
+            position: absolute;
+            inset: 0;
+            display: grid;
+            opacity: 0;
+            pointer-events: none;
+            transform: translate3d(var(--enter-x, 44px), 0, 0) scale(0.985);
+            transition:
+                opacity 520ms var(--ease),
+                transform 620ms var(--ease);
+            background:
+                linear-gradient(rgba(13, 13, 13, 0.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(13, 13, 13, 0.04) 1px, transparent 1px),
+                var(--off-white);
+            background-size: 42px 42px;
+        }
+
+        .slide.is-active {
+            opacity: 1;
+            pointer-events: auto;
+            transform: translate3d(0, 0, 0) scale(1);
+        }
+
+        .slide.is-leaving {
+            opacity: 0;
+            transform: translate3d(var(--exit-x, -42px), 0, 0) scale(1.01);
+        }
+
+        .slide > * {
+            transform: translate3d(0, 18px, 0);
+            opacity: 0;
+            transition:
+                transform 720ms var(--ease),
+                opacity 560ms ease;
+            transition-delay: calc(var(--d, 0) * 90ms + 90ms);
+            will-change: transform, opacity;
+        }
+
+        .slide.is-active > * {
+            transform: translate3d(0, 0, 0);
+            opacity: 1;
+        }
+
+        .corner-tag {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            z-index: 3;
+            width: 118px;
+            height: 34px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            padding: 0 12px;
+            border: 2px solid var(--black);
+            background: var(--accent, var(--red));
+            color: var(--tag-color, var(--white));
+            font-size: clamp(7px, 0.75vw, 10px);
+            font-weight: 800;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+
+        .tag-line {
+            position: absolute;
+            top: 36px;
+            left: 138px;
+            right: 20px;
+            border-top: 2px solid var(--black);
+        }
+
+        h1,
+        h2,
+        h3,
+        .display {
+            font-family: var(--display);
+            font-weight: 400;
+            line-height: 0.9;
+            letter-spacing: 0;
+        }
+
+        .kicker {
+            display: inline-flex;
+            align-items: center;
+            height: 34px;
+            width: fit-content;
+            padding: 0 16px;
+            border: 3px solid var(--black);
+            background: var(--red);
+            color: var(--white);
+            font-size: clamp(8px, 0.9vw, 13px);
+            font-weight: 800;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+        }
+
+        .logo {
+            width: clamp(54px, 6.5vw, 92px);
+            height: clamp(54px, 6.5vw, 92px);
+            object-fit: contain;
+            border: 3px solid var(--black);
+            background: var(--white);
+        }
+
+        .hero {
+            grid-template-columns: 52% 48%;
+        }
+
+        .hero-main {
+            padding: 7% 7%;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 6%;
+        }
+
+        .hero h1 {
+            font-size: clamp(60px, 12vw, 158px);
+        }
+
+        .hero-mark {
+            width: 180px;
+            height: 10px;
+            background: var(--red);
+            border: 0;
+        }
+
+        .hero-meta {
+            font-size: clamp(13px, 1.5vw, 21px);
+            font-weight: 800;
+        }
+
+        .hero-side {
+            position: relative;
+            display: grid;
+            place-items: center;
+            background: var(--blue);
+            border-left: var(--border);
+            overflow: hidden;
+        }
+
+        .poster {
+            width: 78%;
+            border: 4px solid var(--black);
+            box-shadow: 10px 10px 0 var(--black);
+            transform: rotate(-1.25deg);
+        }
+
+        .hero-side .note {
+            position: absolute;
+            right: 10%;
+            bottom: 11%;
+            width: 33%;
+            padding: 16px;
+            border: 3px solid var(--black);
+            background: var(--yellow);
+            font-size: clamp(9px, 1vw, 14px);
+            font-weight: 800;
+            text-align: center;
+        }
+
+        .team {
+            padding: 7% 5% 5%;
+            grid-template-rows: auto 1fr;
+            gap: 4%;
+        }
+
+        .slide-title {
+            font-size: clamp(38px, 5.4vw, 76px);
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 4%;
+        }
+
+        .person {
+            display: grid;
+            grid-template-columns: 34% 1fr;
+            align-items: center;
+            gap: 7%;
+            padding: 6%;
+            border: 3px solid var(--black);
+            background: var(--card-bg, var(--white));
+        }
+
+        .person img {
+            width: 100%;
+            aspect-ratio: 1;
+            object-fit: cover;
+            border: 2px solid var(--black);
+        }
+
+        .person strong {
+            display: block;
+            font-family: var(--display);
+            font-size: clamp(22px, 2.8vw, 38px);
+            line-height: 0.9;
+        }
+
+        .person span {
+            display: block;
+            margin-top: 8px;
+            font-size: clamp(8px, 0.88vw, 12px);
+            font-weight: 800;
+        }
+
+        .sponsors {
+            padding: 7% 5%;
+            grid-template-rows: auto 1fr auto;
+            gap: 6%;
+        }
+
+        .sponsor-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4%;
+            align-items: center;
+        }
+
+        .sponsor-card {
+            display: grid;
+            place-items: center;
+            min-height: 42vh;
+            padding: 7%;
+            border: 3px solid var(--black);
+            background: var(--card-bg, var(--white));
+        }
+
+        .sponsor-card img {
+            max-width: 92%;
+            max-height: 18vh;
+            object-fit: contain;
+        }
+
+        .title-slide {
+            grid-template-columns: 33% 1fr;
+            align-items: center;
+            gap: 6%;
+            padding: 8%;
+        }
+
+        .title-block {
+            width: min(100%, 300px);
+            aspect-ratio: 1;
+            border: 3px solid var(--black);
+            background: var(--accent, var(--red));
+        }
+
+        .title-slide h2 {
+            font-size: clamp(42px, 7vw, 96px);
+            max-width: 9ch;
+        }
+
+        .title-rule {
+            width: min(44vw, 430px);
+            height: 3px;
+            margin-top: 22px;
+            background: var(--black);
+        }
+
+        .rules {
+            padding: 7% 5%;
+            grid-template-rows: auto 1fr;
+            gap: 5%;
+        }
+
+        .rules-panels {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4%;
+        }
+
+        .panel {
+            padding: 8%;
+            border: 3px solid var(--black);
+            background: var(--panel-bg, var(--white));
+        }
+
+        .panel.dark {
+            color: var(--white);
+            background: var(--blue);
+        }
+
+        .panel ul {
+            display: grid;
+            gap: 18px;
+            margin-top: 28px;
+            list-style: none;
+            font-size: clamp(11px, 1.2vw, 16px);
+            font-weight: 800;
+        }
+
+        .panel li {
+            padding-bottom: 12px;
+            border-bottom: 1px solid rgba(13, 13, 13, 0.16);
+        }
+
+        .panel.dark li {
+            border-color: rgba(255, 255, 255, 0.22);
+        }
+
+        .code {
+            padding: 7% 5%;
+            grid-template-columns: 44% 1fr;
+            gap: 5%;
+            align-items: center;
+        }
+
+        .qr-box {
+            display: grid;
+            place-items: center;
+            aspect-ratio: 1;
+            border: 3px solid var(--black);
+            background: var(--white);
+            font-size: clamp(12px, 1.2vw, 17px);
+            font-weight: 800;
+        }
+
+        .yellow-callout {
+            display: grid;
+            place-items: center;
+            min-height: 38%;
+            padding: 7%;
+            border: 3px solid var(--black);
+            background: var(--yellow);
+            text-align: center;
+            font-family: var(--display);
+            font-size: clamp(32px, 4.8vw, 68px);
+            line-height: 0.9;
+        }
+
+        .awards {
+            padding: 7% 5% 5%;
+            grid-template-rows: auto 1fr;
+            gap: 4%;
+        }
+
+        .award-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 3%;
+        }
+
+        .award {
+            display: grid;
+            grid-template-rows: auto auto 1fr;
+            gap: 4%;
+            padding: 8%;
+            border: 3px solid var(--black);
+            background: var(--award-bg, var(--white));
+            color: var(--award-color, var(--black));
+        }
+
+        .award small {
+            font-weight: 800;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .award strong {
+            font-family: var(--display);
+            font-size: clamp(34px, 4.6vw, 64px);
+            line-height: 0.9;
+        }
+
+        .award img {
+            align-self: end;
+            justify-self: center;
+            max-width: 86%;
+            max-height: 26vh;
+            object-fit: contain;
+        }
+
+        .winner-layout {
+            padding: 7% 5%;
+            grid-template-columns: 43% 1fr;
+            gap: 4%;
+            align-items: stretch;
+        }
+
+        .winner-panel {
+            padding: 9%;
+            border: 3px solid var(--black);
+            background: var(--red);
+            color: var(--white);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 7%;
+        }
+
+        .winner-panel h2 {
+            font-size: clamp(44px, 6vw, 82px);
+        }
+
+        .winner-panel p {
+            font-size: clamp(11px, 1.2vw, 16px);
+            font-weight: 800;
+        }
+
+        .winner-empty {
+            display: grid;
+            place-items: center;
+            border: 3px solid var(--black);
+            background: var(--white);
+            text-align: center;
+            padding: 7%;
+        }
+
+        .winner-empty strong {
+            font-family: var(--display);
+            font-size: clamp(44px, 6.4vw, 88px);
+            line-height: 0.9;
+        }
+
+        .team-name {
+            padding: 7% 5%;
+            display: grid;
+            place-items: center;
+        }
+
+        .team-name-box {
+            width: 92%;
+            height: 64%;
+            border: 3px solid var(--black);
+            background: var(--white);
+            display: grid;
+            place-items: center;
+            text-align: center;
+        }
+
+        .team-name-box h2 {
+            font-size: clamp(56px, 7.5vw, 106px);
+        }
+
+        .team-name-box .redline {
+            width: min(70%, 650px);
+            height: 3px;
+            margin: 22px auto 18px;
+            background: var(--red);
+        }
+
+        .ctf-prize {
+            padding: 7% 5%;
+            grid-template-columns: 44% 1fr;
+            gap: 4%;
+            align-items: stretch;
+        }
+
+        .ctf-panel {
+            padding: 10% 8%;
+            border: 3px solid var(--black);
+            background: var(--blue);
+            color: var(--white);
+            display: grid;
+            align-content: center;
+            text-align: center;
+            gap: 18px;
+        }
+
+        .ctf-panel h2 {
+            font-size: clamp(42px, 5.6vw, 78px);
+        }
+
+        .prize-media {
+            display: grid;
+            place-items: center;
+            border: 3px solid var(--black);
+            background: var(--white);
+            padding: 8%;
+        }
+
+        .prize-media img {
+            max-width: 84%;
+            max-height: 44vh;
+            object-fit: contain;
+        }
+
+        .thanks {
+            grid-template-columns: 1fr 40%;
+            align-items: center;
+            padding: 7%;
+            background: var(--black);
+            color: var(--white);
+        }
+
+        .thanks h2 {
+            font-size: clamp(76px, 10vw, 150px);
+        }
+
+        .thanks-card {
+            display: grid;
+            place-items: center;
+            min-height: 46%;
+            padding: 8%;
+            border: 3px solid var(--black);
+            background: var(--yellow);
+            color: var(--black);
+            text-align: center;
+        }
+
+        .controls {
+            position: fixed;
+            left: 0;
+            right: 0;
+            top: 50%;
+            z-index: 15;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 clamp(14px, 2vw, 28px);
+            pointer-events: none;
+            transform: translateY(-50%);
+        }
+
+        .glass-arrow {
+            pointer-events: auto;
+            width: clamp(48px, 5.5vw, 68px);
+            height: clamp(48px, 5.5vw, 68px);
+            border-radius: 999px;
+            border: 1px solid rgba(255, 255, 255, 0.54);
+            background:
+                linear-gradient(145deg, rgba(255, 255, 255, 0.62), rgba(255, 255, 255, 0.24)),
+                rgba(255, 255, 255, 0.32);
+            color: var(--black);
+            display: grid;
+            place-items: center;
+            cursor: pointer;
+            backdrop-filter: blur(18px) saturate(1.24);
+            -webkit-backdrop-filter: blur(18px) saturate(1.24);
+            box-shadow:
+                inset 0 1px 0 rgba(255, 255, 255, 0.7),
+                inset 0 -10px 22px rgba(255, 255, 255, 0.16),
+                0 14px 40px rgba(13, 13, 13, 0.18);
+            transition:
+                transform 260ms var(--ease),
+                box-shadow 260ms var(--ease),
+                background 260ms var(--ease);
+        }
+
+        .glass-arrow:hover {
+            transform: translate3d(0, -2px, 0) scale(1.035);
+            box-shadow:
+                inset 0 1px 0 rgba(255, 255, 255, 0.78),
+                inset 0 -10px 22px rgba(255, 255, 255, 0.18),
+                0 18px 48px rgba(13, 13, 13, 0.24);
+        }
+
+        .glass-arrow:active {
+            transform: translate3d(0, 1px, 0) scale(0.97);
+        }
+
+        .glass-arrow svg {
+            width: 44%;
+            height: 44%;
+        }
+
+        .hud {
+            position: fixed;
+            left: 50%;
+            bottom: clamp(12px, 2.2vw, 28px);
+            z-index: 16;
+            min-width: 164px;
+            padding: 10px 16px;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            border-radius: 999px;
+            background: var(--glass);
+            backdrop-filter: blur(18px) saturate(1.2);
+            -webkit-backdrop-filter: blur(18px) saturate(1.2);
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.62), 0 14px 36px rgba(13, 13, 13, 0.16);
+            transform: translateX(-50%);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+        }
+
+        .progress {
+            position: relative;
+            flex: 1;
+            height: 4px;
+            min-width: 74px;
+            border-radius: 999px;
+            overflow: hidden;
+            background: rgba(13, 13, 13, 0.14);
+        }
+
+        .progress span {
+            position: absolute;
+            inset: 0 auto 0 0;
+            width: var(--progress, 4%);
+            background: var(--red);
+            transition: width 400ms var(--ease);
+        }
+
+        @media (max-width: 760px) {
+            .deck-shell {
+                padding: 10px;
+            }
+
+            .stage {
+                width: 100%;
+                box-shadow: 5px 5px 0 rgba(13, 13, 13, 0.96);
+            }
+
+            .corner-tag,
+            .tag-line {
+                display: none;
+            }
+
+            .slide-title {
+                font-size: clamp(30px, 7vw, 54px);
+            }
+
+            .person span,
+            .panel ul,
+            .hero-meta {
+                font-size: 9px;
+            }
+
+            .controls {
+                top: auto;
+                bottom: 12px;
+                transform: none;
+            }
+
+            .hud {
+                display: none;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                scroll-behavior: auto !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <main class="deck-shell" aria-label="IndyHAX presentation">
+        <section class="stage" id="stage">
+            <article class="slide hero is-active" data-title="Welcome">
+                <div class="hero-main" style="--d: 0;">
+                    <img class="logo" src="logo.PNG" alt="IndyHAX logo">
+                    <span class="kicker">Welcome to</span>
+                    <h1>INDYHAX</h1>
+                    <div class="hero-mark"></div>
+                    <p class="hero-meta">Independence High School</p>
+                </div>
+                <div class="hero-side" style="--d: 1;">
+                    <img class="poster" src="poster_exports/indyhax_poster.png" alt="IndyHAX event poster">
+                    <p class="note">Capture flags. Build projects. Celebrate makers.</p>
+                </div>
+            </article>
+
+            <article class="slide team" data-title="The Team">
+                <div class="corner-tag" style="--accent: var(--blue);"><span>02</span><span>IndyHAX</span></div>
+                <div class="tag-line"></div>
+                <h2 class="slide-title" style="--d: 0;">THE TEAM</h2>
+                <div class="team-grid" style="--d: 1;">
+                    <div class="person" style="--card-bg: var(--white);"><img src="assets/slides/team/tarushv.png" alt="Tarushv"><div><strong>TARUSHV</strong><span>IndyHAX organizer</span></div></div>
+                    <div class="person" style="--card-bg: var(--yellow);"><img src="assets/slides/team/abhi.png" alt="Abhi"><div><strong>ABHI</strong><span>IndyHAX organizer</span></div></div>
+                    <div class="person" style="--card-bg: var(--white);"><img src="assets/slides/team/lalith.png" alt="Lalith"><div><strong>LALITH</strong><span>IndyHAX organizer</span></div></div>
+                    <div class="person" style="--card-bg: var(--yellow);"><img src="assets/slides/team/dheeraj.png" alt="Dheeraj"><div><strong>DHEERAJ</strong><span>IndyHAX organizer</span></div></div>
+                    <div class="person" style="--card-bg: var(--white);"><img src="assets/slides/team/tanisha.jpeg" alt="Tanisha"><div><strong>TANISHA</strong><span>IndyHAX organizer</span></div></div>
+                    <div class="person" style="--card-bg: var(--yellow);"><img src="assets/slides/team/karthik.png" alt="Karthik"><div><strong>KARTHIK</strong><span>IndyHAX organizer</span></div></div>
+                </div>
+            </article>
+
+            <article class="slide sponsors" data-title="Sponsors">
+                <div class="corner-tag" style="--accent: var(--yellow); --tag-color: var(--black);"><span>03</span><span>IndyHAX</span></div>
+                <div class="tag-line"></div>
+                <h2 class="slide-title" style="--d: 0;">THANK YOU TO OUR SPONSORS</h2>
+                <div class="sponsor-row" style="--d: 1;">
+                    <div class="sponsor-card"><img src="assets/sponsors/gmu-cyber-security-engineering.png" alt="George Mason Cyber Security Engineering"></div>
+                    <div class="sponsor-card" style="--card-bg: var(--blue);"><img src="assets/sponsors/cloud9-advisers.png" alt="Cloud 9 Advisers"></div>
+                </div>
+                <p style="--d: 2; font-weight: 800;">Support from local sponsors helps make IndyHAX possible.</p>
+            </article>
+
+            <article class="slide title-slide" data-title="Acknowledgements" style="--accent: var(--blue);">
+                <div class="corner-tag" style="--accent: var(--blue);"><span>04</span><span>IndyHAX</span></div>
+                <div class="tag-line"></div>
+                <div class="title-block" style="--d: 0;"></div>
+                <div style="--d: 1;"><h2>ACKNOWLEDGEMENTS</h2><div class="title-rule"></div></div>
+            </article>
+
+            <article class="slide title-slide" data-title="Dr. Gebril" style="--accent: var(--red);">
+                <div class="corner-tag"><span>05</span><span>IndyHAX</span></div>
+                <div class="tag-line"></div>
+                <div class="title-block" style="--d: 0;"></div>
+                <div style="--d: 1;"><h2>DR.<br>GEBRIL</h2><div class="title-rule"></div></div>
+            </article>
+
+            <article class="slide title-slide" data-title="Mrs. Chhabra" style="--accent: var(--yellow);">
+                <div class="corner-tag" style="--accent: var(--yellow); --tag-color: var(--black);"><span>06</span><span>IndyHAX</span></div>
+                <div class="tag-line"></div>
+                <div class="title-block" style="--d: 0;"></div>
+                <div style="--d: 1;"><h2>MRS.<br>CHHABRA</h2><div class="title-rule"></div></div>
+            </article>
+
+            <article class="slide rules" data-title="Hackathon Rules">
+                <div class="corner-tag"><span>07</span><span>IndyHAX</span></div>
+                <div class="tag-line"></div>
+                <h2 class="slide-title" style="--d: 0;">INDYHAX HACKATHON</h2>
+                <div class="rules-panels" style="--d: 1;">
+                    <div class="panel">
+                        <span class="kicker">Rules</span>
+                        <ul>
+                            <li>Your video should be 3 - 5 minutes</li>
+                            <li>Submit through Devpost</li>
+                            <li>All code is required</li>
+                        </ul>
+                    </div>
+                    <div class="panel dark">
+                        <span class="kicker" style="background: var(--yellow); color: var(--black);">Ranking</span>
+                        <ul>
+                            <li>1st place: JBL speaker + 700 points</li>
+                            <li>2nd place: 600 points</li>
+                            <li>3rd place: 500 points</li>
+                            <li>The rubric will be in CloudCTF</li>
+                        </ul>
+                    </div>
+                </div>
+            </article>
+
+            <article class="slide title-slide" data-title="Hackathon Theme" style="--accent: var(--blue);">
+                <div class="corner-tag" style="--accent: var(--blue);"><span>08</span><span>IndyHAX</span></div>
+                <div class="tag-line"></div>
+                <div class="title-block" style="--d: 0;"></div>
+                <div style="--d: 1;"><h2>INDYHAX HACKATHON THEME</h2><div class="title-rule"></div></div>
+            </article>
+
+            <article class="slide title-slide" data-title="Bridge" style="--accent: var(--red);">
+                <div class="corner-tag"><span>09</span><span>IndyHAX</span></div>
+                <div class="tag-line"></div>
+                <div class="title-block" style="--d: 0;"></div>
+                <div style="--d: 1;"><h2>BRIDGE</h2><div class="title-rule"></div></div>
+            </article>
+
+            <article class="slide code" data-title="CTF Code">
+                <div class="corner-tag" style="--accent: var(--blue);"><span>10</span><span>IndyHAX</span></div>
+                <div class="tag-line"></div>
+                <div style="--d: 0;">
+                    <h2 class="slide-title">INDYHAX CTF CODE</h2>
+                    <div class="qr-box">QR CODE</div>
+                </div>
+                <div class="yellow-callout" style="--d: 1;">QR CODE AND BITLY</div>
+            </article>
+
+            <article class="slide title-slide" data-title="Happy Hacking" style="--accent: var(--yellow);">
+                <div class="corner-tag" style="--accent: var(--yellow); --tag-color: var(--black);"><span>11</span><span>IndyHAX</span></div>
+                <div class="tag-line"></div>
+                <div class="title-block" style="--d: 0;"></div>
+                <div style="--d: 1;"><h2>HAPPY HACKING!!</h2><div class="title-rule"></div></div>
+            </article>
+
+            <article class="slide awards" data-title="Awards">
+                <div class="corner-tag" style="--accent: var(--yellow); --tag-color: var(--black);"><span>12</span><span>IndyHAX</span></div>
+                <div class="tag-line"></div>
+                <h2 class="slide-title" style="--d: 0;">INDYHAX AWARDS</h2>
+                <div class="award-grid" style="--d: 1;">
+                    <div class="award" style="--award-bg: var(--red); --award-color: var(--white);"><small>1st place</small><strong>IPAD</strong><img src="assets/prizes/ipad-cutout.png" alt="iPad"></div>
+                    <div class="award"><small>2nd place</small><strong>PROJECTOR</strong><img src="assets/prizes/projector-cutout.png" alt="Projector"></div>
+                    <div class="award" style="--award-bg: var(--blue); --award-color: var(--white);"><small>3rd place</small><strong>SEPTRE MONITOR</strong><img src="assets/prizes/sceptre-display-cutout.png" alt="Sceptre monitor"></div>
+                </div>
+            </article>
+
+            <article class="slide winner-layout" data-title="Hackathon 3rd Place">
+                <div class="corner-tag"><span>13</span><span>IndyHAX</span></div>
+                <div class="tag-line"></div>
+                <div class="winner-panel" style="--d: 0;"><h2>INDYHAX HACKATHON<br>3RD PLACE</h2><p>PRIZE: 500 POINTS</p></div>
+                <div class="winner-empty" style="--d: 1;"><div><strong>WINNER</strong><p>Team announced live</p></div></div>
+            </article>
+
+            <article class="slide team-name" data-title="Team Name"><div class="team-name-box" style="--d: 0;"><div><h2>TEAM NAME</h2><div class="redline"></div><p><strong>MEMBERS</strong></p></div></div></article>
+
+            <article class="slide winner-layout" data-title="Hackathon 2 Place">
+                <div class="corner-tag"><span>15</span><span>IndyHAX</span></div>
+                <div class="tag-line"></div>
+                <div class="winner-panel" style="--d: 0;"><h2>INDYHAX HACKATHON<br>2 PLACE</h2><p>PRIZE: 600 POINTS</p></div>
+                <div class="winner-empty" style="--d: 1;"><div><strong>WINNER</strong><p>Team announced live</p></div></div>
+            </article>
+
+            <article class="slide team-name" data-title="Team Name"><div class="team-name-box" style="--d: 0;"><div><h2>TEAM NAME</h2><div class="redline"></div><p><strong>MEMBERS</strong></p></div></div></article>
+
+            <article class="slide winner-layout" data-title="Hackathon 1st Place">
+                <div class="corner-tag"><span>17</span><span>IndyHAX</span></div>
+                <div class="tag-line"></div>
+                <div class="winner-panel" style="--d: 0;"><h2>INDYHAX HACKATHON<br>1ST PLACE</h2><p>PRIZE: 700 POINTS + JBL SPEAKERS</p></div>
+                <div class="winner-empty" style="--d: 1;"><div><strong>WINNER</strong><p>Team announced live</p></div></div>
+            </article>
+
+            <article class="slide team-name" data-title="Team Name"><div class="team-name-box" style="--d: 0;"><div><h2>TEAM NAME</h2><div class="redline"></div><p><strong>MEMBERS</strong></p></div></div></article>
+
+            <article class="slide ctf-prize" data-title="CTF 3rd Place">
+                <div class="corner-tag" style="--accent: var(--yellow); --tag-color: var(--black);"><span>19</span><span>IndyHAX</span></div>
+                <div class="tag-line"></div>
+                <div class="ctf-panel" style="--d: 0;"><h2>INDYHAX 3RD PLACE</h2><p><strong>PRIZE:</strong></p><h2>SEPTRE MONITOR</h2></div>
+                <div class="prize-media" style="--d: 1;"><img src="assets/prizes/sceptre-display-cutout.png" alt="Sceptre monitor"></div>
+            </article>
+
+            <article class="slide team-name" data-title="Team Name"><div class="team-name-box" style="--d: 0;"><div><h2>TEAM NAME</h2><div class="redline"></div><p><strong>MEMBERS</strong></p></div></div></article>
+
+            <article class="slide ctf-prize" data-title="CTF 2nd Place">
+                <div class="corner-tag" style="--accent: var(--yellow); --tag-color: var(--black);"><span>21</span><span>IndyHAX</span></div>
+                <div class="tag-line"></div>
+                <div class="ctf-panel" style="--d: 0;"><h2>INDYHAX 2ND PLACE</h2><p><strong>PRIZE:</strong></p><h2>SMART PROJECTOR</h2></div>
+                <div class="prize-media" style="--d: 1;"><img src="assets/prizes/projector-cutout.png" alt="Smart projector"></div>
+            </article>
+
+            <article class="slide team-name" data-title="Team Name"><div class="team-name-box" style="--d: 0;"><div><h2>TEAM NAME</h2><div class="redline"></div><p><strong>MEMBERS</strong></p></div></div></article>
+
+            <article class="slide ctf-prize" data-title="CTF 1st Place">
+                <div class="corner-tag" style="--accent: var(--yellow); --tag-color: var(--black);"><span>23</span><span>IndyHAX</span></div>
+                <div class="tag-line"></div>
+                <div class="ctf-panel" style="--d: 0;"><h2>INDYHAX 1ST PLACE</h2><p><strong>PRIZE:</strong></p><h2>IPAD</h2></div>
+                <div class="prize-media" style="--d: 1;"><img src="assets/prizes/ipad-cutout.png" alt="iPad"></div>
+            </article>
+
+            <article class="slide team-name" data-title="Team Name"><div class="team-name-box" style="--d: 0;"><div><h2>TEAM NAME</h2><div class="redline"></div><p><strong>MEMBERS</strong></p></div></div></article>
+
+            <article class="slide thanks" data-title="Thank You">
+                <div style="--d: 0;"><img class="logo" src="logo.PNG" alt="IndyHAX logo"><h2>THANK<br>YOU</h2><div class="hero-mark"></div></div>
+                <div class="thanks-card" style="--d: 1;"><div><strong>INDYHAX</strong><p>Independence High School</p></div></div>
+            </article>
+        </section>
+
+        <nav class="controls" aria-label="Slide navigation">
+            <button class="glass-arrow" id="prevBtn" type="button" aria-label="Previous slide">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+            </button>
+            <button class="glass-arrow" id="nextBtn" type="button" aria-label="Next slide">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+            </button>
+        </nav>
+
+        <div class="hud" aria-live="polite">
+            <span id="slideCount">01 / 25</span>
+            <span class="progress" aria-hidden="true"><span id="progressBar"></span></span>
+        </div>
+    </main>
+
+    <script>
+        const slides = Array.from(document.querySelectorAll('.slide'));
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const slideCount = document.getElementById('slideCount');
+        const progressBar = document.getElementById('progressBar');
+        let current = 0;
+        let locked = false;
+
+        function pad(value) {
+            return String(value).padStart(2, '0');
+        }
+
+        function updateHud() {
+            slideCount.textContent = `${pad(current + 1)} / ${pad(slides.length)}`;
+            progressBar.style.setProperty('--progress', `${((current + 1) / slides.length) * 100}%`);
+            document.title = `${slides[current].dataset.title || 'Slide'} - IndyHAX`;
+        }
+
+        function showSlide(next, direction) {
+            if (locked || next === current) return;
+            locked = true;
+            const active = slides[current];
+            const incoming = slides[next];
+            document.documentElement.style.setProperty('--enter-x', direction > 0 ? '44px' : '-44px');
+            document.documentElement.style.setProperty('--exit-x', direction > 0 ? '-42px' : '42px');
+            active.classList.add('is-leaving');
+            active.classList.remove('is-active');
+            incoming.classList.add('is-active');
+            current = next;
+            updateHud();
+            window.setTimeout(() => {
+                active.classList.remove('is-leaving');
+                locked = false;
+            }, 650);
+        }
+
+        function nextSlide() {
+            showSlide((current + 1) % slides.length, 1);
+        }
+
+        function prevSlide() {
+            showSlide((current - 1 + slides.length) % slides.length, -1);
+        }
+
+        prevBtn.addEventListener('click', prevSlide);
+        nextBtn.addEventListener('click', nextSlide);
+
+        window.addEventListener('keydown', (event) => {
+            if (event.key === 'ArrowRight' || event.key === 'PageDown' || event.key === ' ') {
+                event.preventDefault();
+                nextSlide();
+            }
+            if (event.key === 'ArrowLeft' || event.key === 'PageUp') {
+                event.preventDefault();
+                prevSlide();
+            }
+            if (event.key === 'Home') {
+                event.preventDefault();
+                showSlide(0, -1);
+            }
+            if (event.key === 'End') {
+                event.preventDefault();
+                showSlide(slides.length - 1, 1);
+            }
+        });
+
+        let touchStartX = 0;
+        window.addEventListener('touchstart', (event) => {
+            touchStartX = event.changedTouches[0].clientX;
+        }, { passive: true });
+
+        window.addEventListener('touchend', (event) => {
+            const delta = event.changedTouches[0].clientX - touchStartX;
+            if (Math.abs(delta) < 44) return;
+            if (delta < 0) nextSlide();
+            else prevSlide();
+        }, { passive: true });
+
+        updateHud();
+    </script>
+</body>
+
+</html>
