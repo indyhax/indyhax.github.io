@@ -304,7 +304,7 @@
 
         .sponsor-row {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: repeat(3, 1fr);
             gap: 4%;
             align-items: center;
         }
@@ -322,6 +322,10 @@
             max-width: 92%;
             max-height: 18vh;
             object-fit: contain;
+        }
+
+        .sponsor-card img.square-logo {
+            max-height: 24vh;
         }
 
         .title-slide {
@@ -818,6 +822,7 @@
                 <div class="sponsor-row" style="--d: 1;">
                     <div class="sponsor-card"><img src="assets/sponsors/gmu-cyber-security-engineering.png" alt="George Mason Cyber Security Engineering"></div>
                     <div class="sponsor-card" style="--card-bg: var(--blue);"><img src="assets/sponsors/cloud9-advisers.png" alt="Cloud 9 Advisers"></div>
+                    <div class="sponsor-card"><img class="square-logo" src="assets/sponsors/810-entertainment.jpg" alt="810 Entertainment"></div>
                 </div>
                 <p style="--d: 2; font-weight: 800;">Support from local sponsors helps make IndyHAX possible.</p>
             </article>
