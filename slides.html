@@ -534,6 +534,49 @@
             object-fit: contain;
         }
 
+        .podium {
+            padding: 7% 5% 5%;
+            grid-template-rows: auto 1fr;
+            gap: 4%;
+        }
+
+        .podium-grid {
+            display: grid;
+            grid-template-columns: 1.12fr 1fr 1fr;
+            gap: 3%;
+            align-items: stretch;
+        }
+
+        .podium-card {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 18px;
+            padding: 8%;
+            border: 3px solid var(--black);
+            background: var(--card-bg, var(--white));
+            color: var(--card-color, var(--black));
+            text-align: center;
+            box-shadow: 8px 8px 0 var(--black);
+        }
+
+        .podium-card small {
+            font-size: clamp(10px, 1.1vw, 15px);
+            font-weight: 800;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+
+        .podium-card h3 {
+            font-size: clamp(42px, 5.4vw, 76px);
+        }
+
+        .podium-card p {
+            font-size: clamp(13px, 1.4vw, 20px);
+            font-weight: 800;
+            line-height: 1.25;
+        }
+
         .winner-layout {
             padding: 7% 5%;
             grid-template-columns: 43% 1fr;
@@ -576,6 +619,13 @@
             line-height: 0.9;
         }
 
+        .winner-empty p {
+            margin-top: 16px;
+            font-size: clamp(15px, 1.7vw, 24px);
+            font-weight: 800;
+            line-height: 1.25;
+        }
+
         .team-name {
             padding: 7% 5%;
             display: grid;
@@ -594,6 +644,12 @@
 
         .team-name-box h2 {
             font-size: clamp(56px, 7.5vw, 106px);
+        }
+
+        .team-name-box p {
+            font-size: clamp(18px, 2vw, 30px);
+            line-height: 1.25;
+            font-weight: 800;
         }
 
         .team-name-box .redline {
@@ -623,6 +679,10 @@
 
         .ctf-panel h2 {
             font-size: clamp(42px, 5.6vw, 78px);
+        }
+
+        .ctf-panel .score {
+            font-size: clamp(28px, 3.6vw, 52px);
         }
 
         .prize-media {
@@ -969,59 +1029,82 @@
                 </div>
             </article>
 
+            <article class="slide podium" data-title="Hackathon Podium">
+                <div class="corner-tag" style="--accent: var(--blue);"><span>HACK</span><span>IndyHAX</span></div>
+                <div class="tag-line"></div>
+                <h2 class="slide-title" style="--d: 0;">HACKATHON PODIUM</h2>
+                <div class="podium-grid" style="--d: 1;">
+                    <div class="podium-card" style="--card-bg: var(--red); --card-color: var(--white);">
+                        <small>1st place</small>
+                        <h3>TEAM GAMMA</h3>
+                        <p>Hivemind</p>
+                    </div>
+                    <div class="podium-card" style="--card-bg: var(--yellow);">
+                        <small>2nd place</small>
+                        <h3>TEAM LAMBDA</h3>
+                        <p>Relief Bridge</p>
+                    </div>
+                    <div class="podium-card" style="--card-bg: var(--blue); --card-color: var(--white);">
+                        <small>3rd place</small>
+                        <h3>TEAM PI</h3>
+                        <p>Via</p>
+                    </div>
+                </div>
+            </article>
+
             <article class="slide winner-layout" data-title="Hackathon 3rd Place">
                 <div class="corner-tag"><span>13</span><span>IndyHAX</span></div>
                 <div class="tag-line"></div>
                 <div class="winner-panel" style="--d: 0;"><h2>INDYHAX HACKATHON<br>3RD PLACE</h2><p>PRIZE: 500 POINTS</p></div>
-                <div class="winner-empty" style="--d: 1;"><div><strong>WINNER</strong><p>Team announced during closing</p></div></div>
+                <div class="winner-empty" style="--d: 1;"><div><strong>TEAM PI</strong><p>Via</p></div></div>
             </article>
 
-            <article class="slide team-name" data-title="Team Name"><div class="team-name-box" style="--d: 0;"><div><h2>TEAM NAME</h2><div class="redline"></div><p><strong>MEMBERS</strong></p></div></div></article>
+            <article class="slide team-name" data-title="Team Pi"><div class="team-name-box" style="--d: 0;"><div><h2>TEAM PI</h2><div class="redline"></div><p>Via</p></div></div></article>
 
-            <article class="slide winner-layout" data-title="Hackathon 2 Place">
+            <article class="slide winner-layout" data-title="Hackathon 2nd Place">
                 <div class="corner-tag"><span>15</span><span>IndyHAX</span></div>
                 <div class="tag-line"></div>
-                <div class="winner-panel" style="--d: 0;"><h2>INDYHAX HACKATHON<br>2 PLACE</h2><p>PRIZE: 600 POINTS</p></div>
-                <div class="winner-empty" style="--d: 1;"><div><strong>WINNER</strong><p>Team announced during closing</p></div></div>
+                <div class="winner-panel" style="--d: 0;"><h2>INDYHAX HACKATHON<br>2ND PLACE</h2><p>PRIZE: 600 POINTS</p></div>
+                <div class="winner-empty" style="--d: 1;"><div><strong>TEAM LAMBDA</strong><p>Relief Bridge</p></div></div>
             </article>
 
-            <article class="slide team-name" data-title="Team Name"><div class="team-name-box" style="--d: 0;"><div><h2>TEAM NAME</h2><div class="redline"></div><p><strong>MEMBERS</strong></p></div></div></article>
+            <article class="slide team-name" data-title="Team Lambda"><div class="team-name-box" style="--d: 0;"><div><h2>TEAM LAMBDA</h2><div class="redline"></div><p>Relief Bridge</p></div></div></article>
 
             <article class="slide winner-layout" data-title="Hackathon 1st Place">
                 <div class="corner-tag"><span>17</span><span>IndyHAX</span></div>
                 <div class="tag-line"></div>
                 <div class="winner-panel" style="--d: 0;"><h2>INDYHAX HACKATHON<br>1ST PLACE</h2><p>PRIZE: 700 POINTS + JBL SPEAKERS</p></div>
-                <div class="winner-empty" style="--d: 1;"><div><strong>WINNER</strong><p>Team announced during closing</p></div></div>
+                <div class="winner-empty" style="--d: 1;"><div><strong>TEAM GAMMA</strong><p>Hivemind</p></div></div>
             </article>
 
-            <article class="slide team-name" data-title="Team Name"><div class="team-name-box" style="--d: 0;"><div><h2>TEAM NAME</h2><div class="redline"></div><p><strong>MEMBERS</strong></p></div></div></article>
+            <article class="slide team-name" data-title="Team Gamma"><div class="team-name-box" style="--d: 0;"><div><h2>TEAM GAMMA</h2><div class="redline"></div><p>Hivemind</p></div></div></article>
 
-            <article class="slide ctf-prize" data-title="CTF 3rd Place">
+            <article class="slide ctf-prize" data-title="Final 3rd Place">
                 <div class="corner-tag" style="--accent: var(--yellow); --tag-color: var(--black);"><span>19</span><span>IndyHAX</span></div>
                 <div class="tag-line"></div>
-                <div class="ctf-panel" style="--d: 0;"><h2>INDYHAX 3RD PLACE</h2><p><strong>PRIZE:</strong></p><h2>SEPTRE MONITOR</h2></div>
+                <div class="ctf-panel" style="--d: 0;"><h2>FINAL<br>3RD PLACE</h2><p><strong>CTF + HACK</strong></p><h2>TEAM RHO</h2><p class="score">3833 POINTS</p></div>
                 <div class="prize-media" style="--d: 1;"><img src="assets/prizes/sceptre-display-cutout.png" alt="Sceptre monitor"></div>
             </article>
 
-            <article class="slide team-name" data-title="Team Name"><div class="team-name-box" style="--d: 0;"><div><h2>TEAM NAME</h2><div class="redline"></div><p><strong>MEMBERS</strong></p></div></div></article>
+            <article class="slide team-name" data-title="Team Rho"><div class="team-name-box" style="--d: 0;"><div><h2>TEAM RHO</h2><div class="redline"></div><p>3833 POINTS</p></div></div></article>
 
-            <article class="slide ctf-prize" data-title="CTF 2nd Place">
+            <article class="slide ctf-prize" data-title="Final 2nd Place">
                 <div class="corner-tag" style="--accent: var(--yellow); --tag-color: var(--black);"><span>21</span><span>IndyHAX</span></div>
                 <div class="tag-line"></div>
-                <div class="ctf-panel" style="--d: 0;"><h2>INDYHAX 2ND PLACE</h2><p><strong>PRIZE:</strong></p><h2>SMART PROJECTOR</h2></div>
+                <div class="ctf-panel" style="--d: 0;"><h2>FINAL<br>2ND PLACE</h2><p><strong>CTF + HACK</strong></p><h2>TEAM GAMMA</h2><p class="score">4453 POINTS</p></div>
                 <div class="prize-media" style="--d: 1;"><img src="assets/prizes/projector-cutout.png" alt="Smart projector"></div>
             </article>
 
-            <article class="slide team-name" data-title="Team Name"><div class="team-name-box" style="--d: 0;"><div><h2>TEAM NAME</h2><div class="redline"></div><p><strong>MEMBERS</strong></p></div></div></article>
+            <article class="slide team-name" data-title="Team Gamma Final"><div class="team-name-box" style="--d: 0;"><div><h2>TEAM GAMMA</h2><div class="redline"></div><p>4453 POINTS</p></div></div></article>
 
-            <article class="slide ctf-prize" data-title="CTF 1st Place">
+            <article class="slide ctf-prize" data-title="Final 1st Place">
                 <div class="corner-tag" style="--accent: var(--yellow); --tag-color: var(--black);"><span>23</span><span>IndyHAX</span></div>
                 <div class="tag-line"></div>
-                <div class="ctf-panel" style="--d: 0;"><h2>INDYHAX 1ST PLACE</h2><p><strong>PRIZE:</strong></p><h2>IPAD</h2></div>
+                <div class="ctf-panel" style="--d: 0;"><h2>FINAL<br>1ST PLACE</h2><p><strong>CTF + HACK</strong></p><h2>TEAM LAMBDA</h2><p class="score">4493 POINTS</p></div>
                 <div class="prize-media" style="--d: 1;"><img src="assets/prizes/ipad-cutout.png" alt="iPad"></div>
             </article>
 
-            <article class="slide team-name" data-title="Team Name"><div class="team-name-box" style="--d: 0;"><div><h2>TEAM NAME</h2><div class="redline"></div><p><strong>MEMBERS</strong></p></div></div></article>
+            <article class="slide team-name" data-title="Team Lambda Final"><div class="team-name-box" style="--d: 0;"><div><h2>TEAM LAMBDA</h2><div class="redline"></div><p>4493 POINTS</p></div></div></article>
 
             <article class="slide thanks" data-title="Thank You">
                 <div style="--d: 0;"><img class="logo" src="logo.PNG" alt="IndyHAX logo"><h2>THANK<br>YOU</h2><div class="hero-mark"></div></div>
