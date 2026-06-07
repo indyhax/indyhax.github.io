@@ -454,11 +454,21 @@
             background: var(--white);
             font-size: clamp(12px, 1.2vw, 17px);
             font-weight: 800;
+            box-shadow: 8px 8px 0 var(--black);
+        }
+
+        .qr-box img {
+            display: block;
+            width: 88%;
+            height: 88%;
+            object-fit: contain;
         }
 
         .yellow-callout {
-            display: grid;
-            place-items: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
             min-height: 38%;
             padding: 7%;
             border: 3px solid var(--black);
@@ -467,6 +477,19 @@
             font-family: var(--display);
             font-size: clamp(32px, 4.8vw, 68px);
             line-height: 0.9;
+        }
+
+        .cyberrange-link {
+            display: block;
+            max-width: 40ch;
+            margin-top: 18px;
+            color: var(--black);
+            font-family: var(--body);
+            font-size: clamp(9px, 1vw, 14px);
+            font-weight: 800;
+            line-height: 1.35;
+            overflow-wrap: anywhere;
+            text-decoration: none;
         }
 
         .awards {
@@ -801,6 +824,13 @@
                 </div>
             </article>
 
+            <article class="slide title-slide" data-title="Opening" style="--accent: var(--blue);">
+                <div class="corner-tag" style="--accent: var(--blue);"><span>OPEN</span><span>IndyHAX</span></div>
+                <div class="tag-line"></div>
+                <div class="title-block" style="--d: 0;"></div>
+                <div style="--d: 1;"><h2>OPENING</h2><div class="title-rule"></div></div>
+            </article>
+
             <article class="slide team" data-title="The Team">
                 <div class="corner-tag" style="--accent: var(--blue);"><span>02</span><span>IndyHAX</span></div>
                 <div class="tag-line"></div>
@@ -887,28 +917,31 @@
                 </div>
             </article>
 
-            <article class="slide title-slide" data-title="Reserved 08" style="--accent: var(--blue);">
+            <article class="slide title-slide" data-title="Prompt" style="--accent: var(--blue);">
                 <div class="corner-tag" style="--accent: var(--blue);"><span>08</span><span>IndyHAX</span></div>
                 <div class="tag-line"></div>
                 <div class="title-block" style="--d: 0;"></div>
-                <div style="--d: 1;"><h2>INDYHAX</h2><div class="title-rule"></div></div>
+                <div style="--d: 1;"><span class="kicker" style="background: var(--blue);">Prompt</span><h2>BRIDGE</h2><div class="title-rule"></div></div>
             </article>
 
-            <article class="slide title-slide" data-title="Reserved 09" style="--accent: var(--red);">
+            <article class="slide title-slide" data-title="Cyber Range Setup" style="--accent: var(--red);">
                 <div class="corner-tag"><span>09</span><span>IndyHAX</span></div>
                 <div class="tag-line"></div>
                 <div class="title-block" style="--d: 0;"></div>
-                <div style="--d: 1;"><h2>INDYHAX</h2><div class="title-rule"></div></div>
+                <div style="--d: 1;"><h2>CYBER<br>RANGE</h2><div class="title-rule"></div></div>
             </article>
 
-            <article class="slide code" data-title="CTF Code">
+            <article class="slide code" data-title="Cyber Range">
                 <div class="corner-tag" style="--accent: var(--blue);"><span>10</span><span>IndyHAX</span></div>
                 <div class="tag-line"></div>
                 <div style="--d: 0;">
-                    <h2 class="slide-title">INDYHAX CTF CODE</h2>
-                    <div class="qr-box">QR CODE</div>
+                    <h2 class="slide-title">CYBER RANGE</h2>
+                    <div class="qr-box"><img src="assets/slides/cyberrange/manage-settings-qr.svg" alt="Cyber Range settings QR code"></div>
                 </div>
-                <div class="yellow-callout" style="--d: 1;">QR CODE AND BITLY</div>
+                <div class="yellow-callout" style="--d: 1;">
+                    SCAN FOR<br>SETTINGS
+                    <a class="cyberrange-link" href="https://1ece4f58-9afd-4fde-8b0c-9c3be2f6367c.ctf.virginiacyberrange.org/manage/settings">https://1ece4f58-9afd-4fde-8b0c-9c3be2f6367c.ctf.virginiacyberrange.org/manage/settings</a>
+                </div>
             </article>
 
             <article class="slide title-slide" data-title="Happy Hacking" style="--accent: var(--yellow);">
@@ -916,6 +949,13 @@
                 <div class="tag-line"></div>
                 <div class="title-block" style="--d: 0;"></div>
                 <div style="--d: 1;"><h2>HAPPY HACKING!!</h2><div class="title-rule"></div></div>
+            </article>
+
+            <article class="slide title-slide" data-title="Closing" style="--accent: var(--red);">
+                <div class="corner-tag"><span>CLOSE</span><span>IndyHAX</span></div>
+                <div class="tag-line"></div>
+                <div class="title-block" style="--d: 0;"></div>
+                <div style="--d: 1;"><h2>CLOSING</h2><div class="title-rule"></div></div>
             </article>
 
             <article class="slide awards" data-title="Awards">
@@ -933,7 +973,7 @@
                 <div class="corner-tag"><span>13</span><span>IndyHAX</span></div>
                 <div class="tag-line"></div>
                 <div class="winner-panel" style="--d: 0;"><h2>INDYHAX HACKATHON<br>3RD PLACE</h2><p>PRIZE: 500 POINTS</p></div>
-                <div class="winner-empty" style="--d: 1;"><div><strong>WINNER</strong><p>Team announced at awards</p></div></div>
+                <div class="winner-empty" style="--d: 1;"><div><strong>WINNER</strong><p>Team announced during closing</p></div></div>
             </article>
 
             <article class="slide team-name" data-title="Team Name"><div class="team-name-box" style="--d: 0;"><div><h2>TEAM NAME</h2><div class="redline"></div><p><strong>MEMBERS</strong></p></div></div></article>
@@ -942,7 +982,7 @@
                 <div class="corner-tag"><span>15</span><span>IndyHAX</span></div>
                 <div class="tag-line"></div>
                 <div class="winner-panel" style="--d: 0;"><h2>INDYHAX HACKATHON<br>2 PLACE</h2><p>PRIZE: 600 POINTS</p></div>
-                <div class="winner-empty" style="--d: 1;"><div><strong>WINNER</strong><p>Team announced at awards</p></div></div>
+                <div class="winner-empty" style="--d: 1;"><div><strong>WINNER</strong><p>Team announced during closing</p></div></div>
             </article>
 
             <article class="slide team-name" data-title="Team Name"><div class="team-name-box" style="--d: 0;"><div><h2>TEAM NAME</h2><div class="redline"></div><p><strong>MEMBERS</strong></p></div></div></article>
@@ -951,7 +991,7 @@
                 <div class="corner-tag"><span>17</span><span>IndyHAX</span></div>
                 <div class="tag-line"></div>
                 <div class="winner-panel" style="--d: 0;"><h2>INDYHAX HACKATHON<br>1ST PLACE</h2><p>PRIZE: 700 POINTS + JBL SPEAKERS</p></div>
-                <div class="winner-empty" style="--d: 1;"><div><strong>WINNER</strong><p>Team announced at awards</p></div></div>
+                <div class="winner-empty" style="--d: 1;"><div><strong>WINNER</strong><p>Team announced during closing</p></div></div>
             </article>
 
             <article class="slide team-name" data-title="Team Name"><div class="team-name-box" style="--d: 0;"><div><h2>TEAM NAME</h2><div class="redline"></div><p><strong>MEMBERS</strong></p></div></div></article>
