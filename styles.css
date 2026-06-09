@@ -194,7 +194,7 @@ nav {
 
 .nav-links {
     display: flex;
-    gap: clamp(24px, 3vw, 50px);
+    gap: 50px;
 }
 
 .nav-links a {
