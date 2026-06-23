@@ -7,7 +7,7 @@
 ## Event Details
 
 - **Location:** Independence High School
-- **Date:** June 7, 2026
+- **Date:** 2027 info soon
 - **Event Focus:** Hackathon and CTF competition.
 
 ## The Challenge
@@ -55,7 +55,7 @@ We envision a future where AI assists students in managing their academic respon
 
 Start thinking about how you would design an AI-powered platform that you and your classmates would actually want to use. What features would be most helpful? How can AI make managing schoolwork feel less overwhelming and more manageable?
 
-Mark your calendar for June 7, 2026. Get ready to code, create, and change the way students work!
+Check back for 2027 details. Get ready to code, create, and change the way students work.
 
 ---
 
