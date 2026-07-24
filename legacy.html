@@ -10,286 +10,21 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Work+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
-    <style>
-        .legacy-hero {
-            display: grid;
-            grid-template-columns: minmax(0, 1.1fr) minmax(320px, 0.9fr);
-            gap: 48px;
-            align-items: end;
-            margin-bottom: 70px;
-        }
-
-        .legacy-hero h1 {
-            font-family: var(--font-display);
-            font-size: clamp(5rem, 14vw, 12rem);
-            line-height: 0.82;
-            letter-spacing: 0;
-            margin: 0 0 24px;
-        }
-
-        .legacy-hero p {
-            max-width: 720px;
-            font-size: clamp(1rem, 2vw, 1.25rem);
-            line-height: 1.7;
-            font-weight: 600;
-        }
-
-        .legacy-stat {
-            border: var(--border-thick);
-            background: var(--primary-yellow);
-            padding: 34px;
-            box-shadow: 10px 10px 0 var(--pure-black);
-        }
-
-        .legacy-stat strong {
-            display: block;
-            font-family: var(--font-display);
-            font-size: clamp(4rem, 10vw, 8rem);
-            line-height: 0.85;
-            letter-spacing: 0;
-        }
-
-        .legacy-stat span {
-            display: block;
-            margin-top: 16px;
-            font-size: 1rem;
-            line-height: 1.5;
-            font-weight: 800;
-            text-transform: uppercase;
-        }
-
-        .year-section {
-            margin-bottom: 90px;
-        }
-
-        .year-header {
-            display: flex;
-            justify-content: space-between;
-            gap: 28px;
-            align-items: end;
-            border-bottom: var(--border-thick);
-            padding-bottom: 24px;
-            margin-bottom: 32px;
-        }
-
-        .year-header h2 {
-            font-family: var(--font-display);
-            font-size: clamp(4rem, 10vw, 8rem);
-            line-height: 0.85;
-            letter-spacing: 0;
-        }
-
-        .year-header p {
-            max-width: 520px;
-            font-weight: 600;
-            line-height: 1.7;
-        }
-
-        .legacy-grid {
-            display: none;
-        }
-
-        .legacy-links {
-            display: grid;
-            grid-template-columns: minmax(0, 1fr);
-            gap: 24px;
-        }
-
-        .article-card {
-            color: var(--pure-black);
-            text-decoration: none;
-            border: var(--border-thick);
-            background: var(--pure-white);
-            box-shadow: 6px 6px 0 var(--primary-red);
-            transition: transform 0.3s var(--ease-out-expo), box-shadow 0.3s;
-        }
-
-        .article-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 9px 11px 0 var(--primary-red);
-        }
-
-        .article-card img {
-            display: block;
-            width: 100%;
-            aspect-ratio: 1100 / 578;
-            object-fit: cover;
-            border-bottom: var(--border-thick);
-        }
-
-        .article-body {
-            padding: 24px;
-        }
-
-        .article-card h3 {
-            font-family: var(--font-display);
-            font-size: clamp(2rem, 5vw, 3.6rem);
-            line-height: 0.95;
-            letter-spacing: 1px;
-            margin-bottom: 12px;
-        }
-
-        .article-card p {
-            line-height: 1.55;
-            font-weight: 600;
-        }
-
-        .article-intent {
-            display: inline-block;
-            margin-top: 18px;
-            font-family: var(--font-display);
-            font-size: 1.35rem;
-            letter-spacing: 1px;
-            color: var(--primary-red);
-        }
-
-        .album-embed {
-            margin-top: 32px;
-            border: var(--border-thick);
-            background: var(--pure-white);
-            box-shadow: 8px 8px 0 var(--pure-black);
-            overflow: hidden;
-        }
-
-        .album-embed-header {
-            display: flex;
-            justify-content: space-between;
-            gap: 24px;
-            align-items: end;
-            padding: 24px;
-            border-bottom: var(--border-thick);
-            background: var(--primary-yellow);
-        }
-
-        .album-embed-header h3 {
-            font-family: var(--font-display);
-            font-size: clamp(2.4rem, 6vw, 4.8rem);
-            line-height: 0.9;
-            letter-spacing: 1px;
-            margin-top: 8px;
-        }
-
-        .album-embed-header p {
-            max-width: 520px;
-            line-height: 1.5;
-            font-weight: 700;
-        }
-
-        .album-preview-grid {
-            display: grid;
-            grid-template-columns: repeat(3, minmax(0, 1fr));
-            grid-template-rows: repeat(2, minmax(160px, 1fr));
-            gap: 0;
-            background: var(--pure-black);
-        }
-
-        .album-preview-grid img {
-            width: 100%;
-            height: 100%;
-            min-height: 180px;
-            object-fit: contain;
-            background: var(--off-white);
-            border-right: var(--border-thick);
-            border-bottom: var(--border-thick);
-        }
-
-        .album-preview-grid img:nth-child(3n) {
-            border-right: 0;
-        }
-
-        .album-preview-grid img:nth-child(n + 4) {
-            border-bottom: 0;
-        }
-
-        .album-embed-footer {
-            display: flex;
-            justify-content: space-between;
-            gap: 24px;
-            align-items: center;
-            padding: 24px;
-        }
-
-        .album-embed-footer p {
-            max-width: 680px;
-            line-height: 1.55;
-            font-weight: 600;
-        }
-
-        @media (max-width: 968px) {
-            .legacy-hero,
-            .legacy-links {
-                grid-template-columns: 1fr;
-            }
-
-            .year-header {
-                display: block;
-            }
-
-            .year-header p {
-                margin-top: 18px;
-            }
-
-            .album-embed-header,
-            .album-embed-footer {
-                display: block;
-            }
-
-            .album-embed-footer .cta-button {
-                margin-top: 20px;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .legacy-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .legacy-photo.featured {
-                grid-column: span 1;
-            }
-
-            .legacy-stat {
-                padding: 24px;
-                box-shadow: 6px 6px 0 var(--pure-black);
-            }
-
-            .album-preview-grid {
-                grid-template-columns: 1fr 1fr;
-                grid-template-rows: auto;
-            }
-
-            .album-preview-grid img {
-                grid-row: auto;
-                min-height: 0;
-            }
-
-            .album-preview-grid img:nth-child(odd) {
-                border-right: var(--border-thick);
-            }
-
-            .album-preview-grid img:nth-child(even) {
-                border-right: 0;
-            }
-
-            .album-preview-grid img:nth-child(3),
-            .album-preview-grid img:nth-child(4) {
-                border-bottom: var(--border-thick);
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="legacy.css">
 </head>
 
 <body>
+    <a class="skip-link" href="#legacy-content">Skip to the archive</a>
     <div class="grid-bg"></div>
 
     <div class="container">
         <nav>
             <a href="index.html" class="nav-logo">INDYHAX</a>
-            <div class="menu-toggle" role="button" tabindex="0" aria-label="Toggle navigation menu" aria-expanded="false">
+            <button class="menu-toggle" type="button" aria-label="Toggle navigation menu" aria-expanded="false">
                 <span></span>
                 <span></span>
                 <span></span>
-            </div>
+            </button>
             <div class="nav-links">
                 <a href="index.html">Home</a>
                 <a href="registration.html">2027 Info</a>
@@ -305,50 +40,93 @@
                 <h1>LEGACY</h1>
                 <p>Past IndyHAX competitions, press, and photo archives.</p>
             </div>
-            <div class="legacy-stat" aria-label="One archived competition year">
+            <div class="legacy-stat">
                 <strong>2026</strong>
                 <span>The first IndyHAX competition.</span>
             </div>
         </header>
 
-        <main>
-            <section class="year-section reveal">
-                <div class="year-header">
-                    <div>
-                        <h2>2026</h2>
-                    </div>
-                    <p>The inaugural IndyHAX competition at Independence High School.</p>
-                </div>
+        <main class="legacy-layout">
+            <aside class="pillar-column reveal" aria-label="Select an archive year">
+                <div class="pillar-stage" id="legacy-pillar">
+                    <canvas class="pillar-canvas" aria-hidden="true"></canvas>
+                    <div class="pillar-labels"></div>
 
-                <div class="legacy-links">
-                    <a class="article-card reveal" href="https://www.loudounnow.com/news/education/loudoun-students-organize-cybersecurity-summit-contest/article_e3110b8f-7f71-49b9-bd33-4956845ca8d0.html" target="_blank" rel="noopener">
-                        <img src="assets/gallery/2026/loudounnow-indyhax-article.webp" alt="LoudounNow IndyHAX article preview image" width="1100" height="578" loading="lazy">
-                        <div class="article-body">
-                            <h3>Loudoun Students Organize Cybersecurity Summit, Contest</h3>
-                            <p>LoudounNow coverage of the student-led cybersecurity events and the first IndyHAX competition.</p>
-                            <span class="article-intent" aria-hidden="true">Read article -&gt;</span>
-                        </div>
-                    </a>
+                    <div class="pillar-fallback">
+                        <button class="fallback-cell" type="button" data-fallback-year="2030" aria-controls="archive-2030">2030</button>
+                        <button class="fallback-cell" type="button" data-fallback-year="2029" aria-controls="archive-2029">2029</button>
+                        <button class="fallback-cell" type="button" data-fallback-year="2028" aria-controls="archive-2028">2028</button>
+                        <button class="fallback-cell" type="button" data-fallback-year="2027" aria-controls="archive-2027">2027</button>
+                        <button class="fallback-cell" type="button" data-fallback-year="2026" aria-controls="archive-2026">2026</button>
+                    </div>
                 </div>
+            </aside>
 
-                <section class="album-embed reveal" aria-labelledby="album-embed-title">
-                    <div class="album-embed-header">
-                        <div>
-                            <h3 id="album-embed-title">2026 Photo Album</h3>
+            <section class="legacy-content" id="legacy-content" tabindex="0" aria-label="Year archive">
+                <section class="year-section year-archive reveal" id="archive-2026" data-year="2026" aria-labelledby="year-2026-title">
+                    <div class="year-header">
+                        <h2 id="year-2026-title">2026</h2>
+                        <p>The inaugural IndyHAX competition at Independence High School.</p>
+                    </div>
+
+                    <div class="legacy-links">
+                        <a class="article-card" href="https://www.loudounnow.com/news/education/loudoun-students-organize-cybersecurity-summit-contest/article_e3110b8f-7f71-49b9-bd33-4956845ca8d0.html" target="_blank" rel="noopener">
+                            <img src="assets/gallery/2026/loudounnow-indyhax-article.webp" alt="LoudounNow IndyHAX article preview image" width="1100" height="578" loading="lazy">
+                            <div class="article-body">
+                                <h3>Loudoun Students Organize Cybersecurity Summit, Contest</h3>
+                                <p>LoudounNow coverage of the student-led cybersecurity events and the first IndyHAX competition.</p>
+                                <span class="article-intent" aria-hidden="true">Read article -&gt;</span>
+                            </div>
+                        </a>
+                    </div>
+
+                    <section class="album-embed" aria-labelledby="album-embed-title">
+                        <div class="album-embed-header">
+                            <div>
+                                <h3 id="album-embed-title">2026 Photo Album</h3>
+                            </div>
+                            <p>Highlights from the shared album.</p>
                         </div>
-                        <p>Highlights from the shared album.</p>
+                        <div class="album-preview-grid">
+                            <img src="assets/gallery/2026/indyhax-2026-team.webp" alt="IndyHAX 2026 organizing team preview" width="1600" height="1066" loading="lazy">
+                            <img src="assets/gallery/2026/indyhax-2026-judging.webp" alt="IndyHAX 2026 judging preview" width="1600" height="1066" loading="lazy">
+                            <img src="assets/gallery/2026/indyhax-2026-first-place.webp" alt="IndyHAX 2026 first-place preview" width="1600" height="1066" loading="lazy">
+                            <img src="assets/gallery/2026/indyhax-2026-second-place.webp" alt="IndyHAX 2026 second-place preview" width="1600" height="1066" loading="lazy">
+                            <img src="assets/gallery/2026/indyhax-2026-third-place.webp" alt="IndyHAX 2026 third-place preview" width="1600" height="1066" loading="lazy">
+                            <img src="assets/gallery/2026/indyhax-2026-participants.webp" alt="IndyHAX 2026 participants preview" width="1600" height="1066" loading="lazy">
+                        </div>
+                        <div class="album-embed-footer">
+                            <p>Open the shared album for the full set.</p>
+                            <a class="cta-button" href="https://www.amazon.com/photos/shared/0xicO8pvR8ib8-9D3jPe6Q.6JE8aNKW9PRR9uRaMSozh3" target="_blank" rel="noopener">Open Album</a>
+                        </div>
+                    </section>
+                </section>
+
+                <section class="year-section year-archive coming-soon-archive" id="archive-2027" data-year="2027" aria-labelledby="year-2027-title">
+                    <div class="coming-soon-panel">
+                        <h2 id="year-2027-title">2027</h2>
+                        <p>Coming soon!</p>
                     </div>
-                    <div class="album-preview-grid" aria-label="Preview images from the 2026 IndyHAX album">
-                        <img src="assets/gallery/2026/indyhax-2026-team.webp" alt="IndyHAX 2026 organizing team preview" width="1600" height="1066" loading="lazy">
-                        <img src="assets/gallery/2026/indyhax-2026-judging.webp" alt="IndyHAX 2026 judging preview" width="1600" height="1066" loading="lazy">
-                        <img src="assets/gallery/2026/indyhax-2026-first-place.webp" alt="IndyHAX 2026 first-place preview" width="1600" height="1066" loading="lazy">
-                        <img src="assets/gallery/2026/indyhax-2026-second-place.webp" alt="IndyHAX 2026 second-place preview" width="1600" height="1066" loading="lazy">
-                        <img src="assets/gallery/2026/indyhax-2026-third-place.webp" alt="IndyHAX 2026 third-place preview" width="1600" height="1066" loading="lazy">
-                        <img src="assets/gallery/2026/indyhax-2026-participants.webp" alt="IndyHAX 2026 participants preview" width="1600" height="1066" loading="lazy">
+                </section>
+
+                <section class="year-section year-archive coming-soon-archive" id="archive-2028" data-year="2028" aria-labelledby="year-2028-title">
+                    <div class="coming-soon-panel">
+                        <h2 id="year-2028-title">2028</h2>
+                        <p>Coming soon!</p>
                     </div>
-                    <div class="album-embed-footer">
-                        <p>Open the shared album for the full set.</p>
-                        <a class="cta-button" href="https://www.amazon.com/photos/shared/0xicO8pvR8ib8-9D3jPe6Q.6JE8aNKW9PRR9uRaMSozh3" target="_blank" rel="noopener">Open Album</a>
+                </section>
+
+                <section class="year-section year-archive coming-soon-archive" id="archive-2029" data-year="2029" aria-labelledby="year-2029-title">
+                    <div class="coming-soon-panel">
+                        <h2 id="year-2029-title">2029</h2>
+                        <p>Coming soon!</p>
+                    </div>
+                </section>
+
+                <section class="year-section year-archive coming-soon-archive" id="archive-2030" data-year="2030" aria-labelledby="year-2030-title">
+                    <div class="coming-soon-panel">
+                        <h2 id="year-2030-title">2030</h2>
+                        <p>Coming soon!</p>
                     </div>
                 </section>
             </section>
@@ -393,41 +171,29 @@
                 document.body.style.top = `-${scrollPos}px`;
             }
 
-            toggle.addEventListener('click', function(e) {
-                e.stopPropagation();
-                if (navLinks.classList.contains('open')) {
-                    closeMenu();
-                } else {
-                    openMenu();
-                }
-            });
-
-            toggle.addEventListener('keydown', function(e) {
-                if (e.key === 'Enter' || e.key === ' ') {
-                    e.preventDefault();
-                    toggle.click();
-                }
+            toggle.addEventListener('click', function(event) {
+                event.stopPropagation();
+                navLinks.classList.contains('open') ? closeMenu() : openMenu();
             });
 
             links.forEach(link => link.addEventListener('click', closeMenu));
-
-            document.addEventListener('keydown', function(e) {
-                if (e.key === 'Escape' && navLinks.classList.contains('open')) {
-                    closeMenu();
-                }
+            document.addEventListener('keydown', function(event) {
+                if (event.key === 'Escape' && navLinks.classList.contains('open')) closeMenu();
             });
 
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
                     }
                 });
-            }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+            }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
 
-            document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+            document.querySelectorAll('.reveal').forEach(element => observer.observe(element));
         })();
     </script>
+    <script type="module" src="assets/js/legacy-pillar.js"></script>
 </body>
 
 </html>
