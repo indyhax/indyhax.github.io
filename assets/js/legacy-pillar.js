@@ -38,6 +38,7 @@ if (stage) {
     const cellGap = 0.06;
     const minimumCellCount = 5;
     const hexFaceStep = (Math.PI * 2) / 6;
+    const spinDuration = 900;
 
     function addEdges(mesh, geometry) {
         const edgeGeometry = new THREE.EdgesGeometry(geometry, 22);
@@ -78,6 +79,11 @@ if (stage) {
         mesh.userData.basePosition = new THREE.Vector3(0, y, 0);
         mesh.userData.targetPosition = mesh.position.clone();
         mesh.userData.targetScale = 1;
+        mesh.userData.spinQueue = 0;
+        mesh.userData.isSpinning = false;
+        mesh.userData.spinStartedAt = 0;
+        mesh.userData.spinStartRotation = 0;
+        mesh.userData.spinTargetRotation = 0;
         addEdges(mesh, geometry);
         pillar.add(mesh);
         cells.push(mesh);
@@ -206,6 +212,7 @@ if (stage) {
 
     function selectYear(year, animateContent = true) {
         if (!cellByYear.has(year)) return;
+        queueCellSpin(cellByYear.get(year));
         if (lockedYear === year) {
             lockedYear = null;
             hideArchive();
@@ -222,6 +229,54 @@ if (stage) {
             marker.setAttribute('aria-pressed', String(markerYear === year));
         });
         scheduleRender();
+    }
+
+    function startCellSpin(cell, startTime = performance.now()) {
+        cell.userData.isSpinning = true;
+        cell.userData.spinStartedAt = startTime;
+        cell.userData.spinStartRotation = cell.rotation.y;
+        cell.userData.spinTargetRotation = cell.rotation.y + Math.PI * 2;
+    }
+
+    function queueCellSpin(cell) {
+        if (!cell || reducedMotion.matches) return;
+        cell.userData.spinQueue += 1;
+        if (!cell.userData.isSpinning) startCellSpin(cell);
+        scheduleRender();
+    }
+
+    function updateCellSpin(cell, now) {
+        if (!cell.userData.isSpinning) return false;
+        if (reducedMotion.matches) {
+            cell.rotation.y = 0;
+            cell.userData.spinQueue = 0;
+            cell.userData.isSpinning = false;
+            return false;
+        }
+
+        const progress = THREE.MathUtils.clamp(
+            (now - cell.userData.spinStartedAt) / spinDuration,
+            0,
+            1
+        );
+        const eased = 0.5 - Math.cos(progress * Math.PI) / 2;
+        cell.rotation.y = THREE.MathUtils.lerp(
+            cell.userData.spinStartRotation,
+            cell.userData.spinTargetRotation,
+            eased
+        );
+
+        if (progress < 1) return true;
+
+        cell.userData.spinQueue -= 1;
+        if (cell.userData.spinQueue > 0) {
+            startCellSpin(cell, now);
+            return true;
+        }
+
+        cell.rotation.y = 0;
+        cell.userData.isSpinning = false;
+        return false;
     }
 
     function showArchive(year, animateContent = true) {
@@ -306,17 +361,24 @@ if (stage) {
                 cameraLocalPosition.z - cell.position.z
             );
             const faceAngle = Math.round((viewAngle - Math.PI / 6) / hexFaceStep) * hexFaceStep + Math.PI / 6;
+            const rotatingFaceAngle = faceAngle + cell.rotation.y;
+            const faceVisibility = Math.cos(rotatingFaceAngle - viewAngle);
+            const labelOpacity = THREE.MathUtils.clamp((faceVisibility - 0.08) / 0.5, 0, 1);
+            const labelScaleX = THREE.MathUtils.clamp(faceVisibility, 0.08, 1);
 
             markerLocalPosition.set(
-                cell.position.x + Math.sin(faceAngle) * 1.435,
+                cell.position.x + Math.sin(rotatingFaceAngle) * 1.435,
                 cell.position.y,
-                cell.position.z + Math.cos(faceAngle) * 1.435
+                cell.position.z + Math.cos(rotatingFaceAngle) * 1.435
             );
             world.copy(markerLocalPosition);
             pillar.localToWorld(world);
             world.project(camera);
             marker.style.left = `${(world.x * 0.5 + 0.5) * width}px`;
             marker.style.top = `${(-world.y * 0.5 + 0.5) * height}px`;
+            marker.style.opacity = String(labelOpacity);
+            marker.style.pointerEvents = faceVisibility > 0.45 ? 'auto' : 'none';
+            marker.style.transform = `translate(-50%, -50%) scaleX(${labelScaleX})`;
         });
     }
 
@@ -340,8 +402,10 @@ if (stage) {
             cell.position.lerp(cell.userData.targetPosition, easing);
             const scale = THREE.MathUtils.lerp(cell.scale.x, cell.userData.targetScale, easing);
             cell.scale.setScalar(scale);
+            const spinning = updateCellSpin(cell, now);
             if (cell.position.distanceToSquared(cell.userData.targetPosition) > 0.00001 ||
-                Math.abs(cell.scale.x - cell.userData.targetScale) > 0.001) {
+                Math.abs(cell.scale.x - cell.userData.targetScale) > 0.001 ||
+                spinning) {
                 unsettled = true;
             }
         });
