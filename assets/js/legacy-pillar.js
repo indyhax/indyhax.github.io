@@ -21,6 +21,8 @@ if (stage) {
     let animationFrame = 0;
     let lastTime = performance.now();
     let lockedYear = null;
+    let hoveredCell = null;
+    let lastHoverRaycast = 0;
     let disposed = false;
 
     const cells = [];
@@ -57,6 +59,18 @@ if (stage) {
         marker.textContent = year;
 
         marker.addEventListener('click', () => selectYear(year));
+        marker.addEventListener('pointerenter', () => {
+            setHoveredCell(cellByYear.get(year));
+        });
+        marker.addEventListener('pointerleave', () => {
+            setHoveredCell(null);
+        });
+        marker.addEventListener('focus', () => {
+            setHoveredCell(cellByYear.get(year));
+        });
+        marker.addEventListener('blur', () => {
+            setHoveredCell(null);
+        });
 
         labelsLayer.appendChild(marker);
         markerByYear.set(year, marker);
@@ -147,6 +161,10 @@ if (stage) {
         scene.add(redRim);
 
         canvas.addEventListener('click', onCanvasClick);
+        canvas.addEventListener('pointermove', onCanvasPointerMove);
+        canvas.addEventListener('pointerleave', onCanvasPointerLeave);
+        stage.addEventListener('pointermove', onStagePointerMove);
+        stage.addEventListener('pointerleave', onCanvasPointerLeave);
         canvas.addEventListener('webglcontextlost', onContextLost);
         resizeObserver = new ResizeObserver(resize);
         resizeObserver.observe(stage);
@@ -195,6 +213,32 @@ if (stage) {
         updatePointer(event);
         const cell = raycast();
         if (cell?.userData.year) selectYear(cell.userData.year);
+    }
+
+    function setHoveredCell(cell) {
+        const nextCell = reducedMotion.matches || coarsePointer.matches ? null : cell;
+        if (hoveredCell === nextCell) return;
+        hoveredCell = nextCell;
+        canvas.style.cursor = hoveredCell ? 'pointer' : '';
+        scheduleRender();
+    }
+
+    function onCanvasPointerMove(event) {
+        if (reducedMotion.matches || coarsePointer.matches) return;
+        const now = performance.now();
+        if (now - lastHoverRaycast < 32) return;
+        lastHoverRaycast = now;
+        updatePointer(event);
+        setHoveredCell(raycast());
+    }
+
+    function onCanvasPointerLeave() {
+        setHoveredCell(null);
+    }
+
+    function onStagePointerMove(event) {
+        if (event.target === canvas || event.target.closest?.('[data-year-marker]')) return;
+        setHoveredCell(null);
     }
 
     function onArchiveWheel(event) {
@@ -339,9 +383,10 @@ if (stage) {
             const base = cell.userData.basePosition;
             const selected = cell.userData.year && cell.userData.year === lockedYear;
             const extraction = reducedMotion.matches ? 0 : selected ? 0.4 : 0;
+            const hovered = !reducedMotion.matches && !coarsePointer.matches && cell === hoveredCell;
 
             cell.userData.targetPosition.copy(base).addScaledVector(extractionDirection, extraction);
-            cell.userData.targetScale = 1;
+            cell.userData.targetScale = hovered ? 1.045 : 1;
             cell.material.color.set(0xf4d35e);
             cell.material.emissive.set(0x000000);
         });
@@ -365,11 +410,12 @@ if (stage) {
             const faceVisibility = Math.cos(rotatingFaceAngle - viewAngle);
             const labelOpacity = THREE.MathUtils.clamp((faceVisibility - 0.08) / 0.5, 0, 1);
             const labelScaleX = THREE.MathUtils.clamp(faceVisibility, 0.08, 1);
+            const markerRadius = 1.435 * cell.scale.x;
 
             markerLocalPosition.set(
-                cell.position.x + Math.sin(rotatingFaceAngle) * 1.435,
+                cell.position.x + Math.sin(rotatingFaceAngle) * markerRadius,
                 cell.position.y,
-                cell.position.z + Math.cos(rotatingFaceAngle) * 1.435
+                cell.position.z + Math.cos(rotatingFaceAngle) * markerRadius
             );
             world.copy(markerLocalPosition);
             pillar.localToWorld(world);
@@ -430,6 +476,10 @@ if (stage) {
         cancelAnimationFrame(animationFrame);
         resizeObserver?.disconnect();
         canvas.removeEventListener('click', onCanvasClick);
+        canvas.removeEventListener('pointermove', onCanvasPointerMove);
+        canvas.removeEventListener('pointerleave', onCanvasPointerLeave);
+        stage.removeEventListener('pointermove', onStagePointerMove);
+        stage.removeEventListener('pointerleave', onCanvasPointerLeave);
         canvas.removeEventListener('webglcontextlost', onContextLost);
         legacyContent?.removeEventListener('wheel', onArchiveWheel);
         scene?.traverse((object) => {
